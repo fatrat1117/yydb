@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { TransPipe } from '../../providers/localization/localization';
 
 import { Tab1Root } from '../pages';
 import { Tab2Root } from '../pages';

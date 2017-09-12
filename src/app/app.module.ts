@@ -14,7 +14,6 @@ import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
-import { TransPipe, Localization } from '../providers/providers';
 import { MyApp } from './app.component';
 
 // The translate loader needs to know where to load i18n files
@@ -40,8 +39,7 @@ export function provideSettings(storage: Storage) {
 
 @NgModule({
   declarations: [
-    MyApp,
-    TransPipe
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -65,7 +63,6 @@ export function provideSettings(storage: Storage) {
     Items,
     User,
     Camera,
-    Localization,
     GoogleMaps,
     SplashScreen,
     StatusBar,
