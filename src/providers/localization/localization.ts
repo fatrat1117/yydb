@@ -2,17 +2,17 @@ import {Injectable, Pipe, PipeTransform} from '@angular/core';
 
 @Injectable()
 export class Localization {
-  langCode = 'en';
+  langCode = 'zh';
 
-  setLang(lang) {
-    let lowerLang = lang.toLowerCase();
-    let l = lowerLang.split('-')[0];
-    if (lowerLang != 'zh-tw' && 'zh' == l)
-      this.langCode = 'zh';
-    else
-      this.langCode = 'en';
-    console.log('lang', lang, l, this.langCode);
-  }
+  // setLang(lang) {
+  //   let lowerLang = lang.toLowerCase();
+  //   let l = lowerLang.split('-')[0];
+  //   if (lowerLang != 'zh-tw' && 'zh' == l)
+  //     this.langCode = 'zh';
+  //   else
+  //     this.langCode = 'en';
+  //   console.log('lang', lang, l, this.langCode);
+  // }
 
 
   getString(id, lang = null) {
@@ -825,7 +825,11 @@ export class Localization {
       video: '视频',
       trainingmessage: '训练可以减少受伤几率',
       abilitybytraining: '能力值 (通过训练提升)',
-      congrats: '恭喜! 你的%s为%d(+1)'
+      congrats: '恭喜! 你的%s为%d(+1)',
+      duobao: '夺宝',
+      jijiangjiexiao: '即将揭晓',
+      canyujilu: '参与记录',
+      wode: '我的',
     }
   }
 }

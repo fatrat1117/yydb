@@ -2,12 +2,13 @@ import { Api } from './api/api';
 import { Items } from '../mocks/providers/items';
 import { Settings } from './settings/settings';
 import { User } from './user/user';
-import { Localization } from './localization/localization';
+import { Localization, TransPipe } from './localization/localization';
 
 export {
     Api,
     Items,
     Settings,
     User,
-    Localization
+    Localization,
+    TransPipe
 };
