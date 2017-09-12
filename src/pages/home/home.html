@@ -1,0 +1,74 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'HOME_TITLE' | translate }}</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addItem()">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <img src="assets/img/home-banner.png" />
+    <ion-card-content>
+      <p class="truncate">
+        <ion-icon color="danger" name="volume-up"></ion-icon>
+        恭喜<span style="color: #f53d3d">墙角一枝花</span>获得：iPhone 7 128GB 手机一台（XXXXXXXXXXX）。
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-list-header text-center>
+      {{ 'HUNT_GOING_ON' | translate }}
+    </ion-list-header>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <img src="assets/img/iphone7-red.png" />
+          <ion-card-content>
+            <p>
+              Apple iPhone 7 128GB 红色特别版
+            </p>
+            <p text-center><button ion-button small color="danger" outline>{{ 'PARTICIPATE_NOW' | translate }}</button></p>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+          <ion-card>
+            <img src="assets/img/mi6-black.png" />
+            <ion-card-content>
+              <p>
+                小米 6 128GB 黑色 新款 青春版
+              </p>
+              <p text-center><button ion-button small color="danger" outline>{{ 'PARTICIPATE_NOW' | translate }}</button></p>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+    </ion-row>
+    <!-->
+    <ion-item-sliding *ngFor="let item of currentItems">
+      <button ion-item (click)="openItem(item)">
+        <ion-avatar item-start>
+          <img [src]="item.profilePic" />
+        </ion-avatar>
+        <h2>{{item.name}}</h2>
+        <p>{{item.about}}</p>
+        <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
+      </button>
+
+      <ion-item-options>
+        <button ion-button color="danger" (click)="deleteItem(item)">
+          {{ 'DELETE_BUTTON' | translate }}
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+    <-->
+  </ion-list>
+</ion-content>
