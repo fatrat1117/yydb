@@ -1,0 +1,38 @@
+page-feed {
+    $bg-color: #eee;
+    ion-app.ios [padding],
+    ion-app.ios [padding] .scroll-content {
+        padding: 0px;
+    }
+    .bg {
+        background-color: $bg-color !important;
+        border: none;
+    }
+    .bottom-text {
+        background-color: $bg-color;
+        margin: 0;
+        padding: 5px;
+        margin-left: 65px !important;
+        width: initial;
+    }
+    .bottom-text span {
+        font-size: 14px;
+        color: red;
+    }
+    .spacing {
+        margin-left: 65px !important;
+        width: initial;
+        margin-top: -15px;
+    }
+    .item-ios.item-block .item-inner {
+        padding-right: inherit;
+    }
+    .item-ios ion-avatar ion-img,
+    .item-ios ion-avatar img {
+        width: 56px;
+        height: 56px;
+    }
+    .list-ios>.item-block:first-child {
+        border: none;
+    }
+}
