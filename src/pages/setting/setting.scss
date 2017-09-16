@@ -1,0 +1,21 @@
+page-setting {
+button.popoverclick {  color: #fff;  position: absolute;    right: 33px;    top: 13px;    font-size: 22px;    background: transparent;}
+.toolbar-background.toolbar-background-md {    background: red;}
+.toolbar-title.toolbar-title-md {    color: #fff;}
+.bannerdetail {    text-align: center;padding: 7px 0;}
+.products-heading {    background: #f3f3f3;    text-align: center;    font-size: 24px;    color: red;   padding:10px 0 7px 0px;}
+ion-icon.icon.icon-md.ion-md-volume-up {    color: red; }
+.products-heading ion-icon {    font-size: 16px;}
+.button-md.button-outline {    height: 26px;    padding: 0 4px;	margin: 0 0;    float: right;}
+span.button-inner{font-size:10px;}
+.progress {    height: 11px;    width: 60%;    margin: 0;    position: relative;    bottom: 9px;    background: #ececec;
+    border-radius: 16px;}
+.row{	margin:0 0 0 0;}
+.progress-bar{    background-color: #ff8d30;}
+ion-grid.main-custom-grid.grid .row .col {    background: #f3f3f3;}
+.innercolumn {    padding: 6px;    background: #fff;}
+ion-grid.main-custom-grid.grid {    padding: 0;}
+.scrolltop {    background: rgba(243, 243, 243, 0.86);width: 100%;    float: left;}
+.scrolltop img {    margin: 0px 16px 5px 0px;float: right;    height: 50px;}
+
+}
