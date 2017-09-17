@@ -10,12 +10,28 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
+import { ProductsService } from '../providers/providers';
+import { RoundsService } from '../providers/providers';
 import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
 import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+// Firebase config
+export const firebaseConfig = {
+  apiKey: "AIzaSyD34vLme2YuR_PthmykCCoUd2oIcUtHBoM",
+  authDomain: "yydb-9a6c4.firebaseapp.com",
+  databaseURL: "https://yydb-9a6c4.firebaseio.com",
+  projectId: "yydb-9a6c4",
+  storageBucket: "yydb-9a6c4.appspot.com",
+  messagingSenderId: "496534747409"
+};
 
 
 // The translate loader needs to know where to load i18n files
@@ -46,6 +62,9 @@ export function provideSettings(storage: Storage) {
   ],
   imports: [
     BrowserModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
     HttpModule,
     TranslateModule.forRoot({
       loader: {
@@ -64,6 +83,8 @@ export function provideSettings(storage: Storage) {
   ],
   providers: [
     Api,
+    ProductsService,
+    RoundsService,
     Items,
     User,
     Camera,
