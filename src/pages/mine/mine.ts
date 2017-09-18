@@ -26,5 +26,9 @@ export class MinePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MinePage');
   }
+  
+  edit(){
+		console.log("edit");
+	}
 
 }
