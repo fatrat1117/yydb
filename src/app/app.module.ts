@@ -20,6 +20,7 @@ import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
 import { LoginPage } from '../pages/login/login';
 import { SignupPage } from '../pages/signup/signup';
+import {ListPage} from '../pages/list/list';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -62,7 +63,8 @@ export function provideSettings(storage: Storage) {
     MyApp,
      FeedPage,
      LoginPage,
-     SignupPage
+     SignupPage,
+     ListPage
   ],
   imports: [
     BrowserModule,
@@ -85,7 +87,8 @@ export function provideSettings(storage: Storage) {
     MyApp,
      FeedPage,
       LoginPage,
-     SignupPage
+     SignupPage,
+     ListPage
   ],
   providers: [
     Api,
