@@ -19,6 +19,7 @@ import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
 import {ListPage} from '../pages/list/list';
+import {TableViewPage} from '../pages/table-view/table-view';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -60,7 +61,8 @@ export function provideSettings(storage: Storage) {
   declarations: [
     MyApp,
      FeedPage,
-     ListPage
+     ListPage,
+     TableViewPage
   ],
   imports: [
     BrowserModule,
@@ -82,7 +84,8 @@ export function provideSettings(storage: Storage) {
   entryComponents: [
     MyApp,
      FeedPage,
-     ListPage
+     ListPage,
+     TableViewPage
   ],
   providers: [
     Api,

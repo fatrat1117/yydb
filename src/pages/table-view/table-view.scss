@@ -1,0 +1,56 @@
+page-table-view {
+    .card-box {
+        border:1px solid $color-red;
+        background: $background-color;
+        border-radius:3px;
+        padding: 10px 6px;
+        color: $color-red;
+        text-align:center;
+    }
+    .equalsign {
+        color: $color-red;
+        text-align:center;
+        font-size: 17px;
+        margin-top: 7px;
+    }
+    .card-box-col-4 {
+        float:left;
+        width:27%;
+    }
+    .sign-box {
+        float:left;
+        color: $color-red;
+        margin-top: 20px;
+        padding: 0 5px;
+    }
+    .card-box-red {
+        background: $color-red;
+        color: $color-white;
+        padding: 5px 10px;
+    }
+    .col-3div {
+        width:25%;
+        float:left;
+        border:1px solid $color-red;
+        padding: 10px 0;
+        font-size: 13px;
+        text-align: center;
+    }
+    .col-6div {
+        width:50%;
+        float:left;
+        border:1px solid $color-red;
+        padding: 10px 0;
+        font-size: 13px;
+        text-align: center;
+    }
+    .full-width-table {
+        padding: 0;
+    }
+    .color-red {
+        color: $color-red;
+    }
+    .table {
+        border: 1px solid $color-red;
+    }
+}

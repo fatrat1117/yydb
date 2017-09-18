@@ -3,6 +3,7 @@ import { IonicPage, ModalController, NavController } from 'ionic-angular';
 
 import { Item } from '../../models/item';
 import { Items } from '../../providers/providers';
+import {TableViewPage} from '../table-view/table-view';
 
 @IonicPage()
 @Component({
@@ -50,6 +51,11 @@ export class HomePage {
     this.navCtrl.push('ItemDetailPage', {
       item: item
     });
+  }
+
+  tablepage() {
+    console.log('click');
+    this.navCtrl.push(TableViewPage);
   }
   
 }
