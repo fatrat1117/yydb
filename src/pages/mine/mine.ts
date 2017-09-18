@@ -27,6 +27,10 @@ export class MinePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad MinePage');
   }
+  
+  edit(){
+		console.log("edit");
+	}
 
   share(){
    this.navCtrl.push(FeedPage);

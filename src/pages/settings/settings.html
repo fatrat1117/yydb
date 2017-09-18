@@ -1,45 +1,95 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{ pageTitle }}</ion-title>
+    <ion-title>{{'PARTICIPATE_RECORD' | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
+<ion-grid class="grdiborder">
+  <ion-row class="titlerow">
+    <ion-col col-xl-4><ion-label color="black">Tab1</ion-label></ion-col>
+    <ion-col col-xl-4 ><ion-label color="danger">Tab2<div color="danger" class="border-active"></div></ion-label></ion-col>
+    <ion-col col-xl-4><ion-label color="black">Tab3</ion-label></ion-col>
+  </ion-row>
+</ion-grid>
 
-  <form [formGroup]="form" *ngIf="settingsReady">
-    <ion-list *ngIf="page == 'main'">
-      <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION1' | translate }}</ion-label>
-        <ion-toggle formControlName="option1"></ion-toggle>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION2' | translate }}</ion-label>
-        <ion-input formControlName="option2"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION3' | translate }}</ion-label>
-        <ion-select formControlName="option3">
-          <ion-option value="1" checked="true">1</ion-option>
-          <ion-option value="2">2</ion-option>
-          <ion-option value="3">3</ion-option>
-        </ion-select>
-      </ion-item>
-
-      <button ion-item [navPush]="subSettings" [navParams]="profileSettings">
-        {{ 'SETTINGS_PROFILE_BUTTON' | translate }}
-      </button>
-    </ion-list>
-
-    <ion-list *ngIf="page == 'profile'">
-      <ion-item>
-        <ion-label>{{ 'SETTINGS_OPTION4' | translate }}</ion-label>
-        <ion-input formControlName="option4"></ion-input>
-      </ion-item>
-    </ion-list>
-  </form>
-
+<ion-card>
+  <ion-item>
+    <img src="assets/img/jd.jpg" width="30">
+	<div class="card-inner-custom">
+    <h2>Museum of Football</h2>
+    <p>11 N. Way St, Madison</p>
+    <p>11 N. Way St</p>
+	</div>
+	<span class="button-inner custom-button-inner">Buy <ion-icon name="arrow-dropright"></ion-icon></span>
+<div class="progress mainprogress">
+		<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
+			<span class="sr-only">70% Complete</span>
+		</div>
+	  </div>
+	  <div class="progress progessderail">
+	  <span class="left">Price 600</span>
+	  <span class="right">Price 100</span>
+	  </div>
+	  <button ion-button class="submitbtn" color="danger" outline>Submit</button>
+  </ion-item>
+</ion-card>
+<ion-card>
+  <ion-item>
+    <img src="assets/img/jd.jpg" width="30">
+	<div class="card-inner-custom">
+    <h2>Museum of Football</h2>
+    <p>11 N. Way St, Madison</p>
+    <p>11 N. Way St</p>
+	</div>
+	<span class="button-inner custom-button-inner">Buy <ion-icon name="arrow-dropright"></ion-icon></span>
+	
+  </ion-item>
+</ion-card>
+<ion-card>
+  <ion-item>
+    <img src="assets/img/jd.jpg" width="30">
+	<div class="card-inner-custom">
+    <h2>Museum of Football</h2>
+    <p>11 N. Way St, Madison</p>
+    <p>11 N. Way St</p>
+	</div>
+	<span class="button-inner custom-button-inner">Buy <ion-icon name="arrow-dropright"></ion-icon></span>
+  </ion-item>
+</ion-card>
+<ion-card>
+  <ion-item>
+    <img src="assets/img/jd.jpg" width="30">
+	<div class="card-inner-custom">
+    <h2>Museum of Football</h2>
+    <p>11 N. Way St, Madison</p>
+    <p>11 N. Way St</p>
+	</div>
+	<span class="button-inner custom-button-inner">Buy <ion-icon name="arrow-dropright"></ion-icon></span>
+  </ion-item>
+</ion-card>
+<ion-card>
+  <ion-item>
+    <img src="assets/img/jd.jpg" width="30">
+	<div class="card-inner-custom">
+    <h2>Museum of Football</h2>
+    <p>11 N. Way St, Madison</p>
+    <p>11 N. Way St</p>
+	</div>
+	<span class="button-inner custom-button-inner">Buy <ion-icon name="arrow-dropright"></ion-icon></span>
+  </ion-item>
+</ion-card>
+<ion-card>
+  <ion-item>
+    <img src="assets/img/jd.jpg" width="30">
+	<div class="card-inner-custom">
+    <h2>Museum of Football</h2>
+    <p>11 N. Way St, Madison</p>
+    <p>11 N. Way St</p>
+	</div>
+	<span class="button-inner custom-button-inner">Buy <ion-icon name="arrow-dropright"></ion-icon></span>
+  </ion-item>
+</ion-card>
 </ion-content>

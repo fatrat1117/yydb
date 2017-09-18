@@ -6,59 +6,65 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="danger">
     <ion-title>MinePage</ion-title>
     <ion-buttons end>
         <button ion-button (click)="edit()">
-          <ion-icon name="brush"></ion-icon>
+          <ion-icon name="ios-create-outline"></ion-icon>
         </button>
       </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content>
+	<div class="bannersection">
+		<img src="assets/img/bannercontact.PNG">
+		<h3 class="clist">Mine List</h3>
+	</div>
+	<div class="buttondanger">
+		<button ion-button color="danger">Mobile</button> <button ion-button color="danger">Tablet</button>
+	</div>
+<ion-card>
+  <ion-list>
+    <button ion-item>
+      <ion-icon name="appstore"></ion-icon>
+      Shopping
+	  <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+    </button>
 
-<ion-content class="content-background">
-    <ion-list class="mine-header">
-        <button ion-item color="danger" (click)="edit()">
-          <ion-thumbnail  (click)="viewAvatar()">
-            <img class="img-center" src="{{avatarPath}}">
-          </ion-thumbnail>
-          <div class="div-center">张三</div>
-        </button>
-      </ion-list>
+    <button ion-item>
+      <ion-icon name="camera"></ion-icon>
+      Hospital
+	  <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+    </button>
+  </ion-list>
+</ion-card>
+<ion-card>
+  <ion-list>
+    <button ion-item>
+      <ion-icon name="pin"></ion-icon>
+      Shopping
+	  <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+    </button>
 
-      <ion-list>
-          <button ion-item (click)="goods()">
-            <ion-icon name="cash" item-left color="primary"></ion-icon>
-            获得的商品
-          </button>
-          <button ion-item (click)="share()">
-            <ion-icon name="camera" item-left color="bright"></ion-icon>
-            晒单
-          </button>
-        </ion-list>
+    <button ion-item>
+      <ion-icon name="ios-create"></ion-icon>
+      Hospital
+	  
+	  <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+    </button>
 
-        <ion-list>
-            <button ion-item (click)="address()">
-              <ion-icon name="map" item-left color="primary"></ion-icon>
-              收货地址
-            </button>
-            <button ion-item (click)="modifyPassword">
-              <ion-icon name="camera" item-left color="bright"></ion-icon>
-              修改密码
-            </button>
-        </ion-list>
-
-        <ion-list>
-          <button ion-item (click)="share()">
-            <ion-icon name="share" item-left color="primary"></ion-icon>
-            分享
-          </button>
-            
-        </ion-list>
-
-
-        <div class="div-center">客服电话：{{customerService}}</div>
-
+  </ion-list>
+</ion-card>
+<ion-card>
+  <ion-list>
+    <button ion-item>
+      <ion-icon name="barcode"></ion-icon>
+      Shopping
+	  <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+    </button>
+  </ion-list>
+</ion-card>
+<ion-label class="calss-usback">Call Us: 6666666666</ion-label>
 </ion-content>
