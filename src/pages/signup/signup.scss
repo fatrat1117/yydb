@@ -1,8 +1,8 @@
 page-signup {
-    .toolbar-background-ios {
+    .toolbar-background {
         background: $header-bg-color;
     }
-    .toolbar-title-ios {
+    .toolbar-title {
         color: $secondary-color;
     }
     .bannersection h3 {
@@ -24,22 +24,21 @@ page-signup {
     .bannersection {
         position: relative;
     }
-    .bar-button-default-ios,
-    .bar-button-default.bar-button-ios-default,
-    .bar-button-clear-ios-default {
+    .bar-button-default,
+    .bar-button-default.bar-button-default,
+    .bar-button-clear-default {
         color: $secondary-color !important;
     }
     .input-wrapper {
         padding-left: 10px;
-        padding-top: 10px;
-        border-bottom: solid 1px #ddd;
+        border-bottom: solid 1px #ddd !important;
     }
-    .label-ios+ion-input .text-input,
-    .label-ios+ion-textarea .text-input,
-    .label-ios+.input+.cloned-input {
+    .label+ion-input .text-input,
+    .label+ion-textarea .text-input,
+    .label+.input+.cloned-input {
         color: $primary-font-color;
     }
-    .button-ios {
+    .button {
         background-color: #EF0100 !important;
     }
     .forgot-text {
