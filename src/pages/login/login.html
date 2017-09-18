@@ -1,22 +1,32 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <form (submit)="doLogin()">
-    <ion-list>
+    <div class="bannersection">
 
-      <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
-      </ion-item>
+        <img src="assets/img/bannercontact.PNG">
+        <h3 class="clist">
+            <ion-icon ios="ios-lock" md="md-unlock"></ion-icon>
+            <br/> {{ 'LOGIN_SUBTITLE' | translate }}
+        </h3>
+    </div>
+    <form (submit)="doLogin()" padding-horizontal>
+        <ion-list margin-horizontal>
 
-      <!--
+            <ion-item margin-top>
+                <ion-label>
+                    <ion-icon ios="ios-mail-outline" md="md-mail"></ion-icon>
+                </ion-label>
+                <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+            </ion-item>
+
+            <!--
       Want to use a Username instead of an Email? Here you go:
 
       <ion-item>
@@ -25,15 +35,32 @@
       </ion-item>
       -->
 
-      <ion-item>
-        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
-      </ion-item>
+            <ion-item margin-top>
 
-      <div padding>
-        <button ion-button color="primary" block>{{ 'LOGIN_BUTTON' | translate }}</button>
-      </div>
+                <ion-label>
 
-    </ion-list>
-  </form>
+                    <ion-icon ios="ios-unlock-outline" md="md-unlock"></ion-icon>
+                </ion-label>
+                <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+            </ion-item>
+            <div padding>
+                <a href="" class="forgot-text" float-right>{{'FORGOT_PASSWORD' | translate}}</a>
+            </div>
+            <div margin padding-vertical>
+
+                <button ion-button block>{{ 'LOGIN_BUTTON' | translate }}</button>
+            </div>
+
+            <fieldset margin padding-top class="social">
+                <legend>{{'SOCIAL' | translate}}</legend>
+                <div padding>
+                    <a><img src="assets/img/facebook.png" alt=""></a>
+
+                    <a><img src="assets/img/g+.png" width=a lt=""></a>
+
+                </div>
+
+            </fieldset>
+        </ion-list>
+    </form>
 </ion-content>

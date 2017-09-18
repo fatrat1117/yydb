@@ -44,12 +44,17 @@
 
     "WELCOME_TITLE": "Welcome",
 
+    "FORGOT_PASSWORD": "Forgot your password?",
+    "SOCIAL": "Social Media Login",
     "LOGIN_TITLE": "Sign in",
+    "LOGIN_SUBTITLE": "Sign into your account",
     "LOGIN_ERROR": "Unable to sign in. Please check your account information and try again.",
     "LOGIN_BUTTON": "Sign in",
     "SIGNUP_TITLE": "Sign up",
+    "SIGNUP_SUBTITLE": "Create a new account",
     "SIGNUP_ERROR": "Unable to create account. Please check your account information and try again.",
     "SIGNUP_BUTTON": "Sign up",
+    "REMEMBER": "Remember me",
 
     "LIST_MASTER_TITLE": "Items",
 

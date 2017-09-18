@@ -18,6 +18,8 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
+import { LoginPage } from '../pages/login/login';
+import { SignupPage } from '../pages/signup/signup';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -58,7 +60,9 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [
     MyApp,
-     FeedPage
+     FeedPage,
+     LoginPage,
+     SignupPage
   ],
   imports: [
     BrowserModule,
@@ -79,7 +83,9 @@ export function provideSettings(storage: Storage) {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-     FeedPage
+     FeedPage,
+      LoginPage,
+     SignupPage
   ],
   providers: [
     Api,

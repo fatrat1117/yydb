@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DEFAULT_AVATAR, CUSTOMER_SERVICE} from "../../providers/Constants";
 import {UserInfo} from "../../models/UserInfo";
 import { FeedPage } from '../feed/feed';
+import { LoginPage } from '../login/login';
+import { SignupPage } from '../signup/signup';
 
 /**
  * Generated class for the MinePage page.
@@ -36,4 +38,12 @@ export class MinePage {
    this.navCtrl.push(FeedPage);
   }
 
+  login(params){
+    if (!params) params = {};
+    this.navCtrl.push(LoginPage);
+  }
+  signup(params){
+    if (!params) params = {};
+    this.navCtrl.push(SignupPage);
+  }
 }
