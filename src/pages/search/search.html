@@ -28,9 +28,9 @@
 		
 		<ion-card-content class="card-content-label">
 			<ion-row>
-				<ion-col col-3><div class="red-label">Model</div></ion-col>
-				<ion-col col-6><p class="small" >Card Header</p>
-					<ion-row class="color-red mar-top">
+				<ion-col col-3><div class="red-label">{{cardsdata.label}}</div></ion-col>
+				<ion-col col-6><p class="small" >{{cardsdata.header}}</p>
+					<ion-row class="color-red mar-top time-row">
 							<ion-col col-4>
 									<div class="time-label">02</div> <span class="colon">:</span>
 							</ion-col>
@@ -42,7 +42,7 @@
 							</ion-col>
 						</ion-row>
 				</ion-col>
-				<ion-col col-3 float-right><p class="small color-red mar-left" >Next <ion-icon name="arrow-forward"></ion-icon></p></ion-col>
+				<ion-col col-3 float-right><p class="small color-red mar-left" >{{cardsdata.next}}<ion-icon name="arrow-forward"></ion-icon></p></ion-col>
 			</ion-row>
 		</ion-card-content>
 	
@@ -58,7 +58,7 @@
 	<p class="extra-space"></p>
 
 	<ion-list no-lines>
-		<button ion-item *ngFor="let item of items">
+		<button ion-item *ngFor="let item of items" (click)="listpage()">
 			{{ item }}
 			<ion-icon md="md-arrow-dropright" float-right></ion-icon> 
 		</button>

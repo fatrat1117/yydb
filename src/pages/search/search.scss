@@ -26,10 +26,10 @@ page-search {
       margin: 0 0 0 0;
       font-size: 14px;
       line-height: 1.5;
-      color: #60646B;
+      color: $lightgrey-p;
   
       b {
-        color: #000000;
+        color: $text-color;
       }
     }
   
@@ -50,7 +50,7 @@ page-search {
     }
   
     .download-icon{
-      color: red;
+      color: $color-red;
       font-size: 3.2em;
     }
   
@@ -64,13 +64,13 @@ page-search {
   
     .red-left {
       .label-ios, .label-md{
-        border-left: 5px solid red;
+        border-left: 5px solid $color-red;
         padding-left: 5px;
       }
     }
   
     .red{
-      color: red;
+      color: $color-red
     }
   
     ion-avatar img {
@@ -80,7 +80,7 @@ page-search {
   
     .extra-space{
       height: 10px;
-      background: #f4f4f4;
+      background: $extraspace-background;
     }
   
     .button-bottom{
@@ -110,11 +110,11 @@ page-search {
   }
   
   .item-block .item-inner {
-    border-bottom: 0 solid #c8c7cc !important;
+    border-bottom: 0 solid $borderbottom-grey !important;
   }
   
   .item{
-    border-bottom: 0.05px solid #c8c7cc;
+    border-bottom: 0.05px solid $borderbottom-grey;
   }
   
   .button-ios, .grid, [col-6]{
@@ -127,21 +127,21 @@ page-search {
     border-top: 0;
   }
   .border-red-card {
-    border: 1px solid red;
-    background: rgba(255, 0,0, 0.24);
+    border: 1px solid $color-red;
+    background: $lightred-background;
     text-align: center;
   }
   
   .color-red {
-    color:red !important;
+    color:$color-red !important;
   }
   
   .time-label {
-    border: 1px solid red;
+    border: 1px solid $color-red;
     border-radius:3px;
-    background: #efefef;
+    background: $lightgrey-background;
     float:left;
-    color:red;
+    color:$color-red;
     padding: 3px 7px;
     margin-right: 1px;
     font-size: 18px;
@@ -151,11 +151,12 @@ page-search {
     display: inline-block;
     margin-top: 6px;
     font-size: 15px;
+    margin-left: 4px;
   }
   
   .red-label {
-    background: red;
-    color:#fff;
+    background: $color-red;
+    color:$color-white;
     -ms-transform: rotate(-55deg); /* IE 9 */
     -webkit-transform: rotate(-55deg); /* Safari */
     transform: rotate(-55deg); /* Standard syntax */
@@ -172,4 +173,8 @@ page-search {
   
   .mar-left{
     margin-left: 15px !important;
+  }
+
+  .time-row [col-4] {
+    padding-right: 0;
   }

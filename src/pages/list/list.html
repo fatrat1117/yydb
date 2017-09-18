@@ -1,0 +1,40 @@
+<!--
+  Generated template for the ListPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>list-page</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngFor="let list of lists">
+
+    <ion-card-header class="card-header">
+      <p class="pull-left">Left: {{list.left}}</p><p class="pull-right">Right: {{list.right}}</p>
+    </ion-card-header>
+
+    <ion-card-content class="card-content">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3><img src="assets/img/user-icon.jpg" class="" alt="" /></ion-col>
+          <ion-col col-9>
+            <div><span>Name:</span><span>{{list.name}}</span></div>
+            <div><span>CPID:</span><span>{{list.cpid}}</span></div>
+            <div><span>Phone:</span><span class="text-danger">{{list.phone}}</span></div>
+            <div><span>Code:</span><span class="text-danger">{{list.code}}</span></div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+
+  </ion-card>
+
+</ion-content>
