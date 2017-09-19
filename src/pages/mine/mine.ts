@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DEFAULT_AVATAR, CUSTOMER_SERVICE} from "../../providers/Constants";
 import {UserInfo} from "../../models/UserInfo";
 import { FeedPage } from '../feed/feed';
+import { ProfilePage } from '../profile/profile';
 
 /**
  * Generated class for the MinePage page.
@@ -29,7 +30,8 @@ export class MinePage {
   }
   
   edit(){
-		console.log("edit");
+    console.log("edit");
+    this.navCtrl.push(ProfilePage);
 	}
 
   share(){

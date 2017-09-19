@@ -1,0 +1,47 @@
+<!--
+  Generated template for the ProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content class="ion-content-bg">
+
+  <ion-list>
+    <button ion-item (click)="enter();">
+      <ion-avatar item-start>
+          <img src={{avatarPath}} width="30">
+      </ion-avatar>
+      <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+    </button>
+
+    <button ion-item>
+      nickname
+        <div class="align-right">
+            jack
+          <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+        </div>
+    </button>
+    <button ion-item>
+        sex
+          <div class="align-right">
+              male
+            <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+          </div>
+      </button>
+      <button ion-item>
+          birthday
+            <div class="align-right">
+                1990-08-21
+              <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+            </div>
+        </button>
+
+  </ion-list>
+</ion-content>
