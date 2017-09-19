@@ -11,3 +11,4 @@ export const Tab2Root = 'SearchPage';
 export const Tab3Root = 'SettingsPage';
 export const Tab4Root = 'MinePage';
 export const Tab5Root = 'ApiTestsPage';
+export const Tab6Root = 'SearchPage';
