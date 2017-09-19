@@ -14,28 +14,28 @@
 <ion-content class="ion-content-bg">
 
   <ion-list>
-    <button ion-item (click)="enter();">
+    <button ion-item detail-none (click)="enter();">
       <ion-avatar item-start>
           <img src={{avatarPath}} width="30">
       </ion-avatar>
       <ion-icon name="ios-arrow-forward-outline"></ion-icon>
     </button>
 
-    <button ion-item>
+    <button ion-item detail-none>
       nickname
         <div class="align-right">
             jack
-          <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+            <ion-icon name="ios-arrow-forward-outline"></ion-icon>
         </div>
     </button>
-    <button ion-item>
+    <button ion-item detail-none>
         sex
           <div class="align-right">
               male
-            <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+            <ion-icon name="ios-arrow-forward-outline" ios="hide"></ion-icon>
           </div>
       </button>
-      <button ion-item>
+      <button ion-item detail-none>
           birthday
             <div class="align-right">
                 1990-08-21
