@@ -18,8 +18,9 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
-import { LoginPage } from '../pages/login/login';
-import { SignupPage } from '../pages/signup/signup';
+import {ListPage} from '../pages/list/list';
+import {TableViewPage} from '../pages/table-view/table-view';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -61,8 +62,9 @@ export function provideSettings(storage: Storage) {
   declarations: [
     MyApp,
      FeedPage,
-     LoginPage,
-     SignupPage
+     ListPage,
+     TableViewPage,
+     ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -84,8 +86,9 @@ export function provideSettings(storage: Storage) {
   entryComponents: [
     MyApp,
      FeedPage,
-      LoginPage,
-     SignupPage
+     ListPage,
+     TableViewPage,
+     ProfilePage
   ],
   providers: [
     Api,

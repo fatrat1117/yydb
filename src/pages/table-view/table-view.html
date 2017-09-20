@@ -1,0 +1,77 @@
+<!--
+  Generated template for the TableViewPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>table-view</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>&nbsp;</ion-col>
+      <ion-col col-4>
+        <div class="card-box">
+          <div>{{multidata.value4}}</div>
+          <div>{{multidata.text4}}</div>
+        </div>
+        <div class="equalsign">||</div>
+      </ion-col>
+      <ion-col col-4>&nbsp;</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="full-width-table" col-12>
+        <div class="sign-box">(</div>
+        <div class="card-box card-box-col-4">
+          <div>{{multidata.value1}}</div>
+          <div>{{multidata.text1}}</div>
+        </div>
+        <div class="sign-box">%</div>
+        <div class="card-box card-box-col-4">
+          <div>{{multidata.value2}}</div>
+          <div>{{multidata.text2}}</div>
+        </div>
+        <div class="sign-box">) +</div>
+        <div class="card-box card-box-col-4">
+          <div>{{multidata.value3}}</div>
+          <div>{{multidata.text3}}</div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <div class="card-box-red">
+          <p>{{multidata.boxdata}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="full-width-table">
+        <div class="table">
+          <div class="table-head">
+            <div class="row">
+              <div class="col-6div">dfgdsgdsg</div>
+              <div class="col-3div">fgdfgdfg</div>
+              <div class="col-3div">sfs</div>
+            </div>
+          </div>
+          <div class="table-content">
+            <div *ngFor="let data of tabledata" class="row">
+              <div class="col-3div">{{data.table_content1}}</div>
+              <div class="col-3div">{{data.table_content2}}</div>
+              <div class="col-3div color-red">{{data.table_content3}}</div>
+              <div class="col-3div">{{data.table_content4}}</div>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

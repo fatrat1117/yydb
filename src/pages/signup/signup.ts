@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, ToastController } from 'ionic-angular';
-import { ViewController } from 'ionic-angular';
 
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
@@ -20,19 +19,17 @@ export class SignupPage {
     email: 'test@example.com',
     password: 'test'
   };
- tabBarElement: any;
+
   // Our translated text strings
   private signupErrorString: string;
 
   constructor(public navCtrl: NavController,
     public user: User,
-      public viewCtrl: ViewController,
     public toastCtrl: ToastController,
     public translateService: TranslateService) {
 
     this.translateService.get('SIGNUP_ERROR').subscribe((value) => {
       this.signupErrorString = value;
-       this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     })
   }
 
@@ -53,14 +50,4 @@ export class SignupPage {
       toast.present();
     });
   }
-  ionViewWillEnter() {
-    this.tabBarElement.style.display = 'none';
-  }
- 
-  ionViewWillLeave() {
-    this.tabBarElement.style.display = 'flex';
-  }
-   ionViewDidLoad() {
-        this.viewCtrl.setBackButtonText('');
-    }
 }

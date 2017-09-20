@@ -6,7 +6,184 @@
 	</ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content no-bounce>
+	<ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
+		<ion-slide *ngFor="let slide of slides">
+			<img [src]="slide.image" class="slide-image" />
+		</ion-slide>
+	</ion-slides>
+	
+	<ion-grid>
+		<ion-row>
+			<ion-col col-12><p class="big"> Apple iPhone 7 128 G </p></ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-8><p class="small">Model No: 123456789012345</p></ion-col>
+			<ion-col col-4><p class="small" float-right>Price: 6000</p></ion-col>
+		</ion-row>
+	</ion-grid>
+
+
+	<ion-card class="border-red-card">	
+		
+		<ion-card-content class="card-content-label">
+			<ion-row>
+				<ion-col col-3><div class="red-label">{{cardsdata.label}}</div></ion-col>
+				<ion-col col-6><p class="small" >{{cardsdata.header}}</p>
+					<ion-row class="color-red mar-top time-row">
+							<ion-col col-4>
+									<div class="time-label">02</div> <span class="colon">:</span>
+							</ion-col>
+							<ion-col col-4>
+									<div class="time-label">20</div> <span class="colon">:</span>
+							</ion-col>
+							<ion-col col-4>
+									<div class="time-label">36</div>
+							</ion-col>
+						</ion-row>
+				</ion-col>
+				<ion-col col-3 float-right (click)="showTable()"><p class="small color-red mar-left" >{{cardsdata.next}}<ion-icon name="arrow-forward"></ion-icon></p></ion-col>
+			</ion-row>
+		</ion-card-content>
+	
+	</ion-card>
+
+
+	<ion-grid>
+		<ion-row>
+			<ion-col col-12><button ion-button full color="light" class="box-shad">Product Properties Below:</button></ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<p class="extra-space"></p>
+
+	<ion-list no-lines>
+		<button ion-item *ngFor="let item of items;let i=index" (click)="listpage(i)">
+			{{ item }}
+			<ion-icon md="md-arrow-dropright" float-right></ion-icon> 
+		</button>
+		
+	</ion-list>
+
+	<p class="extra-space"></p>
+
+	<ion-list>
+		<ion-list-header class="big red-left">
+			List of properties below:
+		</ion-list-header>
+		<ion-item *ngFor="let list of lists">
+			<ion-avatar item-start>
+				<img [src]="list.imageSrc">
+			</ion-avatar>
+			<ion-grid>
+				<ion-row>
+					<ion-col col-5><h2>{{list.content1}}</h2></ion-col>
+					<ion-col col-7><h3 float-right>{{list.date}}</h3></ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col col-5><span color="danger">{{list.dis}}</span> <span> {{list.off}}</span></ion-col>
+					<ion-col col-7><h5 float-right>{{list.ip}}</h5></ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-item>
+	</ion-list>
+
+	<ion-grid>
+		<ion-row>
+			<ion-col col-10><p margin-top text-center>Download PDF</p></ion-col>        
+			<ion-col col-2><ion-icon name="download" class="download-icon"></ion-icon></ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-grid>
+		<ion-row>
+			<ion-col col-6><button ion-button full color="light" no-margin class="button-bottom">Go back</button></ion-col>        
+			<ion-col col-6><button ion-button full color="danger" no-margin class="button-bottom">Purchase</button></ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-grid class="custom-timer-products">
+		<ion-row>
+			<ion-col col-4><img src="assets/img/iphone7-1.jpg"></ion-col>
+			<ion-col col-8 class="product-column">
+			<p>Apple iPhone 7 128G XXXXX XXXXXXXX</p>
+			<p>ID: 21542455432</p>
+			<p><span>Apple</span></p>
+			<span class="timer" color="danger"><ion-icon name="timer"></ion-icon> 00:04:21</span>
+		</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-4><img src="assets/img/mi6-1.jpg"></ion-col>
+			<ion-col col-8 class="product-column">
+			<p>Redmi MI6 128G XXXX XXXXXXXXX</p>
+			<p>ID: 21542455432</p>
+			<p><span>Redmi</span></p>
+			<span class="timer"><ion-icon name="timer"></ion-icon> 00:04:21</span>
+		</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-4><img src="assets/img/mi6-1.jpg"></ion-col>
+			<ion-col col-8 class="product-column">
+			<p>Redmi MI6 128G XXXX XXXXXXXXX</p>
+			<p>ID: 21542455432</p>
+			<p>Price: 399</p>
+			<p>Sim: 1</p>
+		</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-4><img src="assets/img/iphone7-1.jpg"></ion-col>
+			<ion-col col-8 class="product-column">
+			<p>Apple iPhone 7 128G XXXXX XXXXXXXX</p>
+			<p>ID: 21542455432</p>
+			<p>Price: 399</p>
+			<p>Sim: 1</p>
+		</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-4><img src="assets/img/mi6-1.jpg"></ion-col>
+			<ion-col col-8 class="product-column">
+			<p>Redmi MI6 128G XXXX XXXXXXXXX</p>
+			<p>ID: 21542455432</p>
+			<p>Price: 399</p>
+			<p>Sim: 1</p>
+		</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-4><img src="assets/img/iphone7-1.jpg"></ion-col>
+			<ion-col col-8 class="product-column">
+			<p>Apple iPhone 7 128G XXXXX XXXXXXXX</p>
+			<p>ID: 21542455432</p>
+			<p>Price: 399</p>
+			<p>Sim: 1</p>
+		</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-4><img src="assets/img/mi6-1.jpg"></ion-col>
+			<ion-col col-8 class="product-column">
+			<p>Redmi MI6 128G XXXX XXXXXXXXX</p>
+			<p>ID: 21542455432</p>
+			<p>Price: 399</p>
+			<p>Sim: 1</p>
+		</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col col-4><img src="assets/img/iphone7-1.jpg"></ion-col>
+			<ion-col col-8 class="product-column">
+			<p>Apple iPhone 7 128G XXXXX XXXXXXXX</p>
+			<p>ID: 21542455432</p>
+			<p>Price: 399</p>
+			<p>Sim: 1</p>
+		</ion-col>
+		</ion-row>
+	</ion-grid>
+	<div class="scrolltop">
+		<img src="assets/img/scrolltop.PNG">
+	</div>
+	
+
+</ion-content>
+
+<!--ion-content>
 <ion-grid class="custom-timer-products">
   <ion-row>
     <ion-col col-4><img src="assets/img/iphone7-1.jpg"></ion-col>
@@ -84,4 +261,4 @@
 <div class="scrolltop">
 	<img src="assets/img/scrolltop.PNG">
 </div>
-</ion-content>
+</ion-content-->
