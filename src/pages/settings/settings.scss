@@ -2,7 +2,7 @@ page-settings {
 ion-row.titlerow .col,ion-header.header.header-md {    text-align: center;    text-transform: uppercase;}
 ion-row.titlerow .active.col img {    display: table;    margin: 10px auto 0;    height: 6px;}
 ion-grid.grdiborder.grid { box-shadow: 6px 0px 7px #978f8f;   padding: 20px 0 5px;}
-ion-label.label.label-md img {    width: 60px;    float: left;    padding: 0 10px 0px 0px;}
+.setting-main ion-item img {    width: 60px;    float: left;    padding: 0 10px 0px 0px;}
 .card-inner-custom {    float: left;}
 span.button-inner.custom-button-inner {float: left;width: 65px;color:color($colors,danger);position: absolute;top: 54px;height: 18px;right: 18px;text-transform: uppercase;}
 span.button-inner.custom-button-inner .item-icon {    font-size: 29px;    position: relative;left: 3px;}

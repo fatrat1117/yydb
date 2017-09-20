@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { MainPage } from '../pages';
+
 /**
- * Generated class for the WelcomePage page.
+ * Generated class for the SingleproductPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,18 +10,16 @@ import { MainPage } from '../pages';
 
 @IonicPage()
 @Component({
-  selector: 'page-welcome',
-  templateUrl: 'welcome.html',
+  selector: 'page-singleproduct',
+  templateUrl: 'singleproduct.html',
 })
-export class WelcomePage {
+export class SingleproductPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WelcomePage');
+    console.log('ionViewDidLoad SingleproductPage');
   }
-  goHomeScreen(){
-    this.navCtrl.push(MainPage);
-  }
+
 }

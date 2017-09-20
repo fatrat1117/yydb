@@ -7,7 +7,9 @@ import { Config, Nav, Platform } from 'ionic-angular';
 //import { FirstRunPage } from '../pages/pages';
 import { MainPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
-
+import { WelcomePage } from '../pages/welcome/welcome';
+import { ConfirmPage } from '../pages/confirm/confirm';
+import { SingleproductPage } from '../pages/singleproduct/singleproduct';
 @Component({
   template: `<ion-menu [content]="content">
     <ion-header>
@@ -28,7 +30,7 @@ import { Settings } from '../providers/providers';
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = MainPage;//FirstRunPage;
+  rootPage = SingleproductPage;//FirstRunPage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -46,7 +48,7 @@ export class MyApp {
     { title: 'Menu', component: 'MenuPage' },
     { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' },
-    { title: 'API Tests', component: 'ApiTestsPage' }
+    { title: 'API Tests', component: 'ApiTestsPage' },
   ]
 
   constructor(private translate: TranslateService, private platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {

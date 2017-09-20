@@ -1,10 +1,10 @@
 page-setting {
 button.popoverclick {  color: #fff;  position: absolute;    right: 33px;    top: 13px;    font-size: 22px;    background: transparent;}
-.toolbar-background.toolbar-background-md {    background: red;}
+.toolbar-background.toolbar-background-md {    background: color($colors,darkdanger);}
 .toolbar-title.toolbar-title-md {    color: #fff;}
 .bannerdetail {    text-align: center;padding: 7px 0;}
 .products-heading {    background: #f3f3f3;    text-align: center;    font-size: 24px;    color: red;   padding:10px 0 7px 0px;}
-ion-icon.icon.icon-md.ion-md-volume-up {    color: red; }
+ion-icon.icon.icon-md.ion-md-volume-up {    color: color($colors,darkdanger); }
 .products-heading ion-icon {    font-size: 16px;}
 .button-md.button-outline {    height: 26px;    padding: 0 4px;	margin: 0 0;    float: right;}
 span.button-inner{font-size:10px;}

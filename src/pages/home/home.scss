@@ -4,7 +4,7 @@ page-home {
 .bannerdetail {    text-align: center;padding: 7px 0;}
 .products-heading {    background: #f3f3f3;    text-align: center;    font-size: 24px;    color: color($colors,danger);   padding:10px 0 7px 0px;}
 .products-heading ion-icon {    font-size: 16px;}
-.button-md.button-outline {    height: 26px;    padding: 0 4px;	margin: 0 0;    float: right;    position: relative;    bottom: 23px;}
+.button-outline-md-danger,.button-outline-ios-danger {    height: 26px;    padding: 0 4px;	margin: 0 0;    float: right;    position: relative;    bottom: 23px;}
 span.button-inner{font-size:10px;}
 .progress {    height: 11px;    width: 60%;    margin: 0;    position: relative;    bottom: 9px;    background: #ececec;    border-radius: 16px;}
 .row{	margin:0 0 0 0;}
