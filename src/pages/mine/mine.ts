@@ -4,6 +4,7 @@ import {DEFAULT_AVATAR, CUSTOMER_SERVICE} from "../../providers/Constants";
 import {UserInfo} from "../../models/UserInfo";
 import { FeedPage } from '../feed/feed';
 import { ProfilePage } from '../profile/profile';
+import {LoginPage} from '../login/login'
 
 /**
  * Generated class for the MinePage page.
