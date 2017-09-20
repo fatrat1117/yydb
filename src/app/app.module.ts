@@ -22,6 +22,7 @@ import {LoginPage} from '../pages/login/login'
 import {ListPage} from '../pages/list/list';
 import {TableViewPage} from '../pages/table-view/table-view';
 import { ProfilePage } from '../pages/profile/profile';
+import {SearchPage} from '../pages/search/search';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -66,7 +67,8 @@ export function provideSettings(storage: Storage) {
      ListPage,
      TableViewPage,
      ProfilePage,
-     LoginPage
+     LoginPage,
+     SearchPage
   ],
   imports: [
     BrowserModule,
@@ -91,7 +93,8 @@ export function provideSettings(storage: Storage) {
      ListPage,
      TableViewPage,
      ProfilePage,
-     LoginPage
+     LoginPage,
+     SearchPage
   ],
   providers: [
     Api,
