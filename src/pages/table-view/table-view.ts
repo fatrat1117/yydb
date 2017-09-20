@@ -19,9 +19,10 @@ export class TableViewPage {
 
   tabledata = {};
   multidata = {};
+  tabBarElement: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, translate: TranslateService) {
-  
+  this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   translate.get(["TABLE_CONTENT1",
       "TABLE_CONTENT2",
       "TABLE_CONTENT3",
@@ -128,6 +129,14 @@ export class TableViewPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TableViewPage');
+  }
+
+  ionViewWillEnter() {
+    this.tabBarElement.style.display = 'none';
+  }
+ 
+  ionViewWillLeave() {
+    this.tabBarElement.style.display = 'flex';
   }
 
 }

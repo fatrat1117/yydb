@@ -4,6 +4,7 @@ import { IonicPage, MenuController, NavController, Platform } from 'ionic-angula
 import { TranslateService } from '@ngx-translate/core';
 
 import {ListPage} from '../list/list';
+import {TableViewPage} from '../table-view/table-view';
 
 export interface Slide {
   title: string;
@@ -139,9 +140,13 @@ export class SearchPage {
     this.menu.enable(true);
   }
 
-  listpage() {
-    console.log('click');
-    this.navCtrl.push(ListPage);
+  listpage(i) {
+    if(i == 1){
+      this.navCtrl.push(ListPage);
+    }
+    
   }
-
+  showTable() {
+    this.navCtrl.push(TableViewPage);
+  }
 }
