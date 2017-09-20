@@ -1,3 +1,76 @@
 page-signup {
-
+    .toolbar-background {
+        background: $header-bg-color;
+    }
+    .toolbar-title {
+        color: $secondary-color;
+    }
+    .bannersection h3 {
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
+        top: 30px;
+        left: 50%;
+        margin: 0 0;
+        color: $secondary-color;
+        width: 80%;
+        text-align: center
+    }
+    .bannersection .clist {
+        top: 45%;
+    }
+    .bannersection .clist .icon {
+        font-size: 1.4em;
+    }
+    .bannersection {
+        position: relative;
+    }
+    .bar-button-default,
+    .bar-button-default.bar-button-default,
+    .bar-button-clear-default {
+        color: $secondary-color !important;
+    }
+    .input-wrapper {
+        padding-left: 10px;
+        border-bottom: solid 1px #ddd !important;
+    }
+    .label+ion-input .text-input,
+    .label+ion-textarea .text-input,
+    .label+.input+.cloned-input {
+        color: $primary-font-color;
+    }
+    .button {
+        background-color: #EF0100 !important;
+    }
+    .forgot-text {
+        font-size: 12px;
+        text-decoration: none;
+    }
+    .header-ios .toolbar-background-ios {
+        border: none;
+    }
+    .social {
+        text-align: center;
+        color: $primary-font-color;
+        font-size: 14px;
+        border: none;
+        border-top: solid 1px #bbb;
+    }
+    .social a {}
+    .social a img {
+        width: 60px;
+        height: auto;
+        margin: 0 10px;
+        display: inline-block;
+    }
+    .list-ios>.item-block:first-child {
+        /* border-top: 0.55px solid #c8c7cc; */
+        border: none;
+    }
+    .remember .checkbox {
+        vertical-align: sub;
+    }
+    .remember span {
+        font-size: 16px;
+        display: inline-block
+    }
 }

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+
+import { IonicPage, NavController,  NavParams, ToastController } from 'ionic-angular';
+import { ViewController } from 'ionic-angular';
+
 
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
@@ -14,6 +17,7 @@ export class LoginPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
+  cat: string = "login";
   account: { email: string, password: string } = {
     email: 'test@example.com',
     password: 'test'
@@ -25,11 +29,12 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService , public navParams: NavParams) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
+      this.cat = navParams.get("page");
   }
 
   // Attempt to login in through our User service

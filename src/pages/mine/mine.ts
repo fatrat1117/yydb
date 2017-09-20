@@ -38,4 +38,13 @@ export class MinePage {
    this.navCtrl.push(FeedPage);
   }
 
+  login(){
+    
+    this.navCtrl.push(LoginPage,  {page: 'login'});
+  }
+  signup(){
+    
+    this.navCtrl.push(LoginPage, {page: 'register'});
+  }
+
 }

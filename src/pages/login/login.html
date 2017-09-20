@@ -11,29 +11,103 @@
   <form (submit)="doLogin()">
     <ion-list>
 
-      <ion-item>
-        <ion-label fixed>{{ 'EMAIL' | translate }}</ion-label>
-        <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
-      </ion-item>
+        <img src="assets/img/bannercontact.PNG">
+        <h3 class="clist">
+            <ion-icon ios="ios-lock" md="md-unlock"></ion-icon>
+            <br/>
+            <span *ngIf="cat == 'login'">{{ 'LOGIN_SUBTITLE' | translate }}</span>
+            <span *ngIf="cat == 'register'">{{ 'SIGNUP_SUBTITLE' | translate }}</span>
+        </h3>
+    </div>
+    <ion-segment [(ngModel)]="cat" color="danger">
+        <ion-segment-button value="login">
+            Login
 
-      <!--
-      Want to use a Username instead of an Email? Here you go:
 
-      <ion-item>
-        <ion-label floating>{{ 'USERNAME' | translate }}</ion-label>
-        <ion-input type="text" [(ngModel)]="account.username" name="username"></ion-input>
-      </ion-item>
-      -->
+        </ion-segment-button>
+        <ion-segment-button value="register">
+            Register
+        </ion-segment-button>
+    </ion-segment>
+    <div [ngSwitch]="cat">
+        <form *ngSwitchCase="'login'" (submit)="doLogin()" padding-horizontal>
+            <ion-list margin-horizontal>
 
-      <ion-item>
-        <ion-label fixed>{{ 'PASSWORD' | translate }}</ion-label>
-        <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
-      </ion-item>
+                <ion-item margin-top>
+                    <ion-label>
+                        <ion-icon ios="ios-mail-outline" md="md-mail"></ion-icon>
+                    </ion-label>
+                    <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+                </ion-item>
 
-      <div padding>
-        <button ion-button color="primary" block>{{ 'LOGIN_BUTTON' | translate }}</button>
-      </div>
+                <ion-item margin-top>
 
-    </ion-list>
-  </form>
+                    <ion-label>
+
+                        <ion-icon ios="ios-unlock-outline" md="md-unlock"></ion-icon>
+                    </ion-label>
+                    <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+                </ion-item>
+                <div padding>
+                    <a href="" class="forgot-text" float-right>{{'FORGOT_PASSWORD' | translate}}</a>
+                </div>
+                <div margin padding-vertical>
+
+                    <button ion-button block>{{ 'LOGIN_BUTTON' | translate }}</button>
+                </div>
+
+                <fieldset padding-top class="social">
+                    <legend>{{'SOCIAL' | translate}}</legend>
+                    <div padding>
+                        <a><img src="assets/img/facebook.png" alt=""></a>
+
+                        <a><img src="assets/img/g+.png" width=a lt=""></a>
+
+                    </div>
+
+                </fieldset>
+            </ion-list>
+        </form>
+        <form *ngSwitchCase="'register'" (submit)="doSignup()" padding>
+            <ion-list margin-horizontal>
+
+
+                <ion-item>
+                    <ion-label>
+                        <ion-icon ios="ios-person-outline" md="md-person"></ion-icon>
+                    </ion-label>
+                    <ion-input type="text" [(ngModel)]="account.name" name="name"></ion-input>
+                </ion-item>
+
+                <ion-item>
+                    <ion-label>
+                        <ion-icon ios="ios-mail-outline" md="md-mail"></ion-icon>
+                    </ion-label>
+                    <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+                </ion-item>
+
+
+                <ion-item>
+                    <ion-label>
+                        <ion-icon ios="ios-unlock-outline" md="md-unlock"></ion-icon>
+                    </ion-label>
+                    <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+                </ion-item>
+                <div class="remember" padding>
+                    <ion-checkbox color="danger" [(ngModel)]="account.remember" name="remember"></ion-checkbox>
+                    <span>
+                {{ 'REMEMBER' | translate }}
+                </span>
+                </div>
+
+                <div margin padding-vertical>
+
+                    <button ion-button block>{{ 'SIGNUP_BUTTON' | translate }}</button>
+                </div>
+
+
+            </ion-list>
+        </form>
+    </div>
 </ion-content>
+
