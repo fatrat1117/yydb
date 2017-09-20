@@ -1,24 +1,20 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>{{ 'LOGIN_TITLE' | translate }}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <form (submit)="doLogin()">
-    <ion-list>
-
-        <img src="assets/img/bannercontact.PNG">
-        <h3 class="clist">
-            <ion-icon ios="ios-lock" md="md-unlock"></ion-icon>
-            <br/>
-            <span *ngIf="cat == 'login'">{{ 'LOGIN_SUBTITLE' | translate }}</span>
-            <span *ngIf="cat == 'register'">{{ 'SIGNUP_SUBTITLE' | translate }}</span>
-        </h3>
-    </div>
+    <img src="assets/img/bannercontact.PNG">
+    <h3 class="clist">
+        <ion-icon ios="ios-lock" md="md-unlock"></ion-icon>
+        <br/>
+        <span *ngIf="cat == 'login'">{{ 'LOGIN_SUBTITLE' | translate }}</span>
+        <span *ngIf="cat == 'register'">{{ 'SIGNUP_SUBTITLE' | translate }}</span>
+    </h3>
     <ion-segment [(ngModel)]="cat" color="danger">
         <ion-segment-button value="login">
             Login
@@ -68,6 +64,7 @@
                 </fieldset>
             </ion-list>
         </form>
+
         <form *ngSwitchCase="'register'" (submit)="doSignup()" padding>
             <ion-list margin-horizontal>
 
@@ -110,4 +107,3 @@
         </form>
     </div>
 </ion-content>
-

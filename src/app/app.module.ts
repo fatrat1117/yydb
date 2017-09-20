@@ -18,6 +18,7 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
+import {LoginPage} from '../pages/login/login'
 import {ListPage} from '../pages/list/list';
 import {TableViewPage} from '../pages/table-view/table-view';
 import { ProfilePage } from '../pages/profile/profile';
@@ -64,7 +65,8 @@ export function provideSettings(storage: Storage) {
      FeedPage,
      ListPage,
      TableViewPage,
-     ProfilePage
+     ProfilePage,
+     LoginPage
   ],
   imports: [
     BrowserModule,
@@ -88,7 +90,8 @@ export function provideSettings(storage: Storage) {
      FeedPage,
      ListPage,
      TableViewPage,
-     ProfilePage
+     ProfilePage,
+     LoginPage
   ],
   providers: [
     Api,
