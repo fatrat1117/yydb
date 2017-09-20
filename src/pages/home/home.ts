@@ -51,5 +51,4 @@ export class HomePage {
       item: item
     });
   }
-  
 }

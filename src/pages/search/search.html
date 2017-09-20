@@ -1,87 +1,22 @@
-<ion-header no-shadow>
-	<ion-navbar>
-		<ion-buttons text-center>
-			<button ion-button color="dark">{{'REVEAL_SOON' | translate}}</button>
-		</ion-buttons>
-	</ion-navbar>
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{ 'SEARCH_TITLE' | translate }}</ion-title>
+  </ion-navbar>
+
 </ion-header>
 
+
 <ion-content>
-<ion-grid class="custom-timer-products">
-  <ion-row>
-    <ion-col col-4><img src="assets/img/iphone7-1.jpg"></ion-col>
-    <ion-col col-8 class="product-column">
-		<p>Apple iPhone 7 128G XXXXX XXXXXXXX</p>
-		<p>ID: 21542455432</p>
-		<p><span>Apple</span></p>
-		<span class="timer" color="danger"><ion-icon name="timer"></ion-icon> 00:04:21</span>
-	</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-4><img src="assets/img/mi6-1.jpg"></ion-col>
-    <ion-col col-8 class="product-column">
-		<p>Redmi MI6 128G XXXX XXXXXXXXX</p>
-		<p>ID: 21542455432</p>
-		<p><span>Redmi</span></p>
-		<span class="timer"><ion-icon name="timer"></ion-icon> 00:04:21</span>
-	</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-4><img src="assets/img/mi6-1.jpg"></ion-col>
-    <ion-col col-8 class="product-column">
-		<p>Redmi MI6 128G XXXX XXXXXXXXX</p>
-		<p>ID: 21542455432</p>
-		<p>Price: 399</p>
-		<p>Sim: 1</p>
-	</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-4><img src="assets/img/iphone7-1.jpg"></ion-col>
-    <ion-col col-8 class="product-column">
-		<p>Apple iPhone 7 128G XXXXX XXXXXXXX</p>
-		<p>ID: 21542455432</p>
-		<p>Price: 399</p>
-		<p>Sim: 1</p>
-	</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-4><img src="assets/img/mi6-1.jpg"></ion-col>
-    <ion-col col-8 class="product-column">
-		<p>Redmi MI6 128G XXXX XXXXXXXXX</p>
-		<p>ID: 21542455432</p>
-		<p>Price: 399</p>
-		<p>Sim: 1</p>
-	</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-4><img src="assets/img/iphone7-1.jpg"></ion-col>
-    <ion-col col-8 class="product-column">
-		<p>Apple iPhone 7 128G XXXXX XXXXXXXX</p>
-		<p>ID: 21542455432</p>
-		<p>Price: 399</p>
-		<p>Sim: 1</p>
-	</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-4><img src="assets/img/mi6-1.jpg"></ion-col>
-    <ion-col col-8 class="product-column">
-		<p>Redmi MI6 128G XXXX XXXXXXXXX</p>
-		<p>ID: 21542455432</p>
-		<p>Price: 399</p>
-		<p>Sim: 1</p>
-	</ion-col>
-  </ion-row>
-  <ion-row>
-    <ion-col col-4><img src="assets/img/iphone7-1.jpg"></ion-col>
-    <ion-col col-8 class="product-column">
-		<p>Apple iPhone 7 128G XXXXX XXXXXXXX</p>
-		<p>ID: 21542455432</p>
-		<p>Price: 399</p>
-		<p>Sim: 1</p>
-	</ion-col>
-  </ion-row>
-</ion-grid>
-<div class="scrolltop">
-	<img src="assets/img/scrolltop.PNG">
-</div>
+  <ion-searchbar (ionInput)="getItems($event)" placeholder="{{ 'SEARCH_PLACEHOLDER' | translate }}"></ion-searchbar>
+  <ion-list>
+    <button ion-item (click)="openItem(item)" *ngFor="let item of currentItems">
+      <ion-avatar item-start>
+        <img [src]="item.profilePic" />
+      </ion-avatar>
+      <h2>{{item.name}}</h2>
+      <p>{{item.about}}</p>
+      <ion-note item-end *ngIf="item.note">{{item.note}}</ion-note>
+    </button>
+  </ion-list>
 </ion-content>

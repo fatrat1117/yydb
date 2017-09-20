@@ -18,12 +18,18 @@ import { User } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
-import { WelcomePage } from '../pages/welcome/welcome';
-import { ConfirmPage } from '../pages/confirm/confirm';
 import { SingleproductPage } from '../pages/singleproduct/singleproduct';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { WelcomePage } from '../pages/welcome/welcome';
+import { ConfirmPage } from '../pages/confirm/confirm';
+import { SettingPage } from '../pages/setting/setting';
+import { NewhomePage } from '../pages/newhome/newhome';
+import { NewminePage } from '../pages/newmine/newmine';
+import { ClockPage } from '../pages/clock/clock';
+import { ProcessPage } from '../pages/process/process';
 
 // Firebase config
 export const firebaseConfig = {
@@ -63,7 +69,12 @@ export function provideSettings(storage: Storage) {
      FeedPage,
      WelcomePage,
      ConfirmPage,
-	 SingleproductPage
+	 SingleproductPage,
+	 SettingPage,
+	 NewhomePage,
+	 ClockPage,
+	 ProcessPage,
+	 NewminePage
   ],
   imports: [
     BrowserModule,
@@ -87,7 +98,12 @@ export function provideSettings(storage: Storage) {
      FeedPage,
      WelcomePage,
      ConfirmPage,
-	 SingleproductPage
+	 SingleproductPage,
+	 SettingPage,
+	 NewminePage,
+	 ClockPage,
+	 ProcessPage,
+	 NewhomePage
   ],
   providers: [
     Api,

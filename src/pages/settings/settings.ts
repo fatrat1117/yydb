@@ -4,7 +4,14 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Settings } from '../../providers/providers';
-
+import { WelcomePage } from '../welcome/welcome';
+import { SettingPage } from '../setting/setting';
+import { SingleproductPage } from '../singleproduct/singleproduct';
+import { NewhomePage } from '../newhome/newhome';
+import { NewminePage } from '../newmine/newmine';
+import { ConfirmPage } from '../confirm/confirm';
+import { ClockPage } from '../clock/clock';
+import { ProcessPage } from '../process/process';
 /**
  * The Settings page is a simple form that syncs with a Settings provider
  * to enable the user to customize settings for the app.
@@ -18,7 +25,15 @@ import { Settings } from '../../providers/providers';
 export class SettingsPage {
   // Our local settings object
   options: any;
-
+  tab1Root: any = WelcomePage;
+  tab2Root: any = SettingPage;
+  tab3Root: any = SingleproductPage;
+  tab4Root: any = NewhomePage;
+  tab5Root: any = NewminePage;
+  tab6Root: any = ConfirmPage;
+  tab7Root: any = ClockPage;
+  tab8Root: any = ProcessPage;
+ 
   settingsReady = false;
 
   form: FormGroup;

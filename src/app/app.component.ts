@@ -30,7 +30,7 @@ import { SingleproductPage } from '../pages/singleproduct/singleproduct';
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = SingleproductPage;//FirstRunPage;
+  rootPage = MainPage;//FirstRunPage;
 
   @ViewChild(Nav) nav: Nav;
 
