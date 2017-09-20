@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController,  NavParams, ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 
 import { User } from '../../providers/providers';
@@ -29,12 +29,13 @@ export class LoginPage {
     public user: User,
     public viewCtrl: ViewController,
     public toastCtrl: ToastController,
-    public translateService: TranslateService) {
+    public translateService: TranslateService , public navParams: NavParams) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
        this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     })
+      this.cat = navParams.get("page");
   }
 
   // Attempt to login in through our User service
