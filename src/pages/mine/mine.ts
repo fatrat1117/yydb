@@ -5,6 +5,7 @@ import {UserInfo} from "../../models/UserInfo";
 import { FeedPage } from '../feed/feed';
 import { ProfilePage } from '../profile/profile';
 import {LoginPage} from '../login/login'
+import {SocialPage} from '../social/social'
 
 /**
  * Generated class for the MinePage page.
@@ -37,6 +38,9 @@ export class MinePage {
 
   share(){
    this.navCtrl.push(FeedPage);
+  }
+  socialPage(){
+    this.navCtrl.push(SocialPage);
   }
 
   login(){
