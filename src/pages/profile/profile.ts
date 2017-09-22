@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { SearchPage } from '../search/search'
-
+import {DEFAULT_AVATAR} from "../../providers/Constants";
 /**
- * Generated class for the ClockPage page.
+ * Generated class for the ProfilePage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -11,19 +10,17 @@ import { SearchPage } from '../search/search'
 
 @IonicPage()
 @Component({
-  selector: 'page-clock',
-  templateUrl: 'clock.html',
+  selector: 'page-profile',
+  templateUrl: 'profile.html',
 })
-export class ClockPage {
+export class ProfilePage {
+  avatarPath: String = DEFAULT_AVATAR;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ClockPage');
+    console.log('ionViewDidLoad ProfilePage');
   }
 
-  navToItemDetail() {
-    this.navCtrl.push(SearchPage);
-  }
 }

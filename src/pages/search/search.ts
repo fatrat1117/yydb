@@ -3,6 +3,9 @@ import { IonicPage, MenuController, NavController, Platform } from 'ionic-angula
 
 import { TranslateService } from '@ngx-translate/core';
 
+import {ListPage} from '../list/list';
+import {TableViewPage} from '../table-view/table-view';
+
 export interface Slide {
   title: string;
   description: string;
@@ -20,6 +23,7 @@ export class SearchPage {
   lists;
   showSkip = true;
   dir: string = 'ltr';
+  cardsdata = {};
 
   constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform) {
     this.dir = platform.dir();
@@ -59,6 +63,19 @@ export class SearchPage {
             image: 'assets/img/ica-slidebox-img-4.png',
           }
         ];
+      });
+
+      translate.get(["RED_LABEL",
+      "CARD_HEADER",
+      "NEXT",
+    ]).subscribe(
+      (values) => {
+        console.log('Loaded values', values);
+        this.cardsdata = {
+          label: values.RED_LABEL,
+          header: values.CARD_HEADER,
+          next: values.NEXT
+        };
       });
 
       this.items = [
@@ -123,4 +140,13 @@ export class SearchPage {
     this.menu.enable(true);
   }
 
+  listpage(i) {
+    if(i == 1){
+      this.navCtrl.push(ListPage);
+    }
+    
+  }
+  showTable() {
+    this.navCtrl.push(TableViewPage);
+  }
 }

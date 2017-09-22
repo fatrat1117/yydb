@@ -22,6 +22,11 @@ import { LoginPage } from '../pages/login/login';
 import { BindPhonePage } from '../pages/bind-phone/bind-phone';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
+import {ListPage} from '../pages/list/list';
+import {TableViewPage} from '../pages/table-view/table-view';
+import { ProfilePage } from '../pages/profile/profile';
+import {SearchPage} from '../pages/search/search';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -62,11 +67,15 @@ export function provideSettings(storage: Storage) {
   declarations: [
     MyApp,
      FeedPage,
+     ListPage,
+     TableViewPage,
+     ProfilePage,
      LoginPage,
     BindPhonePage,
     ChangePasswordPage,
   ForgotPasswordPage,
-    SelectCountryComponent
+    SelectCountryComponent,
+     SearchPage
   ],
   imports: [
     BrowserModule,
@@ -93,7 +102,14 @@ export function provideSettings(storage: Storage) {
     ChangePasswordPage,
   ForgotPasswordPage,
     
-    SelectCountryComponent
+    SelectCountryComponent,
+
+     ListPage,
+     TableViewPage,
+     ProfilePage,
+     LoginPage,
+     SearchPage
+
   ],
   providers: [
     Api,

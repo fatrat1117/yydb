@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
 import { IonicPage, NavController,  NavParams, ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
+
 
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
@@ -21,15 +23,13 @@ export class LoginPage {
   account: { email: string, password: string } = {
     email: 'test@example.com',
     password: 'test'
-    
   };
- tabBarElement: any;
+
   // Our translated text strings
   private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
     public user: User,
-    public viewCtrl: ViewController,
     public toastCtrl: ToastController,
     public translateService: TranslateService , public navParams: NavParams) {
 
@@ -55,6 +55,7 @@ export class LoginPage {
       toast.present();
     });
   }
+
   ionViewWillEnter() {
     this.tabBarElement.style.display = 'none';
   }

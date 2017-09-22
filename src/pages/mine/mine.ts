@@ -3,9 +3,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DEFAULT_AVATAR, CUSTOMER_SERVICE} from "../../providers/Constants";
 import {UserInfo} from "../../models/UserInfo";
 import { FeedPage } from '../feed/feed';
+
 import { LoginPage } from '../login/login';
 import { BindPhonePage } from '../bind-phone/bind-phone';
 import { ChangePasswordPage } from '../change-password/change-password';
+import { ProfilePage } from '../profile/profile';
+
 
 
 /**
@@ -33,7 +36,8 @@ export class MinePage {
   }
   
   edit(){
-		console.log("edit");
+    console.log("edit");
+    this.navCtrl.push(ProfilePage);
 	}
 
   share(){
@@ -55,5 +59,6 @@ export class MinePage {
    bindPhone(){
    this.navCtrl.push(BindPhonePage);
   }
+
 
 }
