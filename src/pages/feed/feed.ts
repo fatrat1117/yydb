@@ -31,7 +31,7 @@ export class FeedPage {
           [
             { 
                 user: 'John Doe',
-                profile_img: 'user-icon.png',
+                profile_img: 'user-icon.jpg',
                 date: '17-09-17 04:59',
                 title: 'Iphone 8 launch',
                 content:' iPhone 8 introduces an all‑new glass design. The world&#39;s most popular camera, now even better.',
@@ -45,7 +45,7 @@ export class FeedPage {
 
             { 
                 user: 'John Doe',
-                profile_img: 'user-icon.png',
+                profile_img: 'user-icon.jpg',
                 date: '17-09-17 05:59',
                     title: 'Iphone 7 launch',
                     content:'iPhone 7 Plus dramatically improves the most important aspects of the iPhone experience. It introduces advanced new camera systems.',

@@ -20,6 +20,7 @@ export class LoginPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
   cat: string = "login";
+  tabBarElement:any;
   account: { email: string, password: string } = {
     email: 'test@example.com',
     password: 'test'
@@ -31,7 +32,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService , public navParams: NavParams) {
+    public translateService: TranslateService , public viewCtrl: ViewController, public navParams: NavParams) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
