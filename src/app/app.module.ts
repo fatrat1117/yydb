@@ -19,12 +19,13 @@ import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
 import { LoginPage } from '../pages/login/login';
-import { SignupPage } from '../pages/signup/signup';
-
+import { BindPhonePage } from '../pages/bind-phone/bind-phone';
+import { ChangePasswordPage } from '../pages/change-password/change-password';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-
+import {SelectCountryComponent} from '../components/select-country/select-country';
 // Firebase config
 export const firebaseConfig = {
   apiKey: "AIzaSyD34vLme2YuR_PthmykCCoUd2oIcUtHBoM",
@@ -62,7 +63,10 @@ export function provideSettings(storage: Storage) {
     MyApp,
      FeedPage,
      LoginPage,
-     SignupPage
+    BindPhonePage,
+    ChangePasswordPage,
+  ForgotPasswordPage,
+    SelectCountryComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,11 @@ export function provideSettings(storage: Storage) {
     MyApp,
      FeedPage,
       LoginPage,
-     SignupPage
+  BindPhonePage,
+    ChangePasswordPage,
+  ForgotPasswordPage,
+    
+    SelectCountryComponent
   ],
   providers: [
     Api,

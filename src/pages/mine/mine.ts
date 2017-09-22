@@ -4,7 +4,9 @@ import {DEFAULT_AVATAR, CUSTOMER_SERVICE} from "../../providers/Constants";
 import {UserInfo} from "../../models/UserInfo";
 import { FeedPage } from '../feed/feed';
 import { LoginPage } from '../login/login';
-import { SignupPage } from '../signup/signup';
+import { BindPhonePage } from '../bind-phone/bind-phone';
+import { ChangePasswordPage } from '../change-password/change-password';
+
 
 /**
  * Generated class for the MinePage page.
@@ -46,4 +48,12 @@ export class MinePage {
     
     this.navCtrl.push(LoginPage, {page: 'register'});
   }
+   changePass(){
+   this.navCtrl.push(ChangePasswordPage);
+  }
+
+   bindPhone(){
+   this.navCtrl.push(BindPhonePage);
+  }
+
 }
