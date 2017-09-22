@@ -7,6 +7,8 @@ import { ViewController } from 'ionic-angular';
 
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
+import { ForgotPasswordPage } from '../forgot-password/forgot-password';
+
 
 @IonicPage()
 @Component({
@@ -34,6 +36,7 @@ export class LoginPage {
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
+       this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
       this.cat = navParams.get("page");
   }
 
@@ -52,4 +55,19 @@ export class LoginPage {
       toast.present();
     });
   }
+
+  ionViewWillEnter() {
+    this.tabBarElement.style.display = 'none';
+  }
+ 
+  ionViewWillLeave() {
+    this.tabBarElement.style.display = 'flex';
+  }
+   ionViewDidLoad() {
+        this.viewCtrl.setBackButtonText('');
+    }
+  
+    forgotPassword(){
+      this.navCtrl.push(ForgotPasswordPage);
+    }
 }

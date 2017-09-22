@@ -39,7 +39,7 @@
                     <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
                 </ion-item>
                 <div padding>
-                    <a href="" class="forgot-text" float-right>{{'FORGOT_PASSWORD' | translate}}</a>
+                    <a (click)=" forgotPassword()" class="forgot-text" float-right>{{'FORGOT_PASSWORD' | translate}}</a>
                 </div>
                 <div margin padding-vertical>
 

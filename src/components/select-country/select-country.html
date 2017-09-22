@@ -1,0 +1,15 @@
+<!-- Generated template for the SelectCountryComponent component -->
+<div>
+    <ion-list>
+        <ion-list-header>Select your country</ion-list-header>
+        <ion-searchbar [(ngModel)]="searchCountryString" (input)="searchCountry($event)" placeholder="Search"></ion-searchbar>
+        <ion-item *ngFor="let co of countries" (click)="selectC(co)">
+            <ion-label>
+                <img src="assets/countries/{{co.code}}.png" width="30" alt="">
+                <span>{{co.name}} ({{co.dail_code}})</span>
+            </ion-label>
+
+        </ion-item>
+
+    </ion-list>
+</div>
