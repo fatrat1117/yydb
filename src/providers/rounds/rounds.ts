@@ -14,7 +14,7 @@ export class RoundsService {
   constructor(public api: Api, public ps: ProductsService) {
   }
 
-  getPreparingRounds_Internal(success_Callback) {
+  getPreparingRounds(success_Callback) {
     const query = {
       query: {
         orderByChild: 'status',
@@ -33,9 +33,7 @@ export class RoundsService {
           subs.unsubscribe();
 
           // Add new round
-          let product = new Product(p.$key, p.name);
-          let round = new Round(r.$key, product);
-          this.preparingRounds.push(round);
+          this.preparingRounds.push(this.createNewRound(r, p));
 
           // check if all done
           if (this.preparingRounds.length == snapshots.length) {
@@ -45,5 +43,16 @@ export class RoundsService {
         })
       })
     })
+  }
+
+  createNewRound(round, product) {
+    let p = new Product(product.$key, product.name);
+    let r = new Round(round.$key, p);
+    if (round.draw_counts != undefined) {
+      r.drawCounts.current = round.draw_counts.current || 0;
+      r.drawCounts.target = round.draw_counts.target || 0;
+    }
+
+    return r;
   }
 }

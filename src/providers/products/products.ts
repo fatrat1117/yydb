@@ -6,7 +6,6 @@ import { Product } from '../../models/product';
 
 @Injectable()
 export class ProductsService {
-
   constructor(public api: Api) {
   }
 
