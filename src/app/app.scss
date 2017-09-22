@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/v2/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -20,4 +18,8 @@ $header-bg-color: #F90000;
 .toolbar-md-danger .toolbar-background-md,
 .toolbar-ios-danger .toolbar-background-ios {
     background-color: $header-bg-color !important;
+}
+
+.scroll-content {
+    padding: 0px !important;
 }
