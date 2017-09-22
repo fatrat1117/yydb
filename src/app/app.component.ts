@@ -7,9 +7,7 @@ import { Config, Nav, Platform } from 'ionic-angular';
 //import { FirstRunPage } from '../pages/pages';
 import { MainPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
-import { WelcomePage } from '../pages/welcome/welcome';
-import { ConfirmPage } from '../pages/confirm/confirm';
-import { SingleproductPage } from '../pages/singleproduct/singleproduct';
+import { SettingPage } from '../pages/setting/setting';
 @Component({
   template: `<ion-menu [content]="content">
     <ion-header>

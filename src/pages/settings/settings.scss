@@ -1,6 +1,13 @@
 page-settings {
-
+.tab-highlight.animate {
+    background: red !important;
+    height: 5px !important;
+}
+span.tab-button-text {
+    text-transform: uppercase;
+}
 .tabs-md .tabbar {
     background: #ffffff;
+    border-top: 1px solid #cec8c8;
 }
 }
