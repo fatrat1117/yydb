@@ -3,8 +3,18 @@ page-social {
         color:red;
         border-color: red;
     }
+    .segment-md .segment-button.segment-activated::after{
+        content: "";
+        width: 15px;
+        position: absolute;
+        z-index: 999999;
+        bottom: 0;
+        left: 45%;
+        border-bottom: 2px solid red;
+    }
     .segment-md .segment-button{
         color:grey;
+        border-bottom-width: 0px;
     }
     ion-segment{
         background:white;
@@ -36,8 +46,13 @@ page-social {
         font-size: 20px;
     }
     .red-left {
-            border-left: 5px solid $color-red;
-            padding-left: 5px;
+        border-left: 8px solid #ff0000;
+        padding: 0;
+        padding-left: 5px;
+        height: 24px;
+    }
+    .red-right {
+        padding: 0;
     }
     .bg-white{
         background: white !important;
@@ -46,28 +61,80 @@ page-social {
         font-size: 1.3em;
     }
     .button-md-danger{
-        border-radius: 5px;
+        border-radius: 3px;
+        height: 27px;
     }
     .btn-circle{
         border-radius: 50% !important;
         top: 23px;
-    }
-    .btn-btm-border{
-        border-bottom: 2px solid red;
-        border-bottom-style: dashed;
+        height: 30px;
     }
     .social-img{
         width: 30px;
         float: left;
         margin-right: 5px;
     }
-    .red-label {
-        float: right;
-        background: $color-red;
-        color:$color-white;
-        -ms-transform: rotate(-55deg); /* IE 9 */
-        -webkit-transform: rotate(-55deg); /* Safari */
-        transform: rotate(-55deg); /* Standard syntax */
-        //margin: 8px 26px 0 -48px;
+    .selected-btn::after {
+        content: "";
+        background: #ff0000;
+        color: #fff;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        padding: 0 12px;
+        margin: -15px 0 0 13px;
+        position: absolute;
+        width: 20px;
+        height: 20px;
       }
+      .selected-btn::before {
+        content: "\f3ff";
+        color: #fff;
+        padding: 0 12px;
+        margin: 19px 0 0 13px;
+        position: absolute;
+        font-family: "Ionicons";
+        z-index: 9;
+        font-size: 20px;
+      }
+    .ticked-icon {
+        -webkit-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    .borderdashbottom {
+        border-bottom: 2px solid red;
+        border-bottom-style: dashed;
+    }
+    .left-radio .radio-md .radio-icon {
+        left: 17px;
+        top: 16px;
+        position: absolute;
+    }
+    .left-radio.item-radio.item-md ion-label {
+        margin: 3px 0 0 23px !important;
+    }
+    .social-header {
+        display: inline-block;
+        margin-top: 5px;
+    }
+    .text-know h2 {
+        margin-top:0 !important;
+    }
+    .padding-zero {
+        padding:0;
+    }
+    .card-header-md {
+        font-size: 1.6rem;
+        color: #222;
+        padding: 8px;
+    }
+    .card-content-md {
+    padding: 13px 16px 8px;
+    }
+    .card-md p {
+    margin: 0 0 2px 15px;
+    }
+    .text-label {
+        margin-bottom:5px;
+        padding: 8px;
+    }
 }
