@@ -14,6 +14,7 @@ export class RoundsService {
   constructor(public api: Api, public ps: ProductsService) {
   }
 
+  // rounds will be updated in real time
   getPreparingRounds(success_Callback) {
     const query = {
       query: {
@@ -27,26 +28,20 @@ export class RoundsService {
 
       // Iterate rounds to get product
       snapshots.forEach(r => {
-        // Get product once only
-        let subs = this.ps.getProductById_Internal(r.product_id).subscribe(p => {
-          this.api.log("get product", p);
-          subs.unsubscribe();
-
-          // Add new round
+        let callback = (p=> {
           this.preparingRounds.push(this.createNewRound(r, p));
-
-          // check if all done
           if (this.preparingRounds.length == snapshots.length) {
             this.api.log("get preparing rounds", this.preparingRounds);
             success_Callback(this.preparingRounds);
           }
         })
+        this.ps.getProductById(r.product_id, callback);
       })
     })
   }
 
-  createNewRound(round, product) {
-    let p = new Product(product.$key, product.name);
+  createNewRound(round: any, product: Product) {
+    let p = new Product(product.id, product.name);
     let r = new Round(round.$key, p);
     if (round.draw_counts != undefined) {
       r.drawCounts.current = round.draw_counts.current || 0;

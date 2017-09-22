@@ -24,8 +24,6 @@ export class ApiTestsPage {
   getPreparingRounds() {
     let callback = (results => {
       this.prepareRounds = results;
-      console.log(results);
-      
     })
     this.rs.getPreparingRounds(callback);
   }

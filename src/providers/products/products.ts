@@ -6,12 +6,30 @@ import { Product } from '../../models/product';
 
 @Injectable()
 export class ProductsService {
+  localProducts: { [id: string]: Product; };
+
   constructor(public api: Api) {
+    this.localProducts = {};
+  }
+
+  getProductById(id: string, success_Callback) {
+    if (this.localProducts[id]) {
+      success_Callback(this.localProducts[id]);
+    }
+    else {
+      let subs = this.getProductById_Internal(id).subscribe(snapshot => {
+        let p = new Product(snapshot.$key, snapshot.name);
+        this.localProducts[id] = p;
+        subs.unsubscribe();
+        success_Callback(this.localProducts[id]);
+      })
+    }
   }
 
   getProductById_Internal(id: string) {
     return this.api.getObject(`/products/${id}`);
   }
+
 
   /*
   getAll() {
