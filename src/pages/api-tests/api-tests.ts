@@ -7,7 +7,6 @@ import { Product } from '../../models/product';
 import { ProductsService } from '../../providers/providers'
 import { Round } from '../../models/round';
 import { RoundsService } from '../../providers/providers'
-import { Items } from '../../providers/providers';
 
 
 @IonicPage()

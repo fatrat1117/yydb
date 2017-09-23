@@ -26,7 +26,7 @@ import { Api } from '../api/api';
  * If the `status` field is not `success`, then an error is detected and returned.
  */
 @Injectable()
-export class User {
+export class UserService {
   _user: any;
 
   constructor(public http: Http, public api: Api) {
