@@ -85,6 +85,8 @@ page-social {
         position: absolute;
         width: 20px;
         height: 20px;
+        right: -12px;
+        top: 38px;
       }
       .selected-btn::before {
         content: "\f3ff";
@@ -95,6 +97,8 @@ page-social {
         font-family: "Ionicons";
         z-index: 9;
         font-size: 20px;
+        right: -8px;
+        top: -2px;
       }
     .ticked-icon {
         -webkit-transform: rotate(45deg);

@@ -1,4 +1,10 @@
 page-table-view {
+
+    $med-mobile: "(max-width: 650px)";
+    $min-mobile: "(max-width: 557px)";
+    $and-mobile: "(max-width: 450px)";
+    $ios-mobile: "(max-width: 370px)";
+
     .card-box {
         border:1px solid $color-red;
         background: $background-color;
@@ -6,22 +12,28 @@ page-table-view {
         padding: 10px 6px;
         color: $color-red;
         text-align:center;
+        display: inline-block;
+        font-size: 8px;
+        width: 69%;
     }
+    
     .equalsign {
         color: $color-red;
         text-align:center;
         font-size: 17px;
         margin-top: 7px;
+        margin-left: 13%;
     }
     .card-box-col-4 {
         float:left;
         width:27%;
     }
     .sign-box {
-        float:left;
+        display: inline-block;
         color: $color-red;
         margin-top: 20px;
         padding: 0 5px;
+        margin-right: 22px;
     }
     .card-box-red {
         background: $color-red;
@@ -33,7 +45,7 @@ page-table-view {
         float:left;
         border:1px solid $color-red;
         padding: 10px 0;
-        font-size: 13px;
+        font-size: 12px;
         text-align: center;
     }
     .col-6div {
@@ -52,5 +64,33 @@ page-table-view {
     }
     .table {
         border: 1px solid $color-red;
+    }
+    @media #{$med-mobile} {
+        .equalsign {
+            margin-left: 20%;
+        }
+    }
+    @media #{$min-mobile} {
+        .sign-box {
+            margin-right: 5px;
+        }
+        .card-box {
+            font-size: 7px;
+            width: 63%;
+        }
+        .equalsign {
+            margin-left: 4%;
+        }
+    }
+    
+    @media #{$and-mobile} {
+        .equalsign {
+            margin-left: 18%;
+        }
+    }
+    @media #{$ios-mobile} {
+        .equalsign {
+            margin-left: 35%;
+        }
     }
 }
