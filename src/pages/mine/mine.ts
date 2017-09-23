@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DEFAULT_AVATAR, CUSTOMER_SERVICE} from "../../providers/Constants";
-import {UserInfo} from "../../models/UserInfo";
 import { FeedPage } from '../feed/feed';
 
 import { LoginPage } from '../login/login';
@@ -25,7 +24,6 @@ import {SocialPage} from '../social/social'
 export class MinePage {
   avatarPath: String = DEFAULT_AVATAR;
   customerService: String = CUSTOMER_SERVICE;
-  userInfo: UserInfo;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
