@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, MenuController, NavController, Platform } from 'ionic-angular';
+import { IonicPage, MenuController, NavController, Platform, AlertController, ViewController } from 'ionic-angular';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -18,13 +18,18 @@ import { Items } from '../../providers/providers';
 export class ApiTestsPage {
   prepareRounds: Round[];
 
-  constructor(public ps: ProductsService, public rs: RoundsService) {
+  constructor(public ps: ProductsService, public rs: RoundsService, 
+              private alertCtrl: AlertController, private viewCtrl: ViewController) {
   }
 
   getPreparingRounds() {
     let callback = (results => {
       this.prepareRounds = results;
     })
-    this.rs.getPreparingRounds_Internal(callback);
+    this.rs.getPreparingRounds(callback);
+  }
+
+  randomDraw(roundId: string) {
+    this.rs.addDraws(roundId, Math.floor(Math.random() * 5) + 1);
   }
 }

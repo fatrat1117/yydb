@@ -7,6 +7,8 @@ import { ViewController } from 'ionic-angular';
 
 import { User } from '../../providers/providers';
 import { MainPage } from '../pages';
+import { ForgotPasswordPage } from '../forgot-password/forgot-password';
+
 
 @IonicPage()
 @Component({
@@ -18,6 +20,7 @@ export class LoginPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
   cat: string = "login";
+  tabBarElement:any;
   account: { email: string, password: string } = {
     email: 'test@example.com',
     password: 'test'
@@ -29,11 +32,12 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
     public user: User,
     public toastCtrl: ToastController,
-    public translateService: TranslateService , public navParams: NavParams) {
+    public translateService: TranslateService , public viewCtrl: ViewController, public navParams: NavParams) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
+       this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
       this.cat = navParams.get("page");
   }
 
@@ -52,4 +56,19 @@ export class LoginPage {
       toast.present();
     });
   }
+
+  ionViewWillEnter() {
+    this.tabBarElement.style.display = 'none';
+  }
+ 
+  ionViewWillLeave() {
+    this.tabBarElement.style.display = 'flex';
+  }
+   ionViewDidLoad() {
+        this.viewCtrl.setBackButtonText('');
+    }
+  
+    forgotPassword(){
+      this.navCtrl.push(ForgotPasswordPage);
+    }
 }

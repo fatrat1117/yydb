@@ -47,12 +47,36 @@
     "FORGOT_PASSWORD": "Forgot your password?",
     "SOCIAL": "Social Media Login",
     "LOGIN_SUBTITLE": "Sign into your account",
+    "SIGNUP_SUBTITLE": "Create a new account",
     "LOGIN_TITLE": "Sign in",
     "LOGIN_ERROR": "Unable to sign in. Please check your account information and try again.",
     "LOGIN_BUTTON": "Sign in",
     "SIGNUP_TITLE": "Sign up",
     "SIGNUP_ERROR": "Unable to create account. Please check your account information and try again.",
     "SIGNUP_BUTTON": "Sign up",
+    "REMEMBER": "Remember me",
+
+    "BIND_PHONE_TITLE": "Connect",
+    "BIND_PHONE_SUBTITLE": "Verify your Phone Number",
+    "BIND_PHONE_BUTTON": "Connect ",
+    "VERIFY_BUTTON": "Verify",
+    "VERIFY_PH": "5 Digit Code",
+    "BIND_PHONE_PH": " Phone Number",
+
+
+    "CHANGE_PASS_TITLE": "Password",
+    "CHANGE_PASS_SUBTITLE": "Change your password",
+    "CP_OLD_PH": "Enter your old password",
+    "CP_NEW_PH": "Enter your new password",
+    "CP_CONF_PH": "Confirm your new password",
+    "CP_BUTTON": "Change Password",
+
+    "FP_TITLE": "Password Reset",
+    "FP_SUBTITLE": "Forgot your password?",
+    "FP_BUTTON": "Reset",
+    "FP_PH": "Your Email",
+    "FP_MESSAGE_TITLE": "Don't worry!",
+    "FP_MESSAGE": "We will send you an email that will help you create a new password for your account",
 
     "LIST_MASTER_TITLE": "Items",
 

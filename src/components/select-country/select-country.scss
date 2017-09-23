@@ -1,0 +1,14 @@
+    select-country {
+        .popover-ios .popover-content {
+            width: 250px !important;
+        }
+        .popover-ios .popover-content {
+            border-radius: 10px;
+            width: 250px;
+            min-width: 0;
+            min-height: 0;
+            max-height: 90%;
+            color: #000;
+            background: #fff;
+        }
+    }

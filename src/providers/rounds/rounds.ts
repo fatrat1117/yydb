@@ -14,7 +14,8 @@ export class RoundsService {
   constructor(public api: Api, public ps: ProductsService) {
   }
 
-  getPreparingRounds_Internal(success_Callback) {
+  // rounds will be updated in real time
+  getPreparingRounds(success_Callback) {
     const query = {
       query: {
         orderByChild: 'status',
@@ -27,23 +28,31 @@ export class RoundsService {
 
       // Iterate rounds to get product
       snapshots.forEach(r => {
-        // Get product once only
-        let subs = this.ps.getProductById_Internal(r.product_id).subscribe(p => {
-          this.api.log("get product", p);
-          subs.unsubscribe();
-
-          // Add new round
-          let product = new Product(p.$key, p.name);
-          let round = new Round(r.$key, product);
-          this.preparingRounds.push(round);
-
-          // check if all done
+        let callback = (p=> {
+          this.preparingRounds.push(this.createNewRound(r, p));
           if (this.preparingRounds.length == snapshots.length) {
             this.api.log("get preparing rounds", this.preparingRounds);
             success_Callback(this.preparingRounds);
           }
         })
+        this.ps.getProductById(r.product_id, callback);
       })
+    })
+  }
+
+  createNewRound(round: any, product: Product) {
+    let r = new Round(round.$key, product);
+    if (round.draw_counts != undefined) {
+      r.drawCounts.current = round.draw_counts.current || 0;
+      r.drawCounts.target = round.draw_counts.target || 0;
+    }
+    return r;
+  }
+
+  addDraws(roundId: string, want: number) {
+    let draws = {};
+    this.api.getList(`/rounds-draws/${roundId}/waiting-list`).push({
+      want: want
     })
   }
 }

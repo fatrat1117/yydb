@@ -1,22 +1,17 @@
 page-list {
     .pull-left {
-        float:left;
+        float: left;
     }
     .pull-right {
-        float:right;
+        float: right;
     }
     .card-header {
-        border:1px solid #eee;
+        border: 1px solid #eee;
     }
     .text-danger {
-        color:red;
+        color: red;
     }
     .card-content {
-        padding-bottom:5px;
+        padding-bottom: 5px;
     }
 }
-
-    .scroll-content {
-        padding: 16px 0px !important;
-        margin-bottom: 0 !important;
-    }

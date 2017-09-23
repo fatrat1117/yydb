@@ -7,10 +7,18 @@
 <ion-content>
   <ion-item-group>
     <ion-item-divider color="light">Rounds</ion-item-divider>
-    <button ion-item (click)="getPreparingRounds()">Get Preparing Rounds</button>
-    <ion-item *ngFor="let r of prepareRounds" text-right>
+    <ion-item text-center>
+      <button ion-button clear (click)="getPreparingRounds()">Get Preparing Rounds</button>
+    </ion-item>
+
+    <ion-item *ngFor="let r of prepareRounds">
+      <ion-thumbnail item-start>
+        <img *ngIf="r.product.images" [src]="r.product.images[0]">
+      </ion-thumbnail>
       <h2> Round ID: {{r.id}} </h2>
       <p> Product Name: {{r.product.name}} </p>
+      <p>{{r.drawCounts?.current}}/{{r.drawCounts?.target}}</p>
+      <button ion-button clear item-end (click)="randomDraw(r.id)">Random Draw</button>
     </ion-item>
   </ion-item-group>
 </ion-content>
