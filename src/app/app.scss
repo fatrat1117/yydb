@@ -18,8 +18,9 @@ $header-bg-color: #F90000;
 
  * {
     font-family: "PingFang SC", "Microsoft Yahei";
-.toolbar-md-danger .toolbar-background-md,
-.toolbar-ios-danger .toolbar-background-ios {
+ }
+
+.toolbar-md-danger .toolbar-background-md .toolbar-ios-danger .toolbar-background-ios {
     background-color: $header-bg-color !important;
 }
 
