@@ -5,7 +5,7 @@ import { IonicPage, NavController,  NavParams, ToastController } from 'ionic-ang
 import { ViewController } from 'ionic-angular';
 
 
-import { User } from '../../providers/providers';
+import { UserService } from '../../providers/providers';
 import { MainPage } from '../pages';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
@@ -30,7 +30,7 @@ export class LoginPage {
   private loginErrorString: string;
 
   constructor(public navCtrl: NavController,
-    public user: User,
+    public user: UserService,
     public toastCtrl: ToastController,
     public translateService: TranslateService , public viewCtrl: ViewController, public navParams: NavParams) {
 
@@ -43,6 +43,7 @@ export class LoginPage {
 
   // Attempt to login in through our User service
   doLogin() {
+    /*
     this.user.login(this.account).subscribe((resp) => {
       this.navCtrl.push(MainPage);
     }, (err) => {
@@ -55,6 +56,7 @@ export class LoginPage {
       });
       toast.present();
     });
+    */
   }
 
   ionViewWillEnter() {

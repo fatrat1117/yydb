@@ -12,9 +12,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { ProductsService } from '../providers/providers';
 import { RoundsService } from '../providers/providers';
-import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
-import { User } from '../providers/providers';
+import { UserService } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
@@ -117,8 +116,7 @@ export function provideSettings(storage: Storage) {
     Api,
     ProductsService,
     RoundsService,
-    Items,
-    User,
+    UserService,
     Camera,
     GoogleMaps,
     SplashScreen,
