@@ -5,13 +5,14 @@ import { Api } from '../api/api';
 import { Product } from '../../models/product';
 import { ProductsService } from '../products/products';
 import { Round } from '../../models/round';
+import { UserService } from '../user/user';
 
 
 @Injectable()
 export class RoundsService {
   preparingRounds: Round[];
 
-  constructor(public api: Api, public ps: ProductsService) {
+  constructor(public api: Api, public ps: ProductsService, public us: UserService) {
   }
 
   // rounds will be updated in real time
@@ -49,10 +50,20 @@ export class RoundsService {
     return r;
   }
 
-  addDraws(roundId: string, want: number) {
+  addDraws(roundId: string, want: number, callback) {
+    let endpoint = `/rounds-draws/${roundId}/waiting-list`;
     let draws = {};
-    this.api.getList(`/rounds-draws/${roundId}/waiting-list`).push({
+    this.api.getList(endpoint).push({
       want: want
+    }).then(snapshot => {
+      let subs = this.api.getObject(`${endpoint}/${snapshot.key}/deal`).subscribe(s => {
+        let deal = s.$value;
+        if (deal != null) {
+          subs.unsubscribe();
+          callback(deal);
+          this.us.updateDrawsOfRound(roundId, deal);
+        }
+      })
     })
   }
 }

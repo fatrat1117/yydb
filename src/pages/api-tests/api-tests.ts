@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, MenuController, NavController, Platform, AlertController, ViewController } from 'ionic-angular';
+import { IonicPage, MenuController, NavController, Platform, LoadingController, AlertController } from 'ionic-angular';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -7,6 +7,8 @@ import { Product } from '../../models/product';
 import { ProductsService } from '../../providers/providers'
 import { Round } from '../../models/round';
 import { RoundsService } from '../../providers/providers'
+import { User } from '../../models/user'
+import { UserService } from '../../providers/providers'
 
 
 @IonicPage()
@@ -15,20 +17,56 @@ import { RoundsService } from '../../providers/providers'
   templateUrl: 'api-tests.html'
 })
 export class ApiTestsPage {
-  prepareRounds: Round[];
+  user: User;
+  preparingRounds: Round[];
 
-  constructor(public ps: ProductsService, public rs: RoundsService, 
-              private alertCtrl: AlertController, private viewCtrl: ViewController) {
+  constructor(public ps: ProductsService, public rs: RoundsService, public us: UserService,
+    private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+  }
+
+  ionViewDidLoad() {
+    this.user = this.us.getCurrentUser();
   }
 
   getPreparingRounds() {
     let callback = (results => {
-      this.prepareRounds = results;
+      this.preparingRounds = results;
+      results.forEach(r => {
+        this.us.updateDrawsOfRound(r.id);
+      });
     })
     this.rs.getPreparingRounds(callback);
   }
 
-  randomDraw(roundId: string) {
-    this.rs.addDraws(roundId, Math.floor(Math.random() * 5) + 1);
+  buyDraws(roundId: string) {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait..."
+    });
+
+    let callback = (deal => {
+      loader.dismiss();
+      this.showAlert(roundId, deal);
+    })
+    loader.present();
+    this.rs.addDraws(roundId, Math.floor(Math.random() * 5) + 1, callback);
+  }
+
+  showAlert(roundId: string, deal: number) {
+    let msg = deal == 0 ? "Not enough draw" : `You bought ${deal} new draws.`;
+    let alert = this.alertCtrl.create({
+      title: msg,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  showAllDraws(roundId: string) {
+    let draws = this.user.draws[roundId];
+    let msg = draws ? draws.toString() : "You have no draw";
+    let alert = this.alertCtrl.create({
+      subTitle: msg,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 }
