@@ -8,8 +8,7 @@ import { LoginPage } from '../login/login';
 import { BindPhonePage } from '../bind-phone/bind-phone';
 import { ChangePasswordPage } from '../change-password/change-password';
 import { ProfilePage } from '../profile/profile';
-
-
+import {SocialPage} from '../social/social'
 
 /**
  * Generated class for the MinePage page.
@@ -42,6 +41,9 @@ export class MinePage {
 
   share(){
    this.navCtrl.push(FeedPage);
+  }
+  socialPage(){
+    this.navCtrl.push(SocialPage);
   }
 
   login(){
