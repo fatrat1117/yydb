@@ -19,6 +19,9 @@ export class ProductsService {
     else {
       let subs = this.getProductById_Internal(id).subscribe(snapshot => {
         let p = new Product(snapshot.$key, snapshot.name);
+        if (snapshot.images) {
+          p.images = snapshot.images;
+        }
         this.localProducts[id] = p;
         subs.unsubscribe();
         success_Callback(this.localProducts[id]);

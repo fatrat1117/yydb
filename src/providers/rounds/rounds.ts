@@ -41,13 +41,18 @@ export class RoundsService {
   }
 
   createNewRound(round: any, product: Product) {
-    let p = new Product(product.id, product.name);
-    let r = new Round(round.$key, p);
+    let r = new Round(round.$key, product);
     if (round.draw_counts != undefined) {
       r.drawCounts.current = round.draw_counts.current || 0;
       r.drawCounts.target = round.draw_counts.target || 0;
     }
-
     return r;
+  }
+
+  addDraws(roundId: string, want: number) {
+    let draws = {};
+    this.api.getList(`/rounds-draws/${roundId}/waiting-list`).push({
+      want: want
+    })
   }
 }
