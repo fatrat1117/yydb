@@ -34,7 +34,7 @@ import { SelectCountryComponent } from '../components/select-country/select-coun
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 // Firebase config
-export const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyD34vLme2YuR_PthmykCCoUd2oIcUtHBoM",
   authDomain: "yydb-9a6c4.firebaseapp.com",
   databaseURL: "https://yydb-9a6c4.firebaseio.com",
@@ -82,9 +82,7 @@ export function provideSettings(storage: Storage) {
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
+    IonicModule.forRoot(MyApp),
     HttpModule,
     TranslateModule.forRoot({
       loader: {
@@ -93,8 +91,10 @@ export function provideSettings(storage: Storage) {
         deps: [Http]
       }
     }),
-    IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
