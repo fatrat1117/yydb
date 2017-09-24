@@ -6,6 +6,11 @@
 
 <ion-content>
   <ion-item-group>
+    <ion-item-divider color="light">Login</ion-item-divider>
+    <ion-item text-center>
+      <button ion-button clear (click)="redirectToLogin()">Redirect to Login</button>
+    </ion-item>
+
     <ion-item-divider color="light">Rounds</ion-item-divider>
     <ion-item text-center>
       <button ion-button clear (click)="getPreparingRounds()">Get Preparing Rounds</button>
@@ -23,6 +28,11 @@
       </p-->
       <button ion-button clear item-end (click)="buyDraws(r.id)">Buy</button>
       <button ion-button clear item-end color="secondary" (click)="showAllDraws(r.id)">Show</button>
+    </ion-item>
+
+    <ion-item-divider color="light">Payment</ion-item-divider>
+    <ion-item text-center>
+      <button ion-button clear (click)="makePayment()">Makey Payment</button>
     </ion-item>
   </ion-item-group>
 </ion-content>

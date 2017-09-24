@@ -31,6 +31,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { SelectCountryComponent } from '../components/select-country/select-country';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 // Firebase config
 export const firebaseConfig = {
   apiKey: "AIzaSyD34vLme2YuR_PthmykCCoUd2oIcUtHBoM",
@@ -110,7 +112,7 @@ export function provideSettings(storage: Storage) {
     ProfilePage,
     LoginPage,
     SearchPage,
-    SocialPage
+    SocialPage,
   ],
   providers: [
     Api,
@@ -121,6 +123,7 @@ export function provideSettings(storage: Storage) {
     GoogleMaps,
     SplashScreen,
     StatusBar,
+    InAppBrowser,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

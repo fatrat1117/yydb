@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, MenuController, NavController, Platform, LoadingController, AlertController } from 'ionic-angular';
+import { IonicPage, MenuController, NavController, Platform, LoadingController, AlertController, ModalController } from 'ionic-angular';
+import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -21,7 +22,8 @@ export class ApiTestsPage {
   preparingRounds: Round[];
 
   constructor(public ps: ProductsService, public rs: RoundsService, public us: UserService,
-    private loadingCtrl: LoadingController, private alertCtrl: AlertController) {
+    private loadingCtrl: LoadingController, private alertCtrl: AlertController, private modalCtrl: ModalController,
+    private iab: InAppBrowser) {
   }
 
   ionViewDidLoad() {
@@ -68,5 +70,18 @@ export class ApiTestsPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  redirectToLogin() {
+    const options: InAppBrowserOptions = {
+      zoom: 'no',
+      disallowoverscroll: 'yes'
+    }
+    const url = 'https://fir-ui-demo-84a6c.firebaseapp.com/widget#recaptcha=normal';
+    const browser = this.iab.create(url, "_blank", options);
+    //browser.show();
+  }
+
+  makePayment() {
   }
 }
