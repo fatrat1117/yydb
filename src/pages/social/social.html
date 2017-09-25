@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>social</ion-title>
+    <ion-title>{{'SOCIAL' | translate}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -18,10 +18,10 @@
   <div>
     <ion-segment class="custom-tabs" [(ngModel)]="upperTab">
       <ion-segment-button value="tab_one">
-        Tab 1
+        {{'TAB_1' | translate}}
       </ion-segment-button>
       <ion-segment-button value="tab_two">
-        Tab 2
+        {{'TAB_2' | translate}}
       </ion-segment-button>
     </ion-segment>
   </div>
@@ -30,7 +30,7 @@
   
     <ion-list *ngSwitchCase="'tab_one'">
       <ion-item class="bg-clr">
-        <p>{{tabonedata.ratetext}}: <span class="social-text-color">{{tabonedata.rate}}</span></p>
+        <p>{{'SOCIAL_RATE_TEXT' | translate}}: <span class="social-text-color">{{'SOCIAL_RATE_SELECT' | translate}}</span></p>
         <ion-grid>
           <ion-row>
             <ion-col col-3><button ion-button color="light" class="selected-btn" full outline>{{tabonedata.btnrate1}}</button></ion-col>
@@ -48,19 +48,19 @@
       </ion-item>
       <ion-item class="bg-clr left-radio">
         <ion-radio checked="false"> </ion-radio>
-        <ion-label>{{tabonedata.checkboxtext}}</ion-label>
+        <ion-label>{{'CHECKBOX_TEXT' | translate}}</ion-label>
       </ion-item>
       <ion-card class="text-label">
         <ion-card-header class="button-outline-md-light">
-            {{tabonedata.socialsecondsection}}
+            {{'SOCIAL_SECOND_SECTION' | translate}}
         </ion-card-header>
       </ion-card>
       <ion-list>
           <ion-list-header class="big ">
               <ion-grid>
                   <ion-row padding-top padding-bottom>
-                    <ion-col col-8 class="red-left">{{tabonedata.socialthirdsection}}</ion-col>
-                    <ion-col col-4 class="red-right">{{tabonedata.socialthirdsectionratetext}}<span class="social-text-color">{{tabonedata.socialthirdsectionrate}}</span></ion-col>
+                    <ion-col col-8 class="red-left">{{'SOCIAL_THIRD_SECTION' | translate}}</ion-col>
+                    <ion-col col-4 class="red-right">{{'SOCIAL_THIRD_SECTION_RATETEXT' | translate}}<span class="social-text-color">{{'SOCIAL_THIRD_SECTION_RATE' | translate}}</span></ion-col>
                   </ion-row>
               </ion-grid>
           </ion-list-header>
@@ -134,16 +134,16 @@
         </ion-card>
         <ion-grid>
             <ion-row>
-              <ion-col col-4><button ion-button color="danger" full >{{tabonedata.buttontext1}}</button></ion-col>
-              <ion-col col-4><button ion-button color="danger" full >{{tabonedata.buttontext2}}</button></ion-col>
-              <ion-col col-4><button ion-button color="danger" full >{{tabonedata.buttontext3}}</button></ion-col>
+              <ion-col col-4><button ion-button color="danger" full >{{'BUTTON_TEXT1' | translate}}</button></ion-col>
+              <ion-col col-4><button ion-button color="danger" full >{{'BUTTON_TEXT2' | translate}}</button></ion-col>
+              <ion-col col-4><button ion-button color="danger" full >{{'BUTTON_TEXT3' | translate}}</button></ion-col>
             </ion-row>
         </ion-grid>
         <ion-grid>
             <ion-row class="borderdashbottom">
-              <ion-col col-4 text-center class="btn-btm-border"><button ion-button color="danger" class="btn-circle" small >{{tabonedata.process1}}</button></ion-col>
-              <ion-col col-4 text-center class="btn-btm-border"><button ion-button color="danger" class="btn-circle" small >{{tabonedata.process2}}</button></ion-col>
-              <ion-col col-4 text-center class="btn-btm-border"><button ion-button color="danger" class="btn-circle" small >{{tabonedata.process3}}</button></ion-col>
+              <ion-col col-4 text-center class="btn-btm-border"><button ion-button color="danger" class="btn-circle" small >{{'PROCESS1' | translate}}</button></ion-col>
+              <ion-col col-4 text-center class="btn-btm-border"><button ion-button color="danger" class="btn-circle" small >{{'PROCESS2' | translate}}</button></ion-col>
+              <ion-col col-4 text-center class="btn-btm-border"><button ion-button color="danger" class="btn-circle" small >{{'PROCESS3' | translate}}</button></ion-col>
             </ion-row>
         </ion-grid>
     </ion-list>

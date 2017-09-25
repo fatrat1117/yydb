@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>table-view</ion-title>
+    <ion-title>{{'TABLE_VIEW' | translate}} </ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -20,59 +20,40 @@
       <ion-col col-4>
         <div class="sign-box">&nbsp;&nbsp;&nbsp;&nbsp;</div>
         <div class="card-box">
-          <div>{{multidata.value4}}</div>
-          <div>{{multidata.text4}}</div>
+          <div>{{'VALUE4' | translate}}</div>
+          <div>{{'TEXT4' | translate}}</div>
         </div>
         <div class="equalsign">||</div>
       </ion-col>
       <ion-col col-4>&nbsp;</ion-col>
     </ion-row>
-    <!--<ion-row>
-      <ion-col class="full-width-table" col-12>
-        <div class="sign-box">(</div>
-        <div class="card-box card-box-col-4">
-          <div>{{multidata.value1}}</div>
-          <div>{{multidata.text1}}</div>
-        </div>
-        <div class="sign-box">%</div>
-        <div class="card-box card-box-col-4">
-          <div>{{multidata.value2}}</div>
-          <div>{{multidata.text2}}</div>
-        </div>
-        <div class="sign-box">) +</div>
-        <div class="card-box card-box-col-4">
-          <div>{{multidata.value3}}</div>
-          <div>{{multidata.text3}}</div>
-        </div>
-      </ion-col>
-    </ion-row>-->
     <ion-row>
       <ion-col col-4>
         <div class="sign-box">(</div>
         <div class="card-box">
-          <div>{{multidata.value1}}</div>
-          <div>{{multidata.text1}}</div>
+          <div>{{'VALUE1' | translate}}</div>
+          <div>{{'TEXT1' | translate}}</div>
         </div>
       </ion-col> 
       <ion-col col-4>
         <div class="sign-box">%&nbsp;</div>
         <div class="card-box">
-          <div>{{multidata.value2}}</div>
-          <div>{{multidata.text2}}</div>
+          <div>{{'VALUE2' | translate}}</div>
+          <div>{{'TEXT2' | translate}}</div>
         </div>
       </ion-col> 
       <ion-col col-4>
         <div class="sign-box">)+</div>
         <div class="card-box">
-          <div>{{multidata.value3}}</div>
-          <div>{{multidata.text3}}</div>
+          <div>{{'VALUE3' | translate}}</div>
+          <div>{{'TEXT3' | translate}}</div>
         </div>
       </ion-col> 
     </ion-row>
     <ion-row>
       <ion-col col-12>
         <div class="card-box-red">
-          <p>{{multidata.boxdata}}</p>
+          <p>{{'REDBOXLABEL' | translate}}</p>
         </div>
       </ion-col>
     </ion-row>
@@ -81,9 +62,9 @@
         <div class="table">
           <div class="table-head">
             <div class="row">
-              <div class="col-6div">dfgdsgdsg</div>
-              <div class="col-3div">fgdfgdfg</div>
-              <div class="col-3div">sfs</div>
+              <div class="col-6div">{{'TABLE_HEAD1' | translate}}</div>
+              <div class="col-3div">{{'TABLE_HEAD2' | translate}}</div>
+              <div class="col-3div">{{'TABLE_HEAD3' | translate}}</div>
             </div>
           </div>
           <div class="table-content">

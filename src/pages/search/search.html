@@ -15,11 +15,11 @@
 	
 	<ion-grid>
 		<ion-row>
-			<ion-col col-12><p class="big">{{mobiledata.mobilename}}</p></ion-col>
+			<ion-col col-12><p class="big">{{'MOBILE_NAME' | translate}}</p></ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col col-8><p class="small">{{mobiledata.mobilemodalnumber}}</p></ion-col>
-			<ion-col col-4><p class="small" float-right>{{mobiledata.mobileprice}}</p></ion-col>
+			<ion-col col-8><p class="small">{{'MOBILE_MODEL_NO' | translate}}</p></ion-col>
+			<ion-col col-4><p class="small" float-right>{{'MOBILE_PRICE' | translate}}</p></ion-col>
 		</ion-row>
 	</ion-grid>
 
@@ -28,21 +28,21 @@
 		
 		<ion-card-content class="card-content-label">
 			<ion-row>
-				<ion-col col-3><div class="red-label">{{cardsdata.label}}</div></ion-col>
-				<ion-col col-6><p class="small" >{{cardsdata.header}}</p>
+				<ion-col col-3><div class="red-label">{{'RED_LABEL' | translate}}</div></ion-col>
+				<ion-col col-6><p class="small" >{{'CARD_HEADER' | translate}}</p>
 					<ion-row class="color-red mar-top time-row">
-							<ion-col col-4>
-									<div class="time-label">02</div> <span class="colon">:</span>
-							</ion-col>
-							<ion-col col-4>
-									<div class="time-label">20</div> <span class="colon">:</span>
-							</ion-col>
-							<ion-col col-4>
-									<div class="time-label">36</div>
-							</ion-col>
-						</ion-row>
+						<ion-col col-4>
+								<div class="time-label">02</div> <span class="colon">:</span>
+						</ion-col>
+						<ion-col col-4>
+								<div class="time-label">20</div> <span class="colon">:</span>
+						</ion-col>
+						<ion-col col-4>
+								<div class="time-label">36</div>
+						</ion-col>
+					</ion-row>
 				</ion-col>
-				<ion-col col-3 float-right (click)="showTable()"><p class="small color-red mar-left" >{{cardsdata.next}}<ion-icon name="arrow-forward"></ion-icon></p></ion-col>
+				<ion-col col-3 float-right (click)="showTable()"><p class="small color-red mar-left" >{{'NEXT' | translate}}<ion-icon name="arrow-forward"></ion-icon></p></ion-col>
 			</ion-row>
 		</ion-card-content>
 	
@@ -51,7 +51,7 @@
 
 	<ion-grid>
 		<ion-row>
-			<ion-col col-12><button ion-button full color="light" class="box-shad">Product Properties Below:</button></ion-col>
+			<ion-col col-12><button ion-button full color="light" class="box-shad">{{'PRODUCT_PROPERTIES_BELOW' | translate}}</button></ion-col>
 		</ion-row>
 	</ion-grid>
 
@@ -69,7 +69,7 @@
 
 	<ion-list>
 		<ion-list-header class="big red-left">
-			List of properties below:
+			 {{'LIST_OF_PROPERTIES_BELOW' | translate}}
 		</ion-list-header>
 		<ion-item *ngFor="let list of lists">
 			<ion-avatar item-start>
