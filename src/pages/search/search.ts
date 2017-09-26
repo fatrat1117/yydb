@@ -84,18 +84,7 @@ export class SearchPage {
         };
       });
 
-      translate.get(["RED_LABEL",
-      "CARD_HEADER",
-      "NEXT",
-    ]).subscribe(
-      (values) => {
-        console.log('Loaded values', values);
-        this.cardsdata = {
-          label: values.RED_LABEL,
-          header: values.CARD_HEADER,
-          next: values.NEXT
-        };
-      });
+      
 
       this.items = [
         "Lorem Ipsum 1",

@@ -23,8 +23,7 @@ export class SocialPage {
   constructor(translate: TranslateService, public navCtrl: NavController, public navParams: NavParams) {
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
 
-    translate.get(["SOCIAL_RATE_TEXT",
-      "SOCIAL_RATE_SELECT",
+    translate.get([
       "BUTTON_RATE1",
       "BUTTON_RATE2",
       "BUTTON_RATE3",
@@ -33,11 +32,6 @@ export class SocialPage {
       "BUTTON_RATE6",
       "BUTTON_RATE7",
       "BUTTON_RATE8",
-      "CHECKBOX_TEXT",
-      "SOCIAL_SECOND_SECTION",
-      "SOCIAL_THIRD_SECTION",
-      "SOCIAL_THIRD_SECTION_RATETEXT",
-      "SOCIAL_THIRD_SECTION_RATE",
       "SOCIAL_THIRD_SECTION_TEXT1",
       "SOCIAL_THIRD_SECTION_TEXT2",
       "SOCIAL_PERSON1",
@@ -49,19 +43,11 @@ export class SocialPage {
       "SOCIAL_PERSON2_DETAIL1",
       "SOCIAL_PERSON2_DETAIL2",
       "SOCIAL_PERSON3",
-      "SOCIAL_PERSON3_DETAIL1",
-      "BUTTON_TEXT1",
-      "BUTTON_TEXT2",
-      "BUTTON_TEXT3",
-      "PROCESS1",
-      "PROCESS2",
-      "PROCESS3"
+      "SOCIAL_PERSON3_DETAIL1"
     ]).subscribe(
       (values) => {
         console.log('Loaded values', values);
         this.tabonedata = {
-          ratetext: values.SOCIAL_RATE_TEXT,
-          rate: values.SOCIAL_RATE_SELECT,
           btnrate1: values.BUTTON_RATE1,
           btnrate2: values.BUTTON_RATE2,
           btnrate3: values.BUTTON_RATE3,
@@ -70,9 +56,6 @@ export class SocialPage {
           btnrate6: values.BUTTON_RATE6,
           btnrate7: values.BUTTON_RATE7,
           btnrate8: values.BUTTON_RATE8,
-          checkboxtext: values.CHECKBOX_TEXT,
-          socialsecondsection: values.SOCIAL_SECOND_SECTION,
-          socialthirdsection: values.SOCIAL_THIRD_SECTION,
           socialthirdsectionratetext: values.SOCIAL_THIRD_SECTION_RATETEXT,
           socialthirdsectionrate: values.SOCIAL_THIRD_SECTION_RATE,
           socialthirdsectiontext1: values.SOCIAL_THIRD_SECTION_TEXT1,
@@ -86,13 +69,7 @@ export class SocialPage {
           socialperson2detail1: values.SOCIAL_PERSON2_DETAIL1,
           socialperson2detail2: values.SOCIAL_PERSON2_DETAIL2,
           socialperson3: values.SOCIAL_PERSON3,
-          socialperson3detail1: values.SOCIAL_PERSON3_DETAIL1,
-          buttontext1: values.BUTTON_TEXT1,
-          buttontext2: values.BUTTON_TEXT2,
-          buttontext3: values.BUTTON_TEXT3,
-          process1: values.PROCESS1,
-          process2: values.PROCESS2,
-          process3: values.PROCESS3
+          socialperson3detail1: values.SOCIAL_PERSON3_DETAIL1
         };
     });
 

@@ -1,7 +1,7 @@
 page-social {
     .segment-md .segment-button.segment-activated{
-        color:red;
-        border-color: red;
+        color:$color-red;
+        border-color: $color-red;
     }
     .segment-md .segment-button.segment-activated::after{
         content: "";
@@ -10,43 +10,43 @@ page-social {
         z-index: 999999;
         bottom: 0;
         left: 45%;
-        border-bottom: 2px solid red;
+        border-bottom: 2px solid $color-red;
     }
     .segment-md .segment-button{
-        color:grey;
+        color:$color-grey;
         border-bottom-width: 0px;
     }
     ion-segment{
-        background:white;
+        background:$background-color;
     }
     .social-text-color{
-        color:red;
+        color:$color-red;
     }
     .button-outline-md-light{
-        border-color: #ada2a2;
-        color: #ada2a2;
-        background: white;
+        border-color: $color-btn-grey;
+        color: $color-btn-grey;
+        background: $background-color;
     }
     .selected-btn{
-        border: 1px solid red !important;
-        color:red;
+        border: 1px solid $color-red !important;
+        color:$color-red;
     }
     .top-list-background{
-        background: rgba(178, 181, 185, 0.2);
+        background: $background-color-toplist;
     }
     ion-item.bg-clr{
-        background: rgba(178, 181, 185, 0) !important;
+        background: $background-color-bg-clr !important;
         border: none;
     }
    
     .radio-icon{
-        border-color:rgba(120, 120, 120, 0.36) !important;
+        border-color:$border-color !important;
     }
     .big{
         font-size: 20px;
     }
     .red-left {
-        border-left: 8px solid #ff0000;
+        border-left: 8px solid $color-red;
         padding: 0;
         padding-left: 5px;
         height: 24px;
@@ -55,7 +55,7 @@ page-social {
         padding: 0;
     }
     .bg-white{
-        background: white !important;
+        background: $background-color !important;
     }
     .tick-size{
         font-size: 1.3em;
@@ -76,8 +76,8 @@ page-social {
     }
     .selected-btn::after {
         content: "";
-        background: #ff0000;
-        color: #fff;
+        background: $color-red;
+        color: $color-white;
         -webkit-transform: rotate(-45deg);
         transform: rotate(-45deg);
         padding: 0 12px;
@@ -90,7 +90,7 @@ page-social {
       }
       .selected-btn::before {
         content: "\f3ff";
-        color: #fff;
+        color: $color-white;
         padding: 0 12px;
         margin: 19px 0 0 13px;
         position: absolute;
@@ -105,7 +105,7 @@ page-social {
         transform: rotate(45deg);
     }
     .borderdashbottom {
-        border-bottom: 2px solid red;
+        border-bottom: 2px solid $color-red;
         border-bottom-style: dashed;
     }
     .left-radio .radio-md .radio-icon {
@@ -128,7 +128,7 @@ page-social {
     }
     .card-header-md {
         font-size: 1.6rem;
-        color: #222;
+        color: $color-light-black;
         padding: 8px;
     }
     .card-content-md {

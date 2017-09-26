@@ -140,5 +140,15 @@
   "PROCESS3":"3",
   "MOBILE_NAME":"Apple iPhone 7 128 G",
   "MOBILE_MODEL_NO":"Model No: 123456789012345",
-  "MOBILE_PRICE":"Price: 6000"
+  "MOBILE_PRICE":"Price: 6000",
+  "TAB_1": "Tab 1",
+  "TAB_2": "tab 2",
+  "PRODUCT_PROPERTIES_BELOW":"Product Properties Below:",
+  "LIST_OF_PROPERTIES_BELOW":"List of properties below:",
+  "TABLE_VIEW":"Table View",
+  "TABLE_HEAD1":"dfgdsgdsg",
+  "TABLE_HEAD2":"fgdfgdfg",
+  "TABLE_HEAD3":"sfss",
+  "SOCIAL":"Social",
+  "LISTPAGE":"List Page"
 }
