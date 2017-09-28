@@ -18,8 +18,8 @@
 			<ion-col col-12><p class="big">{{'MOBILE_NAME' | translate}}</p></ion-col>
 		</ion-row>
 		<ion-row>
-			<ion-col col-8><p class="small">{{'MOBILE_MODEL_NO' | translate}}</p></ion-col>
-			<ion-col col-4><p class="small" float-right>{{'MOBILE_PRICE' | translate}}</p></ion-col>
+			<ion-col col-8><p class="small grey">{{'MOBILE_MODEL_NO' | translate}}</p></ion-col>
+			<ion-col col-4><p class="small grey" float-right>{{'MOBILE_PRICE' | translate}}</p></ion-col>
 		</ion-row>
 	</ion-grid>
 
@@ -29,7 +29,7 @@
 		<ion-card-content class="card-content-label">
 			<ion-row>
 				<ion-col col-3><div class="red-label">{{'RED_LABEL' | translate}}</div></ion-col>
-				<ion-col col-6><p class="small" >{{'CARD_HEADER' | translate}}</p>
+				<ion-col col-6><p class="small grey" >{{'CARD_HEADER' | translate}}</p>
 					<ion-row class="color-red mar-top time-row">
 						<ion-col col-4>
 								<div class="time-label">02</div> <span class="colon">:</span>
@@ -78,11 +78,11 @@
 			<ion-grid>
 				<ion-row>
 					<ion-col col-5><h2>{{list.content1}}</h2></ion-col>
-					<ion-col col-7><h3 float-right>{{list.date}}</h3></ion-col>
+					<ion-col col-7><h3 float-right class="grey">{{list.date}}</h3></ion-col>
 				</ion-row>
 				<ion-row>
-					<ion-col col-5><span color="danger">{{list.dis}}</span> <span> {{list.off}}</span></ion-col>
-					<ion-col col-7><h5 float-right>{{list.ip}}</h5></ion-col>
+					<ion-col col-5 class="small"><span class="red">{{list.dis}}</span> <span class="grey"> {{list.off}}</span></ion-col>
+					<ion-col col-7><h5 float-right class="grey">{{list.ip}}</h5></ion-col>
 				</ion-row>
 			</ion-grid>
 		</ion-item>

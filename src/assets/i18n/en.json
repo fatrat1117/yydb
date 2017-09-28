@@ -150,5 +150,8 @@
   "TABLE_HEAD2":"fgdfgdfg",
   "TABLE_HEAD3":"sfss",
   "SOCIAL":"Social",
-  "LISTPAGE":"List Page"
+  "LISTPAGE":"List Page",
+  "TICKET_NO":"ticket NO.",
+  "SEX":"Sex",
+  "BIRTHDAY":"Birthdy"
 }
