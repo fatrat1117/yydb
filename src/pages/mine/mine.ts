@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DEFAULT_AVATAR, CUSTOMER_SERVICE} from "../../providers/Constants";
 import { FeedPage } from '../feed/feed';
+import { QuantityComponent } from '../../components/quantity/quantity';
 
 import { LoginPage } from '../login/login';
 import { BindPhonePage } from '../bind-phone/bind-phone';
@@ -10,7 +11,7 @@ import { ProfilePage } from '../profile/profile';
 import {SocialPage} from '../social/social';
 import {ListPage} from '../list/list';
 import {SearchPage} from '../search/search';
-
+import { ModalController } from 'ionic-angular';
 /**
  * Generated class for the MinePage page.
  *
@@ -27,7 +28,7 @@ export class MinePage {
   avatarPath: String = DEFAULT_AVATAR;
   customerService: String = CUSTOMER_SERVICE;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -69,5 +70,17 @@ export class MinePage {
   searchPage() {
     this.navCtrl.push(SearchPage);
   }
-
+ addQuantityModal() {
+   let quantityModal = this.modalCtrl.create(QuantityComponent, { page: 'add' });
+   quantityModal.present();
+ }
+  productInfoModal() {
+   let quantityModal = this.modalCtrl.create(QuantityComponent, { page: 'product' });
+   quantityModal.present();
+ }
+   otherQuantityModal() {
+   let quantityModal = this.modalCtrl.create(QuantityComponent, { page: 'other' });
+   quantityModal.present();
+ }
 }
+
