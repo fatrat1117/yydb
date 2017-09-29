@@ -26,6 +26,7 @@ import { TableViewPage } from '../pages/table-view/table-view';
 import { ProfilePage } from '../pages/profile/profile';
 import { SearchPage } from '../pages/search/search';
 import { SocialPage } from '../pages/social/social';
+import { SettingPage } from '../pages/setting/setting';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -76,6 +77,7 @@ export function provideSettings(storage: Storage) {
     LoginPage,
     SearchPage,
     SocialPage,
+    SettingPage,
     BindPhonePage,
     ChangePasswordPage,
     ForgotPasswordPage,
@@ -108,7 +110,7 @@ export function provideSettings(storage: Storage) {
     BindPhonePage,
     ChangePasswordPage,
     ForgotPasswordPage,
-
+    SettingPage,
     SelectCountryComponent,
     QuantityComponent,
 
