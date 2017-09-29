@@ -5,6 +5,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 import { Settings } from '../../providers/providers';
 import { SettingPage } from '../setting/setting';
+import { Settingtab1Page } from '../settingtab1/settingtab1';
 
 /**
  * The Settings page is a simple form that syncs with a Settings provider
@@ -20,10 +21,9 @@ export class SettingsPage {
   // Our local settings object
   options: any;
 
-  tab1Root: any = SettingPage;
+  tab1Root: any = Settingtab1Page;
   tab2Root: any = SettingPage;
   tab3Root: any = SettingPage;
-
  
   settingsReady = false;
 

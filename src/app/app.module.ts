@@ -19,6 +19,7 @@ import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
 import { SettingPage } from '../pages/setting/setting';
+import { Settingtab1Page } from '../pages/settingtab1/settingtab1';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -59,6 +60,7 @@ export function provideSettings(storage: Storage) {
   declarations: [
     MyApp,
      FeedPage,
+     Settingtab1Page,
 	 SettingPage
   ],
   imports: [
@@ -81,6 +83,7 @@ export function provideSettings(storage: Storage) {
   entryComponents: [
     MyApp,
      FeedPage,
+     Settingtab1Page,
 	 SettingPage
   ],
   providers: [
