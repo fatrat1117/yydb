@@ -40,17 +40,28 @@ export class ApiTestsPage {
     this.rs.getPreparingRounds(callback);
   }
 
-  buyDraws(roundId: string) {
+  buyDraws(round: Round) {
+    let randomAmount = Math.floor(Math.random() * 5) + 1;
+
+    // Check balance
+    if (this.user.balance < randomAmount * round.drawPrice) {
+      this.alertCtrl.create({
+        title: "Not enough balance.",
+        buttons: ['OK']
+      }).present();
+      return;
+    }
+
     let loader = this.loadingCtrl.create({
       content: "Please wait..."
     });
 
     let callback = (deal => {
       loader.dismiss();
-      this.showAlert(roundId, deal);
+      this.showAlert(round.id, deal);
     })
     loader.present();
-    this.rs.addDraws(roundId, Math.floor(Math.random() * 5) + 1, callback);
+    this.rs.addDraws(round.id, randomAmount, callback);
   }
 
   showAlert(roundId: string, deal: number) {
@@ -73,15 +84,27 @@ export class ApiTestsPage {
   }
 
   redirectToLogin() {
-    const options: InAppBrowserOptions = {
-      zoom: 'no',
-      disallowoverscroll: 'yes'
-    }
     const url = 'https://fir-ui-demo-84a6c.firebaseapp.com/widget#recaptcha=normal';
-    const browser = this.iab.create(url, "_blank", options);
-    //browser.show();
+    this.openUrl(url);
   }
 
   makePayment() {
+    const url = 'https://yydb-9a6c4.firebaseapp.com/payment.html';
+    this.openUrl(url);
+  }
+
+  openUrl(url: string) {
+    const options: InAppBrowserOptions = {
+      location: 'no',
+      clearcache: 'yes',
+      clearsessioncache: 'yes',
+      // android
+      hardwareback: 'no',
+      zoom: 'no',
+      // ios
+      disallowoverscroll: 'yes',
+      toolbar: 'no'
+    }
+    const browser = this.iab.create(url, "_blank", options);
   }
 }

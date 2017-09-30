@@ -4,11 +4,13 @@ export class Round {
   id: string;
   product: Product;
   drawCounts: DrawCounts;
+  drawPrice: number;  // price in cents
 
-  constructor(id: string, product: Product) {
+  constructor(id: string, product: Product, drawPrice: number) {
     this.id = id;
     this.product = product;
     this.drawCounts = new DrawCounts();
+    this.drawPrice = drawPrice;
   }
 }
 

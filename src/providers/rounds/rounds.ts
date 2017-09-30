@@ -42,7 +42,7 @@ export class RoundsService {
   }
 
   createNewRound(round: any, product: Product) {
-    let r = new Round(round.$key, product);
+    let r = new Round(round.$key, product, round.draw_price);
     if (round.draw_counts != undefined) {
       r.drawCounts.current = round.draw_counts.current || 0;
       r.drawCounts.target = round.draw_counts.target || 0;

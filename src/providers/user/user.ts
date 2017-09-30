@@ -32,6 +32,7 @@ export class UserService {
 
   constructor(public http: Http, public api: Api) {
     this.currentUser = new User("mock-user-id-0");
+    this.currentUser.balance = 10000;
   }
 
   login(accountInfo: any) {

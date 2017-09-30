@@ -2,7 +2,7 @@ export class User {
   id: string;
   name: string;
   avatar: string;
-  balanced: number;
+  balance: number;
   draws: { [id: string]: string[] }
 
   constructor(id: string) {
