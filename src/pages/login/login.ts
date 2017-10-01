@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
 import { IonicPage, NavController,  NavParams, ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
-
-
+import { AngularFireAuth } from 'angularfire2/auth';
 import { UserService } from '../../providers/providers';
 import { MainPage } from '../pages';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 
+import * as firebase from 'firebase/app';
 
 @IonicPage()
 @Component({
@@ -28,12 +27,17 @@ export class LoginPage {
 
   // Our translated text strings
   private loginErrorString: string;
-
+  user;
+  
   constructor(public navCtrl: NavController,
-    public user: UserService,
+    public userService: UserService,
     public toastCtrl: ToastController,
-    public translateService: TranslateService , public viewCtrl: ViewController, public navParams: NavParams) {
-
+    public translateService: TranslateService , 
+    public viewCtrl: ViewController,
+    public navParams: NavParams,
+    public afAuth: AngularFireAuth
+    ) {
+      this.user = afAuth.authState;
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
@@ -72,5 +76,9 @@ export class LoginPage {
   
     forgotPassword(){
       this.navCtrl.push(ForgotPasswordPage);
+    }
+
+    signinWithGoogle() {
+      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     }
 }
