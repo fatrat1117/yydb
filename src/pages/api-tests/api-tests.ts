@@ -11,6 +11,8 @@ import { RoundsService } from '../../providers/providers'
 import { User } from '../../models/user'
 import { UserService } from '../../providers/providers'
 
+const Minimum_Amount = 150000;
+const Payment_Url = "https://yydb-9a6c4.firebaseapp.com/payment.html";
 
 @IonicPage()
 @Component({
@@ -18,6 +20,7 @@ import { UserService } from '../../providers/providers'
   templateUrl: 'api-tests.html'
 })
 export class ApiTestsPage {
+
   user: User;
   preparingRounds: Round[];
 
@@ -88,8 +91,21 @@ export class ApiTestsPage {
     this.openUrl(url);
   }
 
-  makePayment() {
-    const url = 'https://yydb-9a6c4.firebaseapp.com/payment.html';
+  makePayment(amount, bIsForOther, selectedId) {
+    if (bIsForOther && !selectedId) {
+      alert('You must select another user you want to top-up.');
+      return;
+    }
+    let targetId = bIsForOther ? selectedId : this.user.id;
+    let num = parseInt(amount);
+    if (num < Minimum_Amount) {
+      alert(`Minimum amount is: ${Minimum_Amount} Rupiah.`);
+      return;
+    }
+
+    // WARNING: must convert to cents!
+    num *= 100;
+    let url = `${Payment_Url}?user_id=${this.user.id}&target_id=${targetId}&amount=${num}`;
     this.openUrl(url);
   }
 
