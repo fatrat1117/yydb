@@ -6,7 +6,7 @@ import { Http } from '@angular/http';
 
 import { Api } from '../api/api';
 import { User } from '../../models/user';
-
+import { AngularFireAuth } from 'angularfire2/auth';
 /**
  * Most apps have the concept of a User. This is a simple provider
  * with stubs for login/signup/etc.
@@ -29,10 +29,16 @@ import { User } from '../../models/user';
 @Injectable()
 export class UserService {
   currentUser: User;
-
-  constructor(public http: Http, public api: Api) {
+  user;
+  constructor(public http: Http, 
+  public api: Api,
+  public afAuth: AngularFireAuth) {
     this.currentUser = new User("mock-user-id-0");
     this.currentUser.balance = 10000;
+    afAuth.authState.subscribe(user => {
+      this.user = user;
+      console.log('user changed', this.user);
+    })
   }
 
   login(accountInfo: any) {
