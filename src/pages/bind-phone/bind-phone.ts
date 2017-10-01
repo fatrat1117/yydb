@@ -3,8 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { ViewController, PopoverController } from 'ionic-angular';
 import { SelectCountryComponent } from '../../components/select-country/select-country';
-import { AngularFireModule } from 'angularfire2';
-import * as firebase from "firebase";
+import { FirebaseApp  } from 'angularfire2';
+import * as firebase from 'firebase/app';
 
 @IonicPage()
 @Component({
@@ -23,6 +23,7 @@ export class BindPhonePage {
   confirming: any;
   public recaptchaVerifier: any;
   constructor(public navCtrl: NavController, public popoverCtrl: PopoverController, 
+  private firebaseApp: FirebaseApp,
   public navParams: NavParams, 
   public viewCtrl: ViewController, 
   public translateService: TranslateService) {
