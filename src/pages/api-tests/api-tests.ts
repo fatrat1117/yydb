@@ -96,6 +96,12 @@ export class ApiTestsPage {
       alert('You must select another user you want to top-up.');
       return;
     }
+
+    if (!amount) {
+      alert('You must enter the amount.');
+      return;
+    }
+
     let targetId = bIsForOther ? selectedId : this.user.id;
     let num = parseInt(amount);
     if (num < Minimum_Amount) {
@@ -104,9 +110,27 @@ export class ApiTestsPage {
     }
 
     // WARNING: must convert to cents!
+    const loading = this.loadingCtrl.create({
+      content: 'Processing Payment...'
+    });
+    loading.present();
+
+    let callback = (status => {
+      console.log(status)
+      let msg = "";
+      switch (status) {
+        case 499:
+          msg = "Payment cancelled."
+          break;
+        default:
+          break;
+      }
+      loading.dismiss();
+      alert(msg);
+    })
+
     num *= 100;
-    let url = `${Payment_Url}?user_id=${this.user.id}&target_id=${targetId}&amount=${num}`;
-    this.openUrl(url);
+    this.us.makePayment(targetId, num, callback);
   }
 
   openUrl(url: string) {
