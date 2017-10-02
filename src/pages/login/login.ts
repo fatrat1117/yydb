@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Platform } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { UserService } from '../../providers/providers';
@@ -33,6 +33,7 @@ export class LoginPage {
   private cordovaOauth: OauthCordova = new OauthCordova();
   busy = false;
   private loginErrorString: string;
+  bIsMobile;
 
   constructor(public navCtrl: NavController,
     public userService: UserService,
@@ -40,8 +41,11 @@ export class LoginPage {
     public translateService: TranslateService,
     public viewCtrl: ViewController,
     public navParams: NavParams,
-    public afAuth: AngularFireAuth
+    public afAuth: AngularFireAuth,
+    private platform: Platform,
   ) {
+    this.bIsMobile = !this.platform.is('mobileweb') && !this.platform.is('core');
+
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
@@ -50,23 +54,6 @@ export class LoginPage {
   }
 
   // Attempt to login in through our User service
-  doLogin() {
-    /*
-    this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
-    }, (err) => {
-      this.navCtrl.push(MainPage);
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-    });
-    */
-  }
-
   ionViewWillEnter() {
     this.tabBarElement.style.display = 'none';
   }
@@ -83,7 +70,9 @@ export class LoginPage {
   }
 
   signinWithGoogle() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+    if (this.bIsMobile) {
+    } else
+      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(()=> {this.dismiss()});
   }
 
   signinWithFacebook(ev) {
@@ -91,6 +80,8 @@ export class LoginPage {
         let self = this;
 
         this.busy = true;
+
+        if (this.bIsMobile) {
         this.cordovaOauth.logInVia(this.facebookProvider).then(fb => {
             console.log("Facebook success: " + JSON.stringify(fb));
             try {
@@ -108,9 +99,11 @@ export class LoginPage {
                 alert(e);
             }
         }).catch((error) => {
-            //this.error = error;
+            alert(error);
             self.busy = false;
         });
+      } else 
+      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(()=> {this.dismiss()});
     }
 
     dismiss() {
