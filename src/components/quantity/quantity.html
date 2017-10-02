@@ -95,6 +95,30 @@
                 </button>
 
         </div>
+
+
+        <div *ngIf="page == 'product'">
+
+            <div class="product">
+                <div>
+                    <p>{{'PRODUCT_POPUP_HEADER' | translate}}</p>
+                    <img src="assets/img/iphone7-red.png" alt="">
+                    <p>Iphone 7 </p>
+                </div>
+
+            </div>
+            <div padding class="product-content">
+                <p>Lorem: 0.20037766</p>
+                <p>Date: 2017-06-05 12:50</p>
+                <p>Lorem: 10001736</p>
+
+                <button text-center padding outline color="danger" ion-button block>
+                    <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
+                  SUBMIT
+                </button>
+
+            </div>
+        </div>
     </div>
 
 </div>

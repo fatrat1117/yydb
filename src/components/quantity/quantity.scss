@@ -1,124 +1,159 @@
-quantity {
-    .back-drop {
-        height: 100%;
-        background-color: rgba(10, 10, 10, 0.8);
-        width: 100%;
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 10;
-        opacity: 1;
-        -webkit-transition: 0.1s opacity linear;
-        -moz-transition: 0.1s opacity linear;
-        transition: 0.1s opacity linear;
+    quantity {
+        .back-drop {
+            height: 100%;
+            background-color: rgba(10, 10, 10, 0.8);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            opacity: 1;
+            -webkit-transition: 0.1s opacity linear;
+            -moz-transition: 0.1s opacity linear;
+            transition: 0.1s opacity linear;
+        }
+        .popup {
+            z-index: 11;
+            width: 90%;
+            max-width: 100%;
+            min-height: 50%;
+            height: auto;
+            border-radius: 0px;
+            background-color: rgba(255, 255, 255, 0.9);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 10px;
+        }
+        .popup-header {
+            position: relative;
+            width: 100%;
+            height: 44px;
+            background-color: $header-bg-color;
+            margin: 0;
+            overflow: hidden;
+            color: white;
+            padding-left: 10px;
+            text-align: center;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .popup-content {
+            position: relative;
+            height: 100%;
+        }
+        .q-buttons {
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+            width: initial;
+            padding-left: 30px;
+            text-align: center;
+        }
+        .q-buttons button {
+            border: solid 1px #ccc;
+            display: inline-block;
+            background-color: transparent !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            float: left;
+            border-radius: 0;
+            font-size: 18px;
+            color: #333;
+        }
+        .q-buttons input {
+            border: none;
+            border-top: solid 1px #ccc;
+            border-bottom: solid 1px #ccc;
+            display: inline-block;
+            height: 100%;
+            margin: 0 !important;
+            padding: 0 !important;
+            float: left;
+            font-size: 18px;
+            height: 2.8em;
+            text-align: center;
+        }
+        .numbers {
+            position: relative;
+            margin: 0 auto;
+            overflow: hidden;
+            width: initial;
+            padding: 10px;
+            text-align: center;
+        }
+        .numbers button {
+            border: solid 1px #ccc;
+            display: inline-block;
+            background-color: transparent !important;
+            border-radius: 0;
+            font-size: 13px;
+            color: #333;
+            padding: 7px 20px;
+            margin: 2px 7px;
+        }
+        .info p {
+            font-size: 16px
+        }
+        .info p span {
+            font-size: 16px;
+            color: red;
+        }
+        .close {
+            position: absolute;
+            bottom: -100px;
+            left: 45%;
+            background-color: transparent;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .close .icon {
+            font-size: 40px;
+        }
+        .button-ios.activated {
+            background-color: transparent;
+        }
+        .grey {
+            background-color: #7E7E7E;
+            color: white;
+            padding: 5px 15px;
+            margin-bottom: 10px;
+        }
+        .product {
+            width: 100%;
+            background-image: url(../assets/img/product-bg.jpg);
+            height: 250px;
+            border-radius: 0 0 45% 45%;
+            position: relative;
+        }
+        .product div {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .product div p {
+            color: white;
+            font-size: 18px;
+        }
+        .product img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px
+        }
+        .product-content {
+            position: relative;
+            height: 100%;
+            margin: 0px 20%;
+            font-size: 16px;
+            color: #666;
+        }
+        .product-content p {
+            margin: 7px
+        }
     }
-    .popup {
-        z-index: 11;
-        width: 90%;
-        max-width: 100%;
-        min-height: 40%;
-        height: auto;
-        border-radius: 0px;
-        background-color: rgba(255, 255, 255, 0.9);
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 10px;
-    }
-    .popup-header {
-        position: relative;
-        width: 100%;
-        height: 44px;
-        background-color: $header-bg-color;
-        margin: 0;
-        overflow: hidden;
-        color: white;
-        padding-left: 10px;
-        text-align: center;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-    .popup-content {
-        position: relative;
-        height: 100%;
-    }
-    .q-buttons {
-        position: relative;
-        margin: 0 auto;
-        overflow: hidden;
-        width: initial;
-        padding-left: 10px;
-        text-align: center;
-    }
-    .q-buttons button {
-        border: solid 1px #ccc;
-        display: inline-block;
-        background-color: transparent !important;
-        margin: 0 !important;
-        padding: 0 !important;
-        float: left;
-        border-radius: 0;
-        font-size: 18px;
-        color: #333;
-    }
-    .q-buttons input {
-        border: none;
-        border-top: solid 1px #ccc;
-        border-bottom: solid 1px #ccc;
-        display: inline-block;
-        height: 100%;
-        margin: 0 !important;
-        padding: 0 !important;
-        float: left;
-        font-size: 18px;
-        height: 2.8em;
-        text-align: center;
-    }
-    .numbers {
-        position: relative;
-        margin: 0 auto;
-        overflow: hidden;
-        width: initial;
-        padding: 10px;
-        text-align: center;
-    }
-    .numbers button {
-        border: solid 1px #ccc;
-        display: inline-block;
-        background-color: transparent !important;
-        border-radius: 0;
-        font-size: 13px;
-        color: #333;
-        padding: 7px 20px;
-        margin: 2px 7px;
-    }
-    .info p {
-        font-size: 16px
-    }
-    .info p span {
-        font-size: 16px;
-        color: red;
-    }
-    .close {
-        position: absolute;
-        bottom: -100px;
-        left: 45%;
-        background-color: transparent;
-        position: absolute;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-    .close .icon {
-        font-size: 40px;
-    }
-    .button-ios.activated {
-        background-color: transparent;
-    }
-    .grey {
-        background-color: #7E7E7E;
-        color: white;
-        padding: 5px 15px;
-        margin-bottom: 10px;
-    }
-}

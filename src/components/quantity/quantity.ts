@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
-
+import { TranslateService } from '@ngx-translate/core';
 /**
  * Generated class for the QuantityComponent component.
  *
@@ -19,7 +19,7 @@ export class QuantityComponent {
   ]
   page:string;
   private quantity = 0;
-  constructor(public viewCtrl: ViewController, public params: NavParams) {
+  constructor(public viewCtrl: ViewController, public params: NavParams, public translateService: TranslateService,) {
    this.page = params.get('page')
 
   }
