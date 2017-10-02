@@ -48,7 +48,7 @@
             margin: 0 auto;
             overflow: hidden;
             width: initial;
-            padding-left: 30px;
+            padding-left: 10px;
             text-align: center;
         }
         .q-buttons button {
@@ -61,6 +61,7 @@
             border-radius: 0;
             font-size: 18px;
             color: #333;
+            height: 2.8em !important;
         }
         .q-buttons input {
             border: none;
@@ -124,7 +125,7 @@
         .product {
             width: 100%;
             background-image: url(../assets/img/product-bg.jpg);
-            height: 250px;
+            height: 220px;
             border-radius: 0 0 45% 45%;
             position: relative;
         }
