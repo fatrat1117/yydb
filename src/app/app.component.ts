@@ -53,10 +53,14 @@ export class MyApp {
     private afAuth: AngularFireAuth) {
     this.initTranslate();
     afAuth.authState.subscribe(user => {
-      if (user) 
+      if (user) {
+        console.log('go login page');
         this.rootPage = MainPage;
-      else
+      }
+      else {
+        console.log('go login page');
         this.rootPage = LoginPage;
+      }
     });
   }
 
