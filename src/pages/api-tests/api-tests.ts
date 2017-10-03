@@ -132,4 +132,11 @@ export class ApiTestsPage {
     }
     const browser = this.iab.create(url, "_blank", options);
   }
+
+  test() {
+    let loading = this.loadingCtrl.create({
+      content: "Processing Payment...",
+    });
+    loading.present();
+  }
 }
