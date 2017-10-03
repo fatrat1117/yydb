@@ -72,8 +72,8 @@ export class UserService {
     })
   }
 
-  makePayment(targetId: string, amount: number, callback) {
-    this.api.makePayment(this.currentUser.id, targetId, amount, callback);
+  makePayment(targetId: string, amount: number) {
+    this.api.makePayment(this.currentUser.id, targetId, amount);
   }
 
   getDrawsOfRound_Internal(roundId: string) {

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, MenuController, NavController, Platform, LoadingController, AlertController, ModalController } from 'ionic-angular';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
+import {
+  IonicPage, MenuController, NavController, Platform,
+  LoadingController, AlertController, ModalController, 
+  ToastController
+} from 'ionic-angular';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -26,7 +30,7 @@ export class ApiTestsPage {
 
   constructor(public ps: ProductsService, public rs: RoundsService, public us: UserService,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private modalCtrl: ModalController,
-    private iab: InAppBrowser) {
+    private iab: InAppBrowser, private toastCtrl: ToastController) {
   }
 
   ionViewDidLoad() {
@@ -110,27 +114,8 @@ export class ApiTestsPage {
     }
 
     // WARNING: must convert to cents!
-    const loading = this.loadingCtrl.create({
-      content: 'Processing Payment...'
-    });
-    loading.present();
-
-    let callback = (status => {
-      console.log(status)
-      let msg = "";
-      switch (status) {
-        case 499:
-          msg = "Payment cancelled."
-          break;
-        default:
-          break;
-      }
-      loading.dismiss();
-      alert(msg);
-    })
-
     num *= 100;
-    this.us.makePayment(targetId, num, callback);
+    this.us.makePayment(targetId, num);
   }
 
   openUrl(url: string) {
