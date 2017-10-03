@@ -45,7 +45,7 @@
             </div>
 
             <button class="close" ion-button icon-only (click)="close()">
-               <ion-icon name="close-circle-outline" ></ion-icon>
+              <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
                 </button>
 
         </div>
@@ -91,9 +91,36 @@
             </div>
 
             <button class="close" ion-button icon-only (click)="close()">
-               <ion-icon name="close-circle-outline" ></ion-icon>
+              <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
                 </button>
 
+        </div>
+
+
+        <div *ngIf="page == 'product'">
+
+            <div class="product">
+                <div>
+                    <p>{{'PRODUCT_POPUP_HEADER' | translate}}</p>
+                    <img src="assets/img/iphone7-red.png" alt="">
+                    <p>Iphone 7 </p>
+                </div>
+
+            </div>
+            <div padding class="product-content">
+                <p>Lorem: 0.20037766</p>
+                <p>Date: 2017-06-05 12:50</p>
+                <p>Lorem: 10001736</p>
+
+                <button text-center padding outline color="danger" ion-button block>
+                    <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
+                  SUBMIT
+                </button>
+
+            </div>
+            <button class="close" ion-button icon-only (click)="close()">
+               <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
+                </button>
         </div>
     </div>
 
