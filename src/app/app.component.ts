@@ -3,8 +3,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
-
-//import { FirstRunPage } from '../pages/pages';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { LoginPage } from '../pages/login/login';
 import { MainPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
 
@@ -28,7 +28,7 @@ import { Settings } from '../providers/providers';
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = MainPage;//FirstRunPage;
+  rootPage: any = LoginPage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -44,8 +44,20 @@ export class MyApp {
     { title: 'API Tests', component: 'ApiTestsPage' }
   ]
 
-  constructor(private translate: TranslateService, private platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(private translate: TranslateService,
+    private platform: Platform,
+    settings: Settings,
+    private config: Config,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+    private afAuth: AngularFireAuth) {
     this.initTranslate();
+    afAuth.authState.subscribe(user => {
+      if (user) 
+        this.rootPage = MainPage;
+      else
+        this.rootPage = LoginPage;
+    });
   }
 
   ionViewDidLoad() {

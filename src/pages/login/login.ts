@@ -51,16 +51,18 @@ export class LoginPage {
     })
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     this.cat = navParams.get("page");
+    if (!this.cat)
+      this.cat = 'login';
   }
 
   // Attempt to login in through our User service
-  ionViewWillEnter() {
-    this.tabBarElement.style.display = 'none';
-  }
+  // ionViewWillEnter() {
+  //   this.tabBarElement.style.display = 'none';
+  // }
 
-  ionViewWillLeave() {
-    this.tabBarElement.style.display = 'flex';
-  }
+  // ionViewWillLeave() {
+  //   this.tabBarElement.style.display = 'flex';
+  // }
   ionViewDidLoad() {
     this.viewCtrl.setBackButtonText('');
   }
