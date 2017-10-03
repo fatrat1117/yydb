@@ -38,6 +38,7 @@ export class UserService {
     afAuth.authState.subscribe(user => {
       this.user = user;
       console.log('user changed', this.user);
+      document.dispatchEvent(new Event("userlogin"));
     })
   }
 

@@ -88,6 +88,7 @@ export class MinePage {
 
   logout() {
     this.afAuth.auth.signOut();
+    document.dispatchEvent(new Event("userlogout"));
   }
 }
 

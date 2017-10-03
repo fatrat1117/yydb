@@ -7,6 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../pages/login/login';
 import { MainPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
+import { App } from 'ionic-angular';
 
 @Component({
   template: `<ion-menu [content]="content">
@@ -50,17 +51,27 @@ export class MyApp {
     private config: Config,
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+  private app: App) {
     this.initTranslate();
-    afAuth.authState.subscribe(user => {
-      if (user) {
-        console.log('go login page');
-        this.rootPage = MainPage;
-      }
-      else {
-        console.log('go login page');
-        this.rootPage = LoginPage;
-      }
+    // afAuth.authState.subscribe(user => {
+    //   if (user) {
+    //     console.log('go login page');
+    //     //this.app.getRootNavs()[0].setRoot(MainPage);
+    //     this.rootPage = MainPage;
+    //   }
+    //   // else {
+    //   //   console.log('go login page');
+    //   //   this.app.getRootNavs()[0].setRoot(LoginPage);
+    //   //   //this.rootPage = LoginPage;
+    //   // }
+    // });
+    document.addEventListener('userlogin', () => {
+      this.rootPage = MainPage;
+    });
+    
+    document.addEventListener('userlogout', () => {
+      this.rootPage = LoginPage;
     });
   }
 
