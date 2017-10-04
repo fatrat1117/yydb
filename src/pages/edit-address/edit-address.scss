@@ -1,0 +1,16 @@
+page-edit-address {
+    .list-ios>.item-block:first-child {
+        /* border-top: 0.55px solid #c8c7cc; */
+        border: none;
+    }
+    .list>.item-block {
+        /* border-top: 0.55px solid #c8c7cc; */
+        border: none;
+    }
+    .text-input {
+        text-align: right;
+    }
+    .checkbox {
+        vertical-align: middle
+    }
+}

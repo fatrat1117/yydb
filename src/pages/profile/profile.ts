@@ -15,12 +15,21 @@ import {DEFAULT_AVATAR} from "../../providers/Constants";
 })
 export class ProfilePage {
   avatarPath: String = DEFAULT_AVATAR;
+  info: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.info = {
+      name: '张大锤',
+      sex: '男',
+      birthday: '1980-1-1'
+    };
   }
 
+  
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    
   }
+
+  
 
 }

@@ -30,9 +30,7 @@
             <button ion-item>
       <ion-icon name="appstore"></ion-icon>
       Shopping
-	 
     </button>
-
             <button ion-item>
              <ion-icon name="camera"></ion-icon>
              Hospital
@@ -41,6 +39,19 @@
              <ion-icon name="share"></ion-icon>
              Feed
            </button>
+
+            <button (click)="soAddressListcialPage()" ion-item>
+            <ion-icon name="globe"></ion-icon>
+            Social Page
+            </button>
+            <button (click)="listPage()" ion-item>
+            <ion-icon ios="ios-list" md="md-list"></ion-icon>
+            List Page
+            </button>
+            <button (click)="searchPage()" ion-item>
+            <ion-icon name="search"></ion-icon>
+            Search Page
+            </button>
         </ion-list>
     </ion-card>
     <ion-card>
@@ -68,7 +79,33 @@
                    Bind phone number
                
                 </button>
+            <button ion-item (click)="addressPage()">
+                <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon>
+                            Shipping Address
+                </button>
+            <button ion-item (click)="addQuantityModal()">
+                <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon>
 
+                Popup 1
+               
+                </button>
+
+            <button ion-item (click)="otherQuantityModal()">
+                <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon>
+
+               Popup 2
+                </button>
+
+            <button ion-item (click)="productInfoModal()">
+                <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon>
+
+                Popup 3
+               
+                </button>
+            <button ion-item (click)="logout()">
+                    <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon>
+                    logout     
+                    </button>
         </ion-list>
     </ion-card>
     <ion-label class="calss-usback">Call Us: 6666666666</ion-label>

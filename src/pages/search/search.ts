@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, MenuController, NavController, Platform } from 'ionic-angular';
+import { IonicPage, MenuController, NavController, Platform, NavParams } from 'ionic-angular';
 
 import { TranslateService } from '@ngx-translate/core';
 
@@ -24,8 +24,14 @@ export class SearchPage {
   showSkip = true;
   dir: string = 'ltr';
   cardsdata = {};
+  mobiledata;
 
-  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform) {
+  tabBarElement: any;
+
+  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform, public navParams: NavParams) {
+
+    this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+
     this.dir = platform.dir();
     translate.get(["TUTORIAL_SLIDE1_TITLE",
       "TUTORIAL_SLIDE1_DESCRIPTION",
@@ -65,18 +71,20 @@ export class SearchPage {
         ];
       });
 
-      translate.get(["RED_LABEL",
-      "CARD_HEADER",
-      "NEXT",
+      translate.get(["MOBILE_NAME",
+      "MOBILE_MODEL_NO",
+      "MOBILE_PRICE",
     ]).subscribe(
       (values) => {
         console.log('Loaded values', values);
-        this.cardsdata = {
-          label: values.RED_LABEL,
-          header: values.CARD_HEADER,
-          next: values.NEXT
+        this.mobiledata = {
+          mobilename: values.MOBILE_NAME,
+          mobilemodalnumber: values.MOBILE_MODEL_NO,
+          mobileprice: values.MOBILE_PRICE
         };
       });
+
+      
 
       this.items = [
         "Lorem Ipsum 1",
@@ -133,11 +141,13 @@ export class SearchPage {
   ionViewDidEnter() {
     // the root left menu should be disabled on the tutorial page
     this.menu.enable(false);
+    this.tabBarElement.style.display = 'none';
   }
 
   ionViewWillLeave() {
     // enable the root left menu when leaving the tutorial page
     this.menu.enable(true);
+    this.tabBarElement.style.display = 'flex';
   }
 
   listpage(i) {
@@ -149,4 +159,5 @@ export class SearchPage {
   showTable() {
     this.navCtrl.push(TableViewPage);
   }
+
 }

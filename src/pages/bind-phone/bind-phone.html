@@ -14,6 +14,7 @@
 
 
 <ion-content>
+    <div id="recaptcha-container"></div>
     <div class="bannersection">
 
         <img src="assets/img/bannercontact.PNG">
@@ -45,7 +46,7 @@
 
             <div margin padding-vertical>
 
-                <button color="danger" ion-button block>
+                <button color="danger" ion-button block (click) = "getCode()">
                     <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
                   {{ 'BIND_PHONE_BUTTON' | translate }}</button>
             </div>

@@ -3,10 +3,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { TranslateService } from '@ngx-translate/core';
 import { Config, Nav, Platform } from 'ionic-angular';
-
-//import { FirstRunPage } from '../pages/pages';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { LoginPage } from '../pages/login/login';
 import { MainPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
+import { App } from 'ionic-angular';
 
 @Component({
   template: `<ion-menu [content]="content">
@@ -28,7 +29,7 @@ import { Settings } from '../providers/providers';
   <ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = MainPage;//FirstRunPage;
+  rootPage: any = LoginPage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -36,21 +37,42 @@ export class MyApp {
     //{ title: 'Tutorial', component: 'TutorialPage' },
     //{ title: 'Welcome', component: 'WelcomePage' },
     { title: 'Tabs', component: 'TabsPage' },
-    { title: 'Cards', component: 'CardsPage' },
-    { title: 'Content', component: 'ContentPage' },
     { title: 'Login', component: 'LoginPage' },
     { title: 'Signup', component: 'SignupPage' },
-    { title: 'Map', component: 'MapPage' },
-    { title: 'Master Detail', component: 'ListMasterPage' },
     { title: 'Home', component: 'HomePage' },
-    { title: 'Menu', component: 'MenuPage' },
     { title: 'Settings', component: 'SettingsPage' },
     { title: 'Search', component: 'SearchPage' },
     { title: 'API Tests', component: 'ApiTestsPage' }
   ]
 
-  constructor(private translate: TranslateService, private platform: Platform, settings: Settings, private config: Config, private statusBar: StatusBar, private splashScreen: SplashScreen) {
+  constructor(private translate: TranslateService,
+    private platform: Platform,
+    settings: Settings,
+    private config: Config,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+    private afAuth: AngularFireAuth,
+  private app: App) {
     this.initTranslate();
+    // afAuth.authState.subscribe(user => {
+    //   if (user) {
+    //     console.log('go login page');
+    //     //this.app.getRootNavs()[0].setRoot(MainPage);
+    //     this.rootPage = MainPage;
+    //   }
+    //   // else {
+    //   //   console.log('go login page');
+    //   //   this.app.getRootNavs()[0].setRoot(LoginPage);
+    //   //   //this.rootPage = LoginPage;
+    //   // }
+    // });
+    document.addEventListener('userlogin', () => {
+      this.rootPage = MainPage;
+    });
+    
+    document.addEventListener('userlogout', () => {
+      this.rootPage = LoginPage;
+    });
   }
 
   ionViewDidLoad() {

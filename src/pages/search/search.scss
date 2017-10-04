@@ -1,4 +1,7 @@
 page-search {
+
+  $ios-mobile: "(max-width: 358px)";
+
     .toolbar-background {
       background: transparent;
       border-color: transparent;
@@ -34,11 +37,11 @@ page-search {
     }
   
     .big{
-      font-size: 20px;
+      font-size: 17px;
     }
   
     .small{
-      font-size: 16px;
+      font-size: 14px;
     }
   
     .swiper-container{
@@ -73,6 +76,10 @@ page-search {
       color: $color-red
     }
   
+    .grey {
+      color: $color-grey;
+    }
+
     ion-avatar img {
         width: 50px !important;
         height: 50px !important;
@@ -91,6 +98,22 @@ page-search {
     .box-shad{
       box-shadow: 0 0 0 0 ;
     }
+
+    @media #{$ios-mobile} {
+        .time-label {
+            margin-right: 0;
+        }
+        .time-row [col-4] {
+            padding-left: 0;
+        }
+        .colon {
+            margin-left: 0;
+        }
+        .mar-left {
+            margin-left: 0px !important;
+        }
+    }
+
   }
   
   ion-slides{
@@ -135,6 +158,7 @@ page-search {
   .color-red {
     color:$color-red !important;
   }
+
   
   .time-label {
     border: 1px solid $color-red;
@@ -144,7 +168,7 @@ page-search {
     color:$color-red;
     padding: 3px 7px;
     margin-right: 1px;
-    font-size: 18px;
+    font-size: 16px;
   }
   
   .colon {
@@ -157,10 +181,13 @@ page-search {
   .red-label {
     background: $color-red;
     color:$color-white;
-    -ms-transform: rotate(-55deg); /* IE 9 */
-    -webkit-transform: rotate(-55deg); /* Safari */
-    transform: rotate(-55deg); /* Standard syntax */
-    margin: 8px 26px 0 -48px;
+    -ms-transform: rotate(-45deg); /* IE 9 */
+    -webkit-transform: rotate(-45deg); /* Safari */
+    transform: rotate(-45deg); /* Standard syntax */
+    position: absolute;
+    top: 12px;
+    width: 96px;
+    left: -43px;
   }
   
   .card-content-label {

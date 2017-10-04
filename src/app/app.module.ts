@@ -12,9 +12,8 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { ProductsService } from '../providers/providers';
 import { RoundsService } from '../providers/providers';
-import { Items } from '../mocks/providers/items';
 import { Settings } from '../providers/providers';
-import { User } from '../providers/providers';
+import { UserService } from '../providers/providers';
 import { Api } from '../providers/providers';
 import { MyApp } from './app.component';
 import { FeedPage } from '../pages/feed/feed';
@@ -22,15 +21,23 @@ import { LoginPage } from '../pages/login/login';
 import { BindPhonePage } from '../pages/bind-phone/bind-phone';
 import { ChangePasswordPage } from '../pages/change-password/change-password';
 import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
-import {ListPage} from '../pages/list/list';
-import {TableViewPage} from '../pages/table-view/table-view';
+import { ListPage } from '../pages/list/list';
+import { TableViewPage } from '../pages/table-view/table-view';
 import { ProfilePage } from '../pages/profile/profile';
-import {SearchPage} from '../pages/search/search';
+import { SearchPage } from '../pages/search/search';
+import { SocialPage } from '../pages/social/social';
+import { SettingPage } from '../pages/setting/setting';
+import { AddressListPage } from '../pages/address-list/address-list';
+import { AddAdressPage } from '../pages/add-adress/add-adress';
+import { EditAddressPage } from '../pages/edit-address/edit-address';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
-import {SelectCountryComponent} from '../components/select-country/select-country';
+import { SelectCountryComponent } from '../components/select-country/select-country';
+import { QuantityComponent } from '../components/quantity/quantity';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+
 // Firebase config
 export const firebaseConfig = {
   apiKey: "AIzaSyD34vLme2YuR_PthmykCCoUd2oIcUtHBoM",
@@ -66,19 +73,25 @@ export function provideSettings(storage: Storage) {
 @NgModule({
   declarations: [
     MyApp,
-     FeedPage,
-     ListPage,
-     TableViewPage,
-     ProfilePage,
-     LoginPage,
+    FeedPage,
+    ListPage,
+    TableViewPage,
+    ProfilePage,
+    LoginPage,
+    SearchPage,
+    SocialPage,
+    SettingPage,
     BindPhonePage,
     ChangePasswordPage,
-  ForgotPasswordPage,
+    ForgotPasswordPage,
     SelectCountryComponent,
-     SearchPage
+    QuantityComponent,
+    AddressListPage,
+    EditAddressPage,AddAdressPage
   ],
   imports: [
     BrowserModule,
+    IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -90,37 +103,43 @@ export function provideSettings(storage: Storage) {
         deps: [Http]
       }
     }),
-    IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-     FeedPage,
-      LoginPage,
-  BindPhonePage,
+    FeedPage,
+    LoginPage,
+    BindPhonePage,
     ChangePasswordPage,
-  ForgotPasswordPage,
-    
+    ForgotPasswordPage,
+    SettingPage,
     SelectCountryComponent,
+    QuantityComponent,
 
-     ListPage,
-     TableViewPage,
-     ProfilePage,
-     LoginPage,
-     SearchPage
-
+    ListPage,
+    TableViewPage,
+    ProfilePage,
+    LoginPage,
+    SearchPage,
+    SocialPage,
+    AddressListPage,
+    AddAdressPage,
+    EditAddressPage
+    
   ],
   providers: [
     Api,
+    //AngularFire,
     ProductsService,
     RoundsService,
-    Items,
-    User,
+    UserService,
     Camera,
     GoogleMaps,
     SplashScreen,
     StatusBar,
+    InAppBrowser,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

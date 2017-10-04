@@ -22,14 +22,14 @@ export class SelectCountryComponent {
 selected: any;
 countriesInitial:any;
   constructor(private http: Http, public viewCtrl: ViewController) {
-  http.get('../../assets/co.json')
+  http.get('assets/co.json')
       // Call map on the response observable to get the parsed people object
       .map(res => res.json())
       // Subscribe to the observable to get the parsed people object and attach it to the
       // component
       .subscribe(data =>{ 
         this.countries = data.data;
-        this.countriesInitial = data.data;
+      
       });
   }
   selectC(selectedItem) {

@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/v2/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -17,7 +15,19 @@
 $primary-font-color: #333;
 $secondary-color: #fff;
 $header-bg-color: #F90000;
-.toolbar-md-danger .toolbar-background-md,
-.toolbar-ios-danger .toolbar-background-ios {
+
+ * {
+    font-family: "PingFang SC", "Microsoft Yahei";
+ }
+
+.toolbar-md-danger .toolbar-background-md .toolbar-ios-danger .toolbar-background-ios {
     background-color: $header-bg-color !important;
+}
+
+.scroll-content {
+    padding: 0px !important;
+}
+
+.text-grey {
+    color: $color-grey
 }

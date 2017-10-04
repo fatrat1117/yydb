@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-
-import { IonicPage, NavController,  NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, Platform } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
-
-
-import { User } from '../../providers/providers';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { UserService } from '../../providers/providers';
 import { MainPage } from '../pages';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
-
+import { Facebook } from 'ng2-cordova-oauth/core';
+import { OauthCordova } from 'ng2-cordova-oauth/platform/cordova'
+import * as firebase from 'firebase/app';
 
 @IonicPage()
 @Component({
@@ -20,55 +20,95 @@ export class LoginPage {
   // If you're using the username field with or without email, make
   // sure to add it to the type
   cat: string = "login";
-  tabBarElement:any;
+  tabBarElement: any;
   account: { email: string, password: string } = {
     email: 'test@example.com',
     password: 'test'
   };
 
-  // Our translated text strings
+  private facebookProvider = new Facebook({
+        clientId: "1729159120442368",
+        appScope: ["email"]
+    });
+  private cordovaOauth: OauthCordova = new OauthCordova();
+  busy = false;
   private loginErrorString: string;
+  bIsMobile;
 
   constructor(public navCtrl: NavController,
-    public user: User,
+    public userService: UserService,
     public toastCtrl: ToastController,
-    public translateService: TranslateService , public viewCtrl: ViewController, public navParams: NavParams) {
+    public translateService: TranslateService,
+    public viewCtrl: ViewController,
+    public navParams: NavParams,
+    public afAuth: AngularFireAuth,
+    private platform: Platform,
+  ) {
+    this.bIsMobile = !this.platform.is('mobileweb') && !this.platform.is('core');
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
     })
-       this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-      this.cat = navParams.get("page");
+    this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
+    this.cat = navParams.get("page");
+    if (!this.cat)
+      this.cat = 'login';
   }
 
   // Attempt to login in through our User service
-  doLogin() {
-    this.user.login(this.account).subscribe((resp) => {
-      this.navCtrl.push(MainPage);
-    }, (err) => {
-      this.navCtrl.push(MainPage);
-      // Unable to log in
-      let toast = this.toastCtrl.create({
-        message: this.loginErrorString,
-        duration: 3000,
-        position: 'top'
-      });
-      toast.present();
-    });
+  // ionViewWillEnter() {
+  //   this.tabBarElement.style.display = 'none';
+  // }
+
+  // ionViewWillLeave() {
+  //   this.tabBarElement.style.display = 'flex';
+  // }
+  ionViewDidLoad() {
+    this.viewCtrl.setBackButtonText('');
   }
 
-  ionViewWillEnter() {
-    this.tabBarElement.style.display = 'none';
+  forgotPassword() {
+    this.navCtrl.push(ForgotPasswordPage);
   }
- 
-  ionViewWillLeave() {
-    this.tabBarElement.style.display = 'flex';
+
+  signinWithGoogle() {
+    if (this.bIsMobile) {
+    } else
+      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(()=> {this.dismiss()});
   }
-   ionViewDidLoad() {
-        this.viewCtrl.setBackButtonText('');
+
+  signinWithFacebook(ev) {
+        ev.preventDefault();
+        let self = this;
+
+        this.busy = true;
+
+        if (this.bIsMobile) {
+        this.cordovaOauth.logInVia(this.facebookProvider).then(fb => {
+            console.log("Facebook success: " + JSON.stringify(fb));
+            try {
+                let token = fb["access_token"];
+                console.log(token, firebase);
+                const facebookCredential = firebase.auth.FacebookAuthProvider.credential(token);
+                firebase.auth().signInWithCredential(facebookCredential).then((value) => {
+                    console.log('firebase facebook success');
+                    this.dismiss();
+                }).catch((error) => {
+                    alert(error);
+                    self.busy = false;
+                });
+            } catch (e) {
+                alert(e);
+            }
+        }).catch((error) => {
+            alert(error);
+            self.busy = false;
+        });
+      } else 
+      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(()=> {this.dismiss()});
     }
-  
-    forgotPassword(){
-      this.navCtrl.push(ForgotPasswordPage);
+
+    dismiss() {
+        this.viewCtrl.dismiss();
     }
 }

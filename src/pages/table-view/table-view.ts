@@ -100,31 +100,6 @@ export class TableViewPage {
         ];
       });
 
-      translate.get(["VALUE1",
-      "VALUE2",
-      "VALUE3",
-      "VALUE4",
-      "TEXT1",
-      "TEXT2",
-      "TEXT3",
-      "TEXT4",
-      "REDBOXLABEL"
-    ]).subscribe(
-      (values) => {
-        console.log('Loaded values', values);
-        this.multidata = {
-          value1: values.VALUE1,
-          value2: values.VALUE2,
-          value3: values.VALUE3,
-          value4: values.VALUE4,
-          text1: values.TEXT1,
-          text2: values.TEXT2,
-          text3: values.TEXT3,
-          text4: values.TEXT4,
-          boxdata: values.REDBOXLABEL
-        };
-      });
-
   }
 
   ionViewDidLoad() {

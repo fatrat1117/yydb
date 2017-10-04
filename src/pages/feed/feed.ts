@@ -34,6 +34,8 @@ export class FeedPage {
                 profile_img: 'user-icon.jpg',
                 date: '17-09-17 04:59',
                 title: 'Iphone 8 launch',
+                award: 'Apple iphone x 128G 4G 手机',
+                ticketNo: '123456789',
                 content:' iPhone 8 introduces an all‑new glass design. The world&#39;s most popular camera, now even better.',
                 images: [
                     {url: 'sample1.jpg', alt: "Iphone 8 front face"},
@@ -48,6 +50,8 @@ export class FeedPage {
                 profile_img: 'user-icon.jpg',
                 date: '17-09-17 05:59',
                     title: 'Iphone 7 launch',
+                    award: 'Apple iphone x 128G 4G 手机',
+                    ticketNo: '123456789',
                     content:'iPhone 7 Plus dramatically improves the most important aspects of the iPhone experience. It introduces advanced new camera systems.',
                     images: [
                         {url: 'iphone7-1.jpg', alt: "Iphone 7 front face"},

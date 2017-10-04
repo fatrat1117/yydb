@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { SelectCountryComponent } from './select-country/select-country';
+import { QuantityComponent } from './quantity/quantity';
 @NgModule({
-	declarations: [SelectCountryComponent],
+	declarations: [SelectCountryComponent,
+    QuantityComponent],
 	imports: [],
-	exports: [SelectCountryComponent]
+	exports: [SelectCountryComponent,
+    QuantityComponent]
 })
 export class ComponentsModule {}

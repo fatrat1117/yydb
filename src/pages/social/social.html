@@ -1,0 +1,151 @@
+<!--
+  Generated template for the SocialPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{'SOCIAL' | translate}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding  class="top-list-background">
+
+  <div>
+    <ion-segment class="custom-tabs" [(ngModel)]="upperTab">
+      <ion-segment-button value="tab_one">
+        {{'TAB_1' | translate}}
+      </ion-segment-button>
+      <ion-segment-button value="tab_two">
+        {{'TAB_2' | translate}}
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  
+  <div [ngSwitch]="upperTab">
+  
+    <ion-list *ngSwitchCase="'tab_one'">
+      <ion-item class="bg-clr">
+        <p>{{'SOCIAL_RATE_TEXT' | translate}}: <span class="social-text-color">{{'SOCIAL_RATE_SELECT' | translate}}</span></p>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-3><button ion-button color="light" class="selected-btn" full outline>{{tabonedata.btnrate1}}</button></ion-col>
+            <ion-col col-3><button ion-button color="light" full outline>{{tabonedata.btnrate2}}</button></ion-col>
+            <ion-col col-3><button ion-button color="light" full outline>{{tabonedata.btnrate3}}</button></ion-col>
+            <ion-col col-3><button ion-button color="light" full outline>{{tabonedata.btnrate4}}</button></ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-3><button ion-button color="light" full outline>{{tabonedata.btnrate5}}</button></ion-col>
+            <ion-col col-3><button ion-button color="light" full outline>{{tabonedata.btnrate6}}</button></ion-col>
+            <ion-col col-3><button ion-button color="light" full outline>{{tabonedata.btnrate7}}</button></ion-col>
+            <ion-col col-3><button ion-button color="light" full outline>{{tabonedata.btnrate8}}</button></ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+      <ion-item class="bg-clr left-radio">
+        <ion-radio checked="false"> </ion-radio>
+        <ion-label>{{'CHECKBOX_TEXT' | translate}}</ion-label>
+      </ion-item>
+      <ion-card class="text-label">
+        <ion-card-header class="button-outline-md-light">
+            {{'SOCIAL_SECOND_SECTION' | translate}}
+        </ion-card-header>
+      </ion-card>
+      <ion-list>
+          <ion-list-header class="big ">
+              <ion-grid>
+                  <ion-row padding-top padding-bottom>
+                    <ion-col col-8 class="red-left">{{'SOCIAL_THIRD_SECTION' | translate}}</ion-col>
+                    <ion-col col-4 class="red-right">{{'SOCIAL_THIRD_SECTION_RATETEXT' | translate}}<span class="social-text-color">{{'SOCIAL_THIRD_SECTION_RATE' | translate}}</span></ion-col>
+                  </ion-row>
+              </ion-grid>
+          </ion-list-header>
+          <ion-item class="bg-white text-know">
+            <ion-grid>
+              <ion-row padding-top padding-bottom>
+                <ion-col col-11 class="padding-zero"><h2>{{tabonedata.socialthirdsectiontext1}}</h2></ion-col>
+                <ion-col col-1 class="tick-size padding-zero"><ion-icon class="social-text-color" name="checkmark-circle"></ion-icon></ion-col>
+              </ion-row>
+              <ion-row padding-top padding-bottom>
+                  <ion-col col-11 class="padding-zero"><h2>{{tabonedata.socialthirdsectiontext2}}</h2></ion-col>
+                  <ion-col col-1 class="padding-zero"></ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+          
+        </ion-list>
+    </ion-list>
+    <ion-list *ngSwitchCase="'tab_two'">
+        <ion-card>
+            
+          <ion-card-header>
+              <img class="social-img" alt="" src="assets/img/g+.png"><span class="social-header">{{tabonedata.socialperson1}}</span>
+          </ion-card-header>
+        
+          <ion-card-content>
+              <ion-grid>
+                  <ion-row >
+                    <ion-col col-6 text-center><p>{{tabonedata.socialperson1detail1}}</p></ion-col>
+                    <ion-col col-6 class="tick-size" text-center><p>{{tabonedata.socialperson1detail2}}</p></ion-col>
+                  </ion-row>
+                  <ion-row>
+                      <ion-col col-6 text-center><p>{{tabonedata.socialperson1detail3}}</p></ion-col>
+                      <ion-col col-6 text-center><p>{{tabonedata.socialperson1detail4}}</p></ion-col>
+                  </ion-row>
+                </ion-grid>
+          </ion-card-content>
+        
+        </ion-card>
+        <ion-card>
+            
+          <ion-card-header>
+              <img class="social-img" alt="" src="assets/img/g+.png"><span class="social-header">{{tabonedata.socialperson2}}</span>
+          </ion-card-header>
+        
+          <ion-card-content>
+              <ion-grid>
+                  <ion-row >
+                    <ion-col col-6 text-center><p>{{tabonedata.socialperson2detail1}}</p></ion-col>
+                    <ion-col col-6 class="tick-size" text-center><p>{{tabonedata.socialperson2detail2}}</p></ion-col>
+                  </ion-row>
+                </ion-grid>
+          </ion-card-content>
+        
+        </ion-card>
+        <ion-card>
+            
+          <ion-card-header>
+              <img alt="" class="social-img" src="assets/img/facebook.png"><span class="social-header">{{tabonedata.socialperson3}}</span>
+          </ion-card-header>
+        
+          <ion-card-content>
+              <ion-grid>
+                  <ion-row >
+                    <ion-col col-6 text-center><p>{{tabonedata.socialperson3detail1}}</p></ion-col>
+                    <ion-col col-6 class="tick-size" text-center></ion-col>
+                  </ion-row>
+                </ion-grid>
+          </ion-card-content>
+        
+        </ion-card>
+        <ion-grid>
+            <ion-row>
+              <ion-col col-4><button ion-button color="danger" full >{{'BUTTON_TEXT1' | translate}}</button></ion-col>
+              <ion-col col-4><button ion-button color="danger" full >{{'BUTTON_TEXT2' | translate}}</button></ion-col>
+              <ion-col col-4><button ion-button color="danger" full >{{'BUTTON_TEXT3' | translate}}</button></ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-grid>
+            <ion-row class="borderdashbottom">
+              <ion-col col-4 text-center class="btn-btm-border"><button ion-button color="danger" class="btn-circle" small >{{'PROCESS1' | translate}}</button></ion-col>
+              <ion-col col-4 text-center class="btn-btm-border"><button ion-button color="danger" class="btn-circle" small >{{'PROCESS2' | translate}}</button></ion-col>
+              <ion-col col-4 text-center class="btn-btm-border"><button ion-button color="danger" class="btn-circle" small >{{'PROCESS3' | translate}}</button></ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-list>
+  </div>
+</ion-content>

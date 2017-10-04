@@ -1,0 +1,127 @@
+<!-- Generated template for the QuantityComponent component -->
+<div class="back-drop">
+    <div class="popup">
+        <div *ngIf="page == 'add'">
+
+            <div class="popup-header">
+                <p class="title">Add quantity</p>
+            </div>
+            <div margin class="popup-content">
+                <div class="q-buttons">
+                    <button ion-button icon-only (click)="increment()">
+               <ion-icon name="add" ></ion-icon>
+                </button>
+                    <input type="number" [(ngModel)]="quantity">
+                    <button ion-button icon-only (click)="decrement()">
+              <ion-icon name="remove" ></ion-icon>
+                </button>
+
+                </div>
+
+                <div class="numbers">
+                    <button *ngFor="let n of numbers" (click)="changeNum(n.number)" class="" ion-button>
+                     {{n.number}}
+                </button>
+
+
+
+
+
+                </div>
+            </div>
+            <div padding-horizontal class="info">
+                <p>Lorem: <span>60k</span></p>
+                <p>Ipsum: <span>0k</span></p>
+            </div>
+            <div text-center margin padding-vertical>
+
+                <button class="grey" outline color="light" ion-button>
+                    
+                  Sample Button</button>
+                <button color="danger" ion-button block>
+                    <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
+                  SUBMIT
+                </button>
+            </div>
+
+            <button class="close" ion-button icon-only (click)="close()">
+              <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
+                </button>
+
+        </div>
+
+        <div *ngIf="page == 'other'">
+
+            <div class="popup-header">
+                <p class="title">Add quantity</p>
+            </div>
+            <div margin class="popup-content">
+                <div class="q-buttons">
+                    <button ion-button icon-only (click)="increment()">
+               <ion-icon name="add" ></ion-icon>
+                </button>
+                    <input type="number" [(ngModel)]="quantity">
+                    <button ion-button icon-only (click)="decrement()">
+              <ion-icon name="remove" ></ion-icon>
+                </button>
+
+                </div>
+
+                <div class="numbers">
+                    <button *ngFor="let n of numbers" (click)="changeNum(n.number)" class="" ion-button>
+                     {{n.number}}
+                </button>
+
+
+
+
+
+                </div>
+            </div>
+
+            <div text-center margin padding-vertical>
+
+                <button class="grey" outline color="light" ion-button>
+                    
+                  Sample Button</button>
+                <button outline color="danger" ion-button block>
+                    <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
+                  SUBMIT
+                </button>
+            </div>
+
+            <button class="close" ion-button icon-only (click)="close()">
+              <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
+                </button>
+
+        </div>
+
+
+        <div *ngIf="page == 'product'">
+
+            <div class="product">
+                <div>
+                    <p>{{'PRODUCT_POPUP_HEADER' | translate}}</p>
+                    <img src="assets/img/iphone7-red.png" alt="">
+                    <p>Iphone 7 </p>
+                </div>
+
+            </div>
+            <div padding class="product-content">
+                <p>Lorem: 0.20037766</p>
+                <p>Date: 2017-06-05 12:50</p>
+                <p>Lorem: 10001736</p>
+
+                <button text-center padding outline color="danger" ion-button block>
+                    <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
+                  SUBMIT
+                </button>
+
+            </div>
+            <button class="close" ion-button icon-only (click)="close()">
+               <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
+                </button>
+        </div>
+    </div>
+
+</div>

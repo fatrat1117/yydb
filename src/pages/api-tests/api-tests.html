@@ -6,11 +6,48 @@
 
 <ion-content>
   <ion-item-group>
+    <ion-item-divider color="light">Login</ion-item-divider>
+    <ion-item text-center>
+      <button ion-button clear (click)="redirectToLogin()">Redirect to Login</button>
+    </ion-item>
+
     <ion-item-divider color="light">Rounds</ion-item-divider>
-    <button ion-item (click)="getPreparingRounds()">Get Preparing Rounds</button>
-    <ion-item *ngFor="let r of prepareRounds" text-right>
+    <ion-item text-center>
+      <button ion-button clear (click)="getPreparingRounds()">Get Preparing Rounds</button>
+    </ion-item>
+
+    <ion-item *ngFor="let r of preparingRounds">
+      <ion-thumbnail item-start>
+        <img *ngIf="r.product.images" [src]="r.product.images[0]">
+      </ion-thumbnail>
       <h2> Round ID: {{r.id}} </h2>
       <p> Product Name: {{r.product.name}} </p>
+      <p>{{r.drawCounts?.current}}/{{r.drawCounts?.target}}</p>
+      <!--p style="white-space: pre-wrap;">
+        <span *ngFor="let d of user.draws[r.id]"> {{d}} </span>
+      </p-->
+      <button ion-button clear item-end (click)="buyDraws(r)">Buy</button>
+      <button ion-button clear item-end color="secondary" (click)="showAllDraws(r.id)">Show</button>
+    </ion-item>
+
+    <ion-item-divider color="light">Top-up</ion-item-divider>
+    <ion-item>
+      <ion-label fixed color="dark">Amount</ion-label>
+      <ion-input type="number" [(ngModel)]="amount"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Top-up for other</ion-label>
+      <ion-toggle [(ngModel)]="bIsForOther"></ion-toggle>
+    </ion-item>
+    <ion-item [hidden]="!bIsForOther">
+        <ion-label>Users</ion-label>
+        <ion-select [(ngModel)]="selectedId">
+          <ion-option value="007">Test User</ion-option>
+        </ion-select>
+      </ion-item>
+    <ion-item text-center>
+      <button ion-button clear (click)="makePayment(amount, bIsForOther, selectedId)">Make Payment</button>
+      <button ion-button clear (click)="test()">test</button>
     </ion-item>
   </ion-item-group>
 </ion-content>

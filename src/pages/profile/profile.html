@@ -22,23 +22,23 @@
     </button>
 
     <button ion-item detail-none>
-      nickname
+      {{'NAME' | translate}}
         <div class="align-right">
-            jack
+          {{info.name}}
             <ion-icon name="ios-arrow-forward-outline"></ion-icon>
         </div>
     </button>
     <button ion-item detail-none>
-        sex
+      {{'SEX' | translate}}
           <div class="align-right">
-              male
+            {{info.sex}}
             <ion-icon name="ios-arrow-forward-outline" ios="hide"></ion-icon>
           </div>
       </button>
       <button ion-item detail-none>
-          birthday
+        {{'BIRTHDAY' | translate}}
             <div class="align-right">
-                1990-08-21
+                {{info.birthday}}
               <ion-icon name="ios-arrow-forward-outline"></ion-icon>
             </div>
         </button>

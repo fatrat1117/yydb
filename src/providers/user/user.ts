@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { Api } from '../api/api';
-
+import { User } from '../../models/user';
+import { AngularFireAuth } from 'angularfire2/auth';
 /**
  * Most apps have the concept of a User. This is a simple provider
  * with stubs for login/signup/etc.
@@ -26,66 +27,57 @@ import { Api } from '../api/api';
  * If the `status` field is not `success`, then an error is detected and returned.
  */
 @Injectable()
-export class User {
-  _user: any;
-
-  constructor(public http: Http, public api: Api) {
+export class UserService {
+  currentUser: User;
+  user;
+  constructor(public http: Http, 
+  public api: Api,
+  public afAuth: AngularFireAuth) {
+    this.currentUser = new User("mock-user-id-0");
+    this.currentUser.balance = 10000;
+    afAuth.authState.subscribe(user => {
+      this.user = user;
+      console.log('user changed', this.user);
+      document.dispatchEvent(new Event("userlogin"));
+    })
   }
 
-  /**
-   * Send a POST request to our login endpoint with the data
-   * the user entered on the form.
-   */
   login(accountInfo: any) {
-    let seq = this.api.post('login', accountInfo).share();
-
-    seq
-      .map(res => res.json())
-      .subscribe(res => {
-        // If the API returned a successful response, mark the user as logged in
-        if (res.status == 'success') {
-          this._loggedIn(res);
-        } else {
-        }
-      }, err => {
-        console.error('ERROR', err);
-      });
-
-    return seq;
   }
 
-  /**
-   * Send a POST request to our signup endpoint with the data
-   * the user entered on the form.
-   */
   signup(accountInfo: any) {
-    let seq = this.api.post('signup', accountInfo).share();
-
-    seq
-      .map(res => res.json())
-      .subscribe(res => {
-        // If the API returned a successful response, mark the user as logged in
-        if (res.status == 'success') {
-          this._loggedIn(res);
-        }
-      }, err => {
-        console.error('ERROR', err);
-      });
-
-    return seq;
   }
 
-  /**
-   * Log the user out, which forgets the session
-   */
   logout() {
-    this._user = null;
+    this.currentUser = null;
   }
 
-  /**
-   * Process a login/signup response to store user data
-   */
   _loggedIn(resp) {
-    this._user = resp.user;
+  }
+
+  getCurrentUser() {
+    return this.currentUser;
+  }
+
+  updateDrawsOfRound(roundId: string, newDeal: number = 0) {
+    if (newDeal == 0 && this.currentUser.draws[roundId] != undefined)
+      return;
+
+    let subs = this.getDrawsOfRound_Internal(roundId).subscribe(snapshots => {
+      let draws = [];
+      snapshots.forEach(s => {
+        draws.push(s.$key);
+      })
+      subs.unsubscribe();
+      this.currentUser.draws[roundId] = draws;
+    })
+  }
+
+  makePayment(targetId: string, amount: number) {
+    this.api.makePayment(this.currentUser.id, targetId, amount);
+  }
+
+  getDrawsOfRound_Internal(roundId: string) {
+    return this.api.getList(`/users-expenses/${this.currentUser.id}/${roundId}/`);
   }
 }
