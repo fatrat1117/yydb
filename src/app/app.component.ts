@@ -7,30 +7,14 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../pages/login/login';
 import { MainPage } from '../pages/pages';
 import { Settings } from '../providers/providers';
-import { App } from 'ionic-angular';
+import { App, ModalController } from 'ionic-angular';
 
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  template: `<ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage: any = LoginPage;
-
+  rootPage: any = MainPage;
+  loginModal;
   @ViewChild(Nav) nav: Nav;
 
   pages: any[] = [
@@ -52,26 +36,24 @@ export class MyApp {
     private statusBar: StatusBar,
     private splashScreen: SplashScreen,
     private afAuth: AngularFireAuth,
-  private app: App) {
+    private app: App,
+    public popoverCtrl: ModalController) {
     this.initTranslate();
-    // afAuth.authState.subscribe(user => {
-    //   if (user) {
-    //     console.log('go login page');
-    //     //this.app.getRootNavs()[0].setRoot(MainPage);
-    //     this.rootPage = MainPage;
-    //   }
-    //   // else {
-    //   //   console.log('go login page');
-    //   //   this.app.getRootNavs()[0].setRoot(LoginPage);
-    //   //   //this.rootPage = LoginPage;
-    //   // }
-    // });
-    document.addEventListener('userlogin', () => {
-      this.rootPage = MainPage;
-    });
-    
-    document.addEventListener('userlogout', () => {
-      this.rootPage = LoginPage;
+
+    afAuth.authState.subscribe(user => {
+      if (user) {
+        //console.log('go tabs page');
+        //this.app.getRootNavs()[0].setRoot(MainPage);
+        //this.rootPage = MainPage;
+        //this.loginModal.dis
+      }
+      else {
+        console.log('go login page');
+        this.loginModal = this.popoverCtrl.create(LoginPage);
+        this.loginModal.present();
+        //this.app.getRootNavs()[0].setRoot(LoginPage);
+        //this.rootPage = LoginPage;
+      }
     });
   }
 
@@ -105,6 +87,7 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
+    console.log('openpage', page);
     this.nav.setRoot(page.component);
   }
 }
