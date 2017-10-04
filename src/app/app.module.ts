@@ -27,6 +27,9 @@ import { ProfilePage } from '../pages/profile/profile';
 import { SearchPage } from '../pages/search/search';
 import { SocialPage } from '../pages/social/social';
 import { SettingPage } from '../pages/setting/setting';
+import { AddressListPage } from '../pages/address-list/address-list';
+import { AddAdressPage } from '../pages/add-adress/add-adress';
+import { EditAddressPage } from '../pages/edit-address/edit-address';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -83,7 +86,8 @@ export function provideSettings(storage: Storage) {
     ForgotPasswordPage,
     SelectCountryComponent,
     QuantityComponent,
-    
+    AddressListPage,
+    EditAddressPage,AddAdressPage
   ],
   imports: [
     BrowserModule,
@@ -120,6 +124,10 @@ export function provideSettings(storage: Storage) {
     LoginPage,
     SearchPage,
     SocialPage,
+    AddressListPage,
+    AddAdressPage,
+    EditAddressPage
+    
   ],
   providers: [
     Api,

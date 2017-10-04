@@ -11,6 +11,7 @@ import { ProfilePage } from '../profile/profile';
 import { SocialPage } from '../social/social';
 import { ListPage } from '../list/list';
 import { SearchPage } from '../search/search';
+import {AddressListPage  } from '../address-list/address-list';
 import { ModalController } from 'ionic-angular';
 /**
  * Generated class for the MinePage page.
@@ -72,6 +73,9 @@ export class MinePage {
 
   searchPage() {
     this.navCtrl.push(SearchPage);
+  }
+   addressPage() {
+    this.navCtrl.push(AddressListPage);
   }
   addQuantityModal() {
     let quantityModal = this.modalCtrl.create(QuantityComponent, { page: 'add' });
