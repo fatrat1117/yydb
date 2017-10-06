@@ -9,7 +9,7 @@ import { IonicStorageModule, Storage } from '@ionic/storage';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-
+import { Settingtab1Page } from '../pages/settingtab1/settingtab1';
 import { ProductsService } from '../providers/providers';
 import { RoundsService } from '../providers/providers';
 import { Settings } from '../providers/providers';
@@ -87,7 +87,9 @@ export function provideSettings(storage: Storage) {
     SelectCountryComponent,
     QuantityComponent,
     AddressListPage,
-    EditAddressPage,AddAdressPage
+    EditAddressPage,
+    AddAdressPage,
+    Settingtab1Page
   ],
   imports: [
     BrowserModule,
@@ -117,7 +119,7 @@ export function provideSettings(storage: Storage) {
     SettingPage,
     SelectCountryComponent,
     QuantityComponent,
-
+    Settingtab1Page,
     ListPage,
     TableViewPage,
     ProfilePage,

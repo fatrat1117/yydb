@@ -1,0 +1,20 @@
+page-settingtab1 {
+.settingtab p, .settingtab img, .settingtab button {
+    margin: 0 auto;
+    display: table;
+}
+ion-content {
+    background: #f8f8f8 !important;
+}
+.settingtab img {
+    width: 160px;
+    margin-top: 50px !important;
+	    position: relative;
+    right: 7px;
+}
+.settingtab p {
+    font-size: 16px;
+    color: #8e8888;
+    margin: 8px auto 15px !important;
+}
+}
