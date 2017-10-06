@@ -24,4 +24,7 @@ img.stamp {    position: absolute;    width: 80px;    right: -11px;    top: -4px
 .card-inner-custom p {    font-size: 12px;}
 .progress.progessderail ion-icon {    font-size: 12px;}
 .first-card ion-label {    margin-bottom: 12px;}
+.scroll-content ion-card:first-child ion-label {
+    margin-bottom: 12px;
+}
 }

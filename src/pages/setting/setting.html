@@ -8,30 +8,31 @@
 
 <ion-content class="setting-main">
 
-<ion-card class="first-card">
+<ion-card  *ngFor = "let data of myData">
   <ion-item>
+  <img class="stamp" src="{{data.logo}}" *ngIf = "data.logo">
     <div class="image-product">
-		<img src="assets/img/jd.jpg" width="30">
+		<img src="{{data.image}}" width="30">
 	</div>
 	<div class="card-inner-custom">
-    <h2>Museum of Football</h2>
-    <p>ID: 220000322212222</p>
-    <p>PRICE: <ion-icon color="danger">60</ion-icon>$   </p>
+    <h2>{{data.title}}</h2>
+    <p>ID: {{data.id}}</p>
+    <p>PRICE: <ion-icon color="danger">{{data.price}}</ion-icon>$   </p>
 	</div>
 	<span class="button-inner custom-button-inner">Buy <ion-icon name="ios-arrow-forward-outline"></ion-icon></span>
-	  <div class="progress mainprogress first-progress">
-		<div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%">
-			<span class="sr-only">70% Complete</span>
+	  <div class="progress mainprogress first-progress" *ngIf = "data.barValue">
+		<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width.%':data.barValue}">
+			
 		</div>
 	  </div>
 	  <div class="progress progessderail">
-	  <span class="left">Price <ion-icon color="danger">600</ion-icon></span>
-	  <span class="right">Price <ion-icon color="danger">100</ion-icon></span>
+	  <span class="left">Price <ion-icon color="danger">{{data.firstValue}}</ion-icon></span>
+	  <span class="right">Price <ion-icon color="danger">{{data.endValue}}</ion-icon></span>
 	  </div>
 	  <button ion-button class="submitbtn" color="danger" outline>Submit</button>
   </ion-item>
 </ion-card>
-<ion-card>
+<!--ion-card>
   <ion-item>
     <div class="image-product">
 		<img src="assets/img/jd.jpg" width="30">
@@ -122,6 +123,6 @@
 	</div>
 	<button ion-button class="submitbtn" color="danger" outline>Submit</button>
   </ion-item>
-</ion-card>
+</ion-card-->
 
 </ion-content>

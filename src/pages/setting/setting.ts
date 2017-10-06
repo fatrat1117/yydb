@@ -15,8 +15,48 @@ import { PopoverPage } from '../popover/popover';
   templateUrl: 'setting.html',
 })
 export class SettingPage {
-
+myData = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
+	this.myData = [{
+		image: 'assets/img/jd.jpg',
+		title: 'Museum of Football',
+		id: '220000322212222',
+		price: '60',
+		firstValue: '600',
+		endValue: '100',
+		barValue: '70',
+		logo:''
+	},
+	{
+		image: 'assets/img/jd.jpg',
+		title: 'Museum of Cricket',
+		id: '320000322212222',
+		price: '60',
+		firstValue: '600',
+		endValue: '100',
+		barValue: '',
+		logo:''
+	},
+	{
+		image: 'assets/img/jd.jpg',
+		title: 'Museum of Football',
+		id: '420000322212222',
+		price: '60',
+		firstValue: '600',
+		endValue: '100',
+		barValue: '',
+		logo:'assets/img/stamp.png'
+	},
+	{
+		image: 'assets/img/jd.jpg',
+		title: 'Museum of Cricket',
+		id: '320000322212222',
+		price: '60',
+		firstValue: '600',
+		endValue: '100',
+		barValue: '',
+		logo:''
+	}]
   }
 
   ionViewDidLoad() {
