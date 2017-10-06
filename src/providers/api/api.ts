@@ -62,18 +62,32 @@ export class Api {
   }
 
   processingPayment(userId: string, tempId: string, browser) {
+    let loading = this.loadingCtrl.create({
+      content: "Processing Payment...",
+    });
     let subscription = this.getObject(`/top-ups/${userId}/temp/${tempId}/status`).subscribe(status => {
       console.log("status: " + status.$value);
-      
+
       if (status.$value) {
-        subscription.unsubscribe();
         browser.close();
         switch (status.$value) {
           case 100:    // processing
-            this.waitingForProcessing(userId, tempId);
+            loading.present();
+            //this.waitingForProcessing(userId, tempId);
+            break;
+          case 200:    // success
+            loading.dismiss();
+            this.showToast('Top-up Succeed.');
+            subscription.unsubscribe();
+            break;
+          case 400:    // error
+            loading.dismiss();
+            this.showToast('Top-up Failed.');
+            subscription.unsubscribe();
             break;
           case 499:    // user cancel
             this.showToast('Payment Cancelled.');
+            subscription.unsubscribe();
             break;
           default:
             break;
@@ -95,7 +109,7 @@ export class Api {
         loading.dismiss();
         switch (statusCode) {
           case 200:    // success
-          this.showToast('Top-up Succeed.');
+            this.showToast('Top-up Succeed.');
             break;
           case 400:    // error
             this.showToast('Top-up Failed.');
@@ -109,8 +123,8 @@ export class Api {
 
   showToast(message: string) {
     let toast = this.toastCtrl.create({
-      message: "Payment cancelled.",
-      duration: 3000,
+      message: message,
+      duration: 5000,
       position: 'top'
     });
     toast.present();

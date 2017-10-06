@@ -33,12 +33,13 @@ export class UserService {
   constructor(public http: Http, 
   public api: Api,
   public afAuth: AngularFireAuth) {
-    this.currentUser = new User("mock-user-id-0");
-    this.currentUser.balance = 10000;
     afAuth.authState.subscribe(user => {
-      this.user = user;
-      console.log('user changed', this.user);
-      //document.dispatchEvent(new Event("userlogin"));
+      if (user) {
+        this.user = user;
+        console.log('user changed', this.user);
+        this.currentUser = new User(user.uid);
+        //document.dispatchEvent(new Event("userlogin"));
+      }
     })
   }
 
