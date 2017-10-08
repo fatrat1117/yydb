@@ -13,6 +13,7 @@ import { ListPage } from '../list/list';
 import { SearchPage } from '../search/search';
 import {AddressListPage  } from '../address-list/address-list';
 import { ModalController } from 'ionic-angular';
+import {AddProductPage} from '../add-product/add-product';
 /**
  * Generated class for the MinePage page.
  *
@@ -42,6 +43,10 @@ export class MinePage {
   edit() {
     console.log("edit");
     this.navCtrl.push(ProfilePage);
+  }
+   addProduct() {
+    console.log("edit");
+    this.navCtrl.push(AddProductPage);
   }
 
   share() {

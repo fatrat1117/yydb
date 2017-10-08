@@ -59,6 +59,14 @@
     "BIND_PHONE_TITLE": "Connect",
     "BIND_PHONE_SUBTITLE": "Verify your Phone Number",
     "BIND_PHONE_BUTTON": "Connect ",
+
+
+    "ADD_PRODUCT_TITLE": "Products",
+    "ADD_PRODUCT_SUBTITLE": "Add a new product",
+    "PRODUCT_NAME": "Enter the product's name ",
+    "PRODUCT_PRICE": "Enter the product's price ",
+    "PRODUCT_BUTTON": "Add product ",
+
     "VERIFY_BUTTON": "Verify",
     "VERIFY_PH": "5 Digit Code",
     "BIND_PHONE_PH": " Phone Number",

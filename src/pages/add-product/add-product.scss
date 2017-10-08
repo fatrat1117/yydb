@@ -1,0 +1,29 @@
+page-add-product {
+    .bannersection h3 {
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
+        top: 30px;
+        left: 50%;
+        margin: 0 0;
+        color: $secondary-color;
+        width: 80%;
+        text-align: center
+    }
+    .bannersection .clist {
+        top: 45%;
+    }
+    .bannersection .clist .icon {
+        font-size: 1.4em;
+    }
+    .bannersection {
+        position: relative;
+    }
+    .icon {
+        font-size: 1.5em;
+    }
+    .fs01 {
+        color: red;
+        font-size: 12px;
+        display: block;
+    }
+}

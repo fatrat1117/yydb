@@ -33,15 +33,17 @@ export class ProductsService {
     return this.api.getObject(`/products/${id}`);
   }
 
+   add(data) {
+    return   this.api.insert('/product/', data);
+  }
 
-  /*
+
+  
   getAll() {
-    if (this.products == undefined) {
-      this.api.log("get all products reference from cloud")
-      this.products = this.api.get('/products');
-    }
+       return this.api.getList('/product/');
+  }
 
-
+/*
     this.products.subscribe(snapshots => {
       console.log(this.products);
       

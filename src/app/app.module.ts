@@ -30,6 +30,7 @@ import { SettingPage } from '../pages/setting/setting';
 import { AddressListPage } from '../pages/address-list/address-list';
 import { AddAdressPage } from '../pages/add-adress/add-adress';
 import { EditAddressPage } from '../pages/edit-address/edit-address';
+import { AddProductPage } from '../pages/add-product/add-product';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -89,7 +90,8 @@ export function provideSettings(storage: Storage) {
     AddressListPage,
     EditAddressPage,
     AddAdressPage,
-    Settingtab1Page
+    Settingtab1Page,
+    AddProductPage
   ],
   imports: [
     BrowserModule,
@@ -128,7 +130,8 @@ export function provideSettings(storage: Storage) {
     SocialPage,
     AddressListPage,
     AddAdressPage,
-    EditAddressPage
+    EditAddressPage,
+    AddProductPage
     
   ],
   providers: [
