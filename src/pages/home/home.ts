@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
-
+import { Round } from '../../models/round';
+import { RoundsService } from '../../providers/providers'
 import {TableViewPage} from '../table-view/table-view';
 
 @IonicPage()
@@ -9,7 +10,18 @@ import {TableViewPage} from '../table-view/table-view';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController) {
+  preparingRounds: Round[];
+
+  constructor(public navCtrl: NavController, 
+  public modalCtrl: ModalController,
+  private rs: RoundsService) {
+    let callback = (results => {
+      this.preparingRounds = results;
+      // results.forEach(r => {
+      //   this.us.updateDrawsOfRound(r.id);
+      // });
+    })
+    this.rs.getPreparingRounds(callback);
   }
 
   /**
