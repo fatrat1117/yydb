@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
-import { Round } from '../../models/round';
+import { Round, RoundCallback } from '../../models/round';
 import { RoundsService } from '../../providers/providers'
 import {TableViewPage} from '../table-view/table-view';
 
@@ -11,17 +11,23 @@ import {TableViewPage} from '../table-view/table-view';
 })
 export class HomePage {
   preparingRounds: Round[];
+  roundCallback: RoundCallback;
 
   constructor(public navCtrl: NavController, 
   public modalCtrl: ModalController,
   private rs: RoundsService) {
-    let callback = (results => {
-      this.preparingRounds = results;
-      // results.forEach(r => {
-      //   this.us.updateDrawsOfRound(r.id);
-      // });
-    })
-    this.rs.getPreparingRounds(callback);
+    this.roundCallback = {
+      bIsActive: true,
+      callback: (results => {
+        console.log("callback from home");
+        
+        this.preparingRounds = results;
+        // results.forEach(r => {
+        //   this.us.updateDrawsOfRound(r.id);
+        // });
+      })
+    }
+    this.rs.getPreparingRounds(this.roundCallback);
   }
 
   /**
