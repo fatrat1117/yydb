@@ -1,6 +1,6 @@
 page-clock {
 ion-grid.custom-timer-products.grid p {    margin: 0 0 0;}
-span.timer {    color: red;    font-size: 26px;}
+span.timer {    color: red;    font-size: 25px;}
 ion-grid.custom-timer-products.grid {    padding: 0;    background: #ececec;}
 ion-grid.custom-timer-products.grid ion-row.row {    margin: 10px 0 0;    background: #fff;}
 .scrolltop {    background: rgba(243, 243, 243, 0.86);width: 100%;    float: left;}
@@ -8,7 +8,11 @@ ion-grid.custom-timer-products.grid ion-row.row {    margin: 10px 0 0;    backgr
 .small{
     font-size: 14px;
   }
-.grey {
+.text-grey {
     color: $color-grey;
+  }
+
+  .text-red {
+    color: $color-red;
   }
 }
