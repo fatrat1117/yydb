@@ -38,9 +38,6 @@ export class Api {
    return this.db.list(endpoint).push(data);
   }
 
-  pullAll(endpoint: string, data) {
-   return this.db.list(endpoint).push(data);
-  }
 
   getList(endpoint: string, query?: any) {
     if (!query)

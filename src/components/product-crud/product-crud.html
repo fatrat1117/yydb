@@ -1,0 +1,145 @@
+<!-- Generated template for the QuantityComponent component -->
+<div class="back-drop">
+    <div class="popup">
+        <div *ngIf="page == 'add'">
+
+            <div class="popup-header">
+                <p class="title">{{'ADD_PRODUCT_TITLE' | translate}}</p>
+            </div>
+            <div margin class="popup-content">
+
+                <form margin (submit)="addItem()">
+                    <ion-list padding-horizontal>
+
+
+                        <ion-item margin-top *ngIf="!reset">
+
+                            <ion-label>
+
+
+                            </ion-label>
+                            <ion-input type="text" placeholder="{{'PRODUCT_NAME' | translate}}" [(ngModel)]="product.name" name="product_name"></ion-input>
+                        </ion-item>
+
+                        <ion-item margin-top>
+
+                            <ion-label>
+
+
+                            </ion-label>
+                            <ion-input type="number" placeholder="{{'PRODUCT_PRICE' | translate}}" [(ngModel)]="product.price" name="product_price"></ion-input>
+                        </ion-item>
+
+
+
+
+                        <div padding>
+
+                            Add Product Images
+
+                            <ion-icon float-right (click)="selectImgUploadGetUrl(product.name, 320, 320)" color="danger" name="add-circle"></ion-icon>
+
+                        </div>
+                        <div>
+                            <p margin class="fs01" *ngFor="let p of product.images">
+
+                                <ion-icon (click)="viewImage(p.url)" name="eye" color="danger"></ion-icon>
+                                Image uploaded
+
+                                <ion-icon (click)="deleteImage(p)" name="remove-circle" color="danger" float-right></ion-icon>
+                            </p>
+                        </div>
+
+
+
+                        <div margin padding-vertical>
+
+                            <button color="danger" ion-button block><ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
+                  {{ 'PRODUCT_BUTTON' | translate }}</button>
+                        </div>
+
+
+                    </ion-list>
+                </form>
+
+
+
+
+            </div>
+
+            <button class="close" ion-button icon-only (click)="close()">
+              <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
+                </button>
+
+        </div>
+
+        <div *ngIf="page == 'edit'">
+
+            <div class="popup-header">
+                <p class="title">{{'EDIT_PRODUCT_TITLE' | translate}}</p>
+            </div>
+            <div margin class="popup-content">
+
+                <form margin (submit)="edit()">
+                    <ion-list padding-horizontal>
+
+
+                        <ion-item margin-top *ngIf="!reset">
+
+                            <ion-label>
+
+
+                            </ion-label>
+                            <ion-input type="text" placeholder="{{'PRODUCT_NAME' | translate}}" [(ngModel)]="product.name" name="product_name"></ion-input>
+                        </ion-item>
+
+                        <ion-item margin-top>
+
+                            <ion-label>
+
+
+                            </ion-label>
+                            <ion-input type="number" placeholder="{{'PRODUCT_PRICE' | translate}}" [(ngModel)]="product.price" name="product_price"></ion-input>
+                        </ion-item>
+
+
+
+
+                        <div padding>
+
+                            Add Product Images
+
+                            <ion-icon float-right (click)="selectImgUploadGetUrl(product.name, 320, 320)" color="danger" name="add-circle"></ion-icon>
+
+                        </div>
+
+                        <div>
+                            <p margin class="fs01" *ngFor="let p of product.images"> {{p.$index}} image uploaded
+                                <ion-icon (click)="viewImage(p)" name="eye" color="danger"></ion-icon>
+                                <ion-icon (click)="deleteImage(p)" name="remove-circle" color="danger" float-right></ion-icon>
+                            </p>
+                        </div>
+
+                        <div margin padding-vertical>
+
+                            <button color="danger" ion-button block><ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
+                  {{ 'EDIT_PRODUCT_BUTTON' | translate }}</button>
+                        </div>
+
+
+                    </ion-list>
+                </form>
+
+
+
+
+            </div>
+
+            <button class="close" ion-button icon-only (click)="close()">
+              <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
+                </button>
+
+        </div>
+
+    </div>
+</div>

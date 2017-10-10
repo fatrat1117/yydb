@@ -99,6 +99,12 @@ page-search {
       box-shadow: 0 0 0 0 ;
     }
 
+    .box-shad1{
+      background: #f4f5f7;
+      text-align: center;
+      padding: 10px 0px 10px  0px
+    }
+
     @media #{$ios-mobile} {
         .time-label {
             margin-right: 0;

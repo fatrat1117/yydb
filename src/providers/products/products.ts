@@ -33,14 +33,25 @@ export class ProductsService {
     return this.api.getObject(`/products/${id}`);
   }
 
-   add(data) {
+   addProduct(data) {
     return   this.api.insert('/product/', data);
   }
-
-
   
-  getAll() {
+  editProduct(id, data)
+  {
+    return this.getAllProducts().update(id, data);
+  }
+   deleteProduct(id)
+  {
+    return this.getAllProducts().remove(id);
+  }
+
+  getAllProducts() {
        return this.api.getList('/product/');
+  }
+
+  getProduct(id) {
+       return this.api.getList('/product/', id);
   }
 
 /*

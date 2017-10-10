@@ -30,14 +30,17 @@ import { SettingPage } from '../pages/setting/setting';
 import { AddressListPage } from '../pages/address-list/address-list';
 import { AddAdressPage } from '../pages/add-adress/add-adress';
 import { EditAddressPage } from '../pages/edit-address/edit-address';
-import { AddProductPage } from '../pages/add-product/add-product';
+
+import { ProductsPage } from '../pages/products/products';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { SelectCountryComponent } from '../components/select-country/select-country';
 import { QuantityComponent } from '../components/quantity/quantity';
+import { ProductCrudComponent } from '../components/product-crud/product-crud';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 // Firebase config
 export const firebaseConfig = {
@@ -87,11 +90,13 @@ export function provideSettings(storage: Storage) {
     ForgotPasswordPage,
     SelectCountryComponent,
     QuantityComponent,
+    ProductCrudComponent,
     AddressListPage,
     EditAddressPage,
     AddAdressPage,
     Settingtab1Page,
-    AddProductPage
+    
+    ProductsPage
   ],
   imports: [
     BrowserModule,
@@ -121,6 +126,7 @@ export function provideSettings(storage: Storage) {
     SettingPage,
     SelectCountryComponent,
     QuantityComponent,
+    ProductCrudComponent,    
     Settingtab1Page,
     ListPage,
     TableViewPage,
@@ -131,7 +137,8 @@ export function provideSettings(storage: Storage) {
     AddressListPage,
     AddAdressPage,
     EditAddressPage,
-    AddProductPage
+    
+    ProductsPage
     
   ],
   providers: [
@@ -145,6 +152,7 @@ export function provideSettings(storage: Storage) {
     SplashScreen,
     StatusBar,
     InAppBrowser,
+    PhotoViewer,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

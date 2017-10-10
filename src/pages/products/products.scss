@@ -1,4 +1,12 @@
-page-add-product {
+page-products {
+    .item p {
+        font-size: 18px;
+        color: #111
+    }
+    .item span {
+        font-size: 16px;
+        color: #666;
+    }
     .bannersection h3 {
         position: absolute;
         transform: translateX(-50%) translateY(-50%);
@@ -17,13 +25,5 @@ page-add-product {
     }
     .bannersection {
         position: relative;
-    }
-    .icon {
-        font-size: 1.5em;
-    }
-    .fs01 {
-        color: red;
-        font-size: 12px;
-        display: block;
     }
 }

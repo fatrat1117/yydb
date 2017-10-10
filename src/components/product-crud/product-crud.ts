@@ -1,46 +1,48 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import {Product} from '../../models/product';
-import { ProductsService } from '../../providers/products/products';
-import { ViewController } from 'ionic-angular';
+import { ViewController, NavParams,NavController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import * as firebase from 'firebase';
+import {AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable} from 'angularfire2/database';
+import {Product} from '../../models/product';
+import { ProductsService } from '../../providers/products/products';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 /**
- * Generated class for the AddProductPage page.
+ * Generated class for the QuantityComponent component.
  *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
  */
-
-@IonicPage()
 @Component({
-  selector: 'page-add-product',
-  templateUrl: 'add-product.html',
+  selector: 'product-crud',
+  templateUrl: 'product-crud.html'
 })
-export class AddProductPage {
- tabBarElement: any;
+export class ProductCrudComponent {
 
- product={images: []};
-   constructor(public navCtrl: NavController, private camera : Camera, af: AngularFireDatabase,  public productService: ProductsService,  public viewCtrl: ViewController, public translateService: TranslateService) {
- this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-  }
+  products: FirebaseObjectObservable<any>;
+   product={images: [], name:''};
 
- ionViewWillEnter() {
-    this.tabBarElement.style.display = 'none';
+  page:string;
+  id:any;
+  private quantity = 0;
+     constructor(public navCtrl: NavController,private photoViewer: PhotoViewer, public params: NavParams, private camera : Camera, public af: AngularFireDatabase,  public productService: ProductsService,  public viewCtrl: ViewController, public translateService: TranslateService) {
+
+   this.page = params.get('page');
+   this.id = params.get('id');
+      console.log(this.id)
+
   }
- 
-  ionViewWillLeave() {
-    this.tabBarElement.style.display = 'flex';
-  }
-   ionViewDidLoad() {
-        this.viewCtrl.setBackButtonText('');
-    }
-addItem() {
-    this.productService.add(this.product);
-    this.navCtrl.pop();
+   ngOnInit() {
+     if(this.page == 'edit'){
+           
+         //  this.af.object('/item'+this.id, { preserveSnapshot: true }).map(this.product);
+     
+     }
+   }
+
+ addItem() {
+    this.productService.addProduct(this.product);
+     this.viewCtrl.dismiss();
   }
 
  b64toBlob(b64Data, contentType, sliceSize) {
@@ -68,13 +70,17 @@ addItem() {
   }
 
   selectImgUploadGetUrl(imgId, width, height, success, error) {
-    
+      let imageid = this.product.name + this.product.images.length.toString(); 
     let getImgSuccess = data => {
        let success = data => {
-        this.product.images.push(data);
+         var image = {url: '', id:''};
+         image.url = data;
+         image.id = imageid;
+
+        this.product.images.push(image);
     console.log(this.product);
       }
-      this.updateImgGetUrl(data, imgId, width, height, success, error);
+      this.updateImgGetUrl(data, imageid, width, height, success, error);
      
     }
 
@@ -98,7 +104,7 @@ addItem() {
     this.camera.getPicture(options).then(imageData => {
       success(imageData);
      
-      console.log('success');
+      
     }, (err) => {
       error(err);
     });
@@ -131,4 +137,31 @@ addItem() {
        
     });
   }
+
+  edit(){
+    console.log(this.product)
+    this.productService.editProduct(this.id, this.product);
+     this.viewCtrl.dismiss();
+  }
+viewImage(image){
+this.photoViewer.show(image);
+}
+deleteImage(image){
+   var index = this.product.images.indexOf(image);
+        this.product.images.splice(index, 1);
+         let storageRef = firebase.storage().ref();
+        var desertRef = storageRef.child('images/' + image.id + '.jpg');
+
+// Delete the file
+desertRef.delete().then(function() {
+  console.log('File deleted successfully');
+}).catch(function(error) {
+  console.log(error);
+});
+}
+
+    close() {
+          this.viewCtrl.dismiss();
+        }
+
 }
