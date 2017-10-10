@@ -1,0 +1,29 @@
+page-products {
+    .item p {
+        font-size: 18px;
+        color: #111
+    }
+    .item span {
+        font-size: 16px;
+        color: #666;
+    }
+    .bannersection h3 {
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
+        top: 30px;
+        left: 50%;
+        margin: 0 0;
+        color: $secondary-color;
+        width: 80%;
+        text-align: center
+    }
+    .bannersection .clist {
+        top: 45%;
+    }
+    .bannersection .clist .icon {
+        font-size: 1.4em;
+    }
+    .bannersection {
+        position: relative;
+    }
+}

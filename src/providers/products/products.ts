@@ -33,24 +33,35 @@ export class ProductsService {
     return this.api.getObject(`/products/${id}`);
   }
 
+  addProduct(data) {
+    return this.api.insert('/product/', data);
+  }
+
+  editProduct(id, data) {
+    return this.getAllProducts().update(id, data);
+  }
+  deleteProduct(id) {
+    return this.getAllProducts().remove(id);
+  }
+
+  getAllProducts() {
+    return this.api.getList('/product/');
+  }
+
+  getProduct(id) {
+    return this.api.getList('/product/', id);
+  }
 
   /*
-  getAll() {
-    if (this.products == undefined) {
-      this.api.log("get all products reference from cloud")
-      this.products = this.api.get('/products');
-    }
-
-
-    this.products.subscribe(snapshots => {
-      console.log(this.products);
-      
-      snapshots.forEach(p => {
-        this.api.log(p.$key);
+      this.products.subscribe(snapshots => {
+        console.log(this.products);
+        
+        snapshots.forEach(p => {
+          this.api.log(p.$key);
+        })
       })
-    })
-
-    return this.products;
-  }
-  */
+  
+      return this.products;
+    }
+    */
 }

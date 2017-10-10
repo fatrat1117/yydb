@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
+
+import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+
 import { Round } from '../../models/round';
 import { RoundsService } from '../../providers/providers'
 import { TableViewPage } from '../table-view/table-view';
+import { ProductsService } from '../../providers/products/products';
 
 @IonicPage()
 @Component({
@@ -10,12 +14,15 @@ import { TableViewPage } from '../table-view/table-view';
   templateUrl: 'home.html'
 })
 export class HomePage {
+  products: FirebaseListObservable<any>;
   preparingRounds: Round[];
-
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public rs: RoundsService) {
-      this.onPreparingRoundsReady = this.onPreparingRoundsReady.bind(this);
+  constructor(public navCtrl: NavController, private rs: RoundsService, public productService: ProductsService, public modalCtrl: ModalController, af: AngularFireDatabase) {
+    this.onPreparingRoundsReady = this.onPreparingRoundsReady.bind(this);
+    this.products = this.productService.getAllProducts();
   }
-
+  /**
+   * The view loaded, let's query our items for the list
+   */
   ionViewDidLoad() {
     // always call this 1st!
     this.addEventListeners();

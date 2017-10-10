@@ -39,6 +39,10 @@ export class Api {
   getObject(endpoint: string) {
     return this.db.object(endpoint);
   }
+  insert(endpoint: string, data) {
+   return this.db.list(endpoint).push(data);
+  }
+
 
   getList(endpoint: string, query?: any) {
     if (!query)
