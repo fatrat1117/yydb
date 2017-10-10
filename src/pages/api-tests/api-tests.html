@@ -13,7 +13,10 @@
 
     <ion-item-divider color="light">Rounds</ion-item-divider>
     <ion-item text-center>
-      <button ion-button clear (click)="getPreparingRounds()">Get Preparing Rounds</button>
+      <button ion-button clear (click)="subPreparingRounds()">Subscribe Preparing Rounds</button>
+    </ion-item>
+    <ion-item text-center>
+      <button ion-button clear (click)="unsubPreparingRounds()">Unsubscribe Preparing Rounds</button>
     </ion-item>
 
     <ion-item *ngFor="let r of preparingRounds">

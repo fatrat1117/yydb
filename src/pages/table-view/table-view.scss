@@ -22,7 +22,7 @@ page-table-view {
         text-align:center;
         font-size: 17px;
         margin-top: 7px;
-        margin-left: 13%;
+        // margin-left: 13%;
     }
     .card-box-col-4 {
         float:left;
@@ -31,9 +31,6 @@ page-table-view {
     .sign-box {
         display: inline-block;
         color: $color-red;
-        margin-top: 20px;
-        padding: 0 5px;
-        margin-right: 22px;
     }
     .card-box-red {
         background: $color-red;
@@ -72,25 +69,32 @@ page-table-view {
     }
     @media #{$min-mobile} {
         .sign-box {
-            margin-right: 5px;
+            width: 15%;
+            display: inline-block;
+            text-align: center;
         }
         .card-box {
+            div{
+                height: 16px;
+                overflow: hidden;
+            }
             font-size: 7px;
-            width: 63%;
+            width: 80%;
+            display: inline-block;
         }
         .equalsign {
-            margin-left: 4%;
+            // margin-left: 4%;
         }
     }
     
     @media #{$and-mobile} {
         .equalsign {
-            margin-left: 18%;
+            // margin-left: 18%;
         }
     }
     @media #{$ios-mobile} {
         .equalsign {
-            margin-left: 35%;
+            // margin-left: 35%;
         }
     }
 }

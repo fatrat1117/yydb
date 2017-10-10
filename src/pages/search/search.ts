@@ -87,9 +87,9 @@ export class SearchPage {
       
 
       this.items = [
-        "Lorem Ipsum 1",
-        "Lorem Ipsum 2",
-        "Lorem Ipsum 3"
+        "图文详情",
+        "往期揭晓",
+        "晒单分享"
       ]
 
       this.lists = [{ 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import {
   IonicPage, MenuController, NavController, Platform,
-  LoadingController, AlertController, ModalController, 
+  LoadingController, AlertController, ModalController,
   ToastController
 } from 'ionic-angular';
 
@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Product } from '../../models/product';
 import { ProductsService } from '../../providers/providers'
-import { Round } from '../../models/round';
+import { Round, RoundCallback } from '../../models/round';
 import { RoundsService } from '../../providers/providers'
 import { User } from '../../models/user'
 import { UserService } from '../../providers/providers'
@@ -28,6 +28,8 @@ export class ApiTestsPage {
   user: User;
   preparingRounds: Round[];
 
+  roundCallback: RoundCallback;
+
   constructor(public ps: ProductsService, public rs: RoundsService, public us: UserService,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private modalCtrl: ModalController,
     private iab: InAppBrowser, private toastCtrl: ToastController) {
@@ -37,14 +39,25 @@ export class ApiTestsPage {
     this.user = this.us.getCurrentUser();
   }
 
-  getPreparingRounds() {
-    let callback = (results => {
-      this.preparingRounds = results;
-      results.forEach(r => {
-        this.us.updateDrawsOfRound(r.id);
-      });
-    })
-    this.rs.getPreparingRounds(callback);
+  subPreparingRounds() {
+    console.log("subscribe");
+    this.roundCallback = {
+      bIsActive: true,
+      callback: (results => {
+        console.log("call back from API test");
+        this.preparingRounds = results;
+        results.forEach(r => {
+          this.us.updateDrawsOfRound(r.id);
+        });
+      })
+    }
+    
+    this.rs.getPreparingRounds(this.roundCallback);
+  }
+
+  unsubPreparingRounds() {
+    console.log("unsubscribe");
+    this.roundCallback.bIsActive = false;
   }
 
   buyDraws(round: Round) {
