@@ -31,6 +31,11 @@ export class Api {
     public loadingCtrl: LoadingController, public toastCtrl: ToastController) {
   }
 
+  fireCustomEvent(name: string, data: any) {
+    var event = new CustomEvent(name, { detail: data });
+    document.dispatchEvent(event);
+  }
+
   getObject(endpoint: string) {
     return this.db.object(endpoint);
   }

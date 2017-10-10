@@ -23,8 +23,3 @@ export class DrawCounts {
     this.target = 0;
   }
 }
-
-export interface RoundCallback {
-  bIsActive: boolean;
-  callback: any;
-}

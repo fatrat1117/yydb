@@ -10,7 +10,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { Product } from '../../models/product';
 import { ProductsService } from '../../providers/providers'
-import { Round, RoundCallback } from '../../models/round';
+import { Round } from '../../models/round';
 import { RoundsService } from '../../providers/providers'
 import { User } from '../../models/user'
 import { UserService } from '../../providers/providers'
@@ -28,36 +28,47 @@ export class ApiTestsPage {
   user: User;
   preparingRounds: Round[];
 
-  roundCallback: RoundCallback;
-
   constructor(public ps: ProductsService, public rs: RoundsService, public us: UserService,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private modalCtrl: ModalController,
     private iab: InAppBrowser, private toastCtrl: ToastController) {
+
+      // MUST DO: bound function, assign to internal prop and then use it
+      this.onPreparingRoundsReady = this.onPreparingRoundsReady.bind(this);
   }
 
   ionViewDidLoad() {
+    // always call this 1st!
     this.user = this.us.getCurrentUser();
+    this.addEventListeners();
+    this.rs.getPreparingRounds();
   }
 
-  subPreparingRounds() {
-    console.log("subscribe");
-    this.roundCallback = {
-      bIsActive: true,
-      callback: (results => {
-        console.log("call back from API test");
-        this.preparingRounds = results;
-        results.forEach(r => {
-          this.us.updateDrawsOfRound(r.id);
-        });
-      })
+  ionViewWillUnload() {
+    this.removeEventListeners();
+  }
+
+  addEventListeners() {
+    //console.log('MePage Loaded');
+    document.addEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
+  }
+
+  removeEventListeners() {
+    document.removeEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
+  }
+
+  onPreparingRoundsReady(data: Event) {
+    this.preparingRounds = data['detail'];
+
+    // get draws of all rounds, use when needed
+    if (this.preparingRounds) {
+      this.preparingRounds.forEach(r => {
+        this.us.updateDrawsOfRound(r.id);
+      });
     }
-    
-    this.rs.getPreparingRounds(this.roundCallback);
   }
 
-  unsubPreparingRounds() {
-    console.log("unsubscribe");
-    this.roundCallback.bIsActive = false;
+  stopListening() {
+    document.removeEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
   }
 
   buyDraws(round: Round) {

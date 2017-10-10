@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, ModalController, NavController } from 'ionic-angular';
-import { Round, RoundCallback } from '../../models/round';
+import { Round } from '../../models/round';
 import { RoundsService } from '../../providers/providers'
-import {TableViewPage} from '../table-view/table-view';
+import { TableViewPage } from '../table-view/table-view';
 
 @IonicPage()
 @Component({
@@ -11,34 +11,37 @@ import {TableViewPage} from '../table-view/table-view';
 })
 export class HomePage {
   preparingRounds: Round[];
-  roundCallback: RoundCallback;
 
-  constructor(public navCtrl: NavController, 
-  public modalCtrl: ModalController,
-  private rs: RoundsService) {
-    this.roundCallback = {
-      bIsActive: true,
-      callback: (results => {
-        console.log("callback from home");
-        
-        this.preparingRounds = results;
-        // results.forEach(r => {
-        //   this.us.updateDrawsOfRound(r.id);
-        // });
-      })
-    }
-    this.rs.getPreparingRounds(this.roundCallback);
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public rs: RoundsService) {
+      this.onPreparingRoundsReady = this.onPreparingRoundsReady.bind(this);
   }
 
-  /**
-   * The view loaded, let's query our items for the list
-   */
   ionViewDidLoad() {
+    // always call this 1st!
+    this.addEventListeners();
+    this.rs.getPreparingRounds();
+  }
+
+  ionViewWillUnload() {
+    this.removeEventListeners();
+  }
+
+  addEventListeners() {
+    //console.log('MePage Loaded');
+    document.addEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
+  }
+
+  removeEventListeners() {
+    document.removeEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
+  }
+
+  onPreparingRoundsReady(data: Event) {
+    this.preparingRounds = data['detail'];
   }
 
   tablepage() {
     console.log('click');
     this.navCtrl.push(TableViewPage);
   }
-  
+
 }
