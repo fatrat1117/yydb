@@ -23,12 +23,23 @@
       </ion-thumbnail>
       <h2> Round ID: {{r.id}} </h2>
       <p> Product Name: {{r.product.name}} </p>
+      <p> Status: {{r.status}} </p>
       <p>{{r.drawCounts?.current}}/{{r.drawCounts?.target}}</p>
       <!--p style="white-space: pre-wrap;">
         <span *ngFor="let d of user.draws[r.id]"> {{d}} </span>
       </p-->
       <button ion-button clear item-end (click)="buyDraws(r)">Buy</button>
       <button ion-button clear item-end color="secondary" (click)="showAllDraws(r.id)">Show</button>
+    </ion-item>
+
+    <ion-item *ngFor="let r of processingRounds">
+      <ion-thumbnail item-start>
+        <img *ngIf="r.product.images" [src]="r.product.images[0]">
+      </ion-thumbnail>
+      <h2> Round ID: {{r.id}} </h2>
+      <p> Product Name: {{r.product.name}} </p>
+      <p> Status: <span style="color: red;">{{r.status}}</span> </p>
+      <p> Count Down: {{r.secondsLeft | async}}</p>
     </ion-item>
 
     <ion-item-divider color="light">Top-up</ion-item-divider>

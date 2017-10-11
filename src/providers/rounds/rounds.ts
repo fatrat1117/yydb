@@ -11,6 +11,7 @@ import { UserService } from '../user/user';
 @Injectable()
 export class RoundsService {
   preparingRounds: Round[];
+  processingRounds: Round[];
 
   constructor(public api: Api, public ps: ProductsService, public us: UserService) {
   }
@@ -19,32 +20,48 @@ export class RoundsService {
   getPreparingRounds() {
     if (this.preparingRounds != undefined) {
       this.api.fireCustomEvent("PreparingRoundsReady", this.preparingRounds);
-      return;
     }
     else
     {
       // 1st time call
       this.preparingRounds = [];
+      this.getRounds('preparing');
     }
+  }
 
-    // First time to subscribe
+  getProcessingRounds() {
+    if (this.processingRounds != undefined) {
+      this.api.fireCustomEvent("ProcessingRoundsReady", this.processingRounds);
+    }
+    else
+    {
+      // 1st time call
+      this.processingRounds = [];
+      this.getRounds('processing');
+    }
+  }
+
+  getRounds(status: string) {
     const query = {
       query: {
         orderByChild: 'status',
-        equalTo: 'preparing'
+        equalTo: status
       }
     };
 
     this.api.getList('/rounds', query).subscribe(snapshots => {
-      this.preparingRounds = [];
+      if (snapshots.length == 0) {
+        this.fireReadyEvent(status, []);
+        return;
+      }
 
+      let roundsRef = [];
       // Iterate rounds to get product
       snapshots.forEach(r => {
         let callback = (p => {
-          this.preparingRounds.push(this.createNewRound(r, p));
-          if (this.preparingRounds.length == snapshots.length) {
-            this.api.log("get preparing rounds", this.preparingRounds);
-            this.api.fireCustomEvent("PreparingRoundsReady", this.preparingRounds);
+          roundsRef.push(this.createNewRound(r, p));
+          if (roundsRef.length == snapshots.length) {
+            this.fireReadyEvent(status, roundsRef);
           }
         })
         this.ps.getProductById(r.product_id, callback);
@@ -52,11 +69,27 @@ export class RoundsService {
     })
   }
 
+  fireReadyEvent(status: string, roundsRef: Round[]) {
+    if (status == 'preparing') {
+      this.preparingRounds = roundsRef;
+      this.api.log("get preparing rounds", this.preparingRounds);
+      this.api.fireCustomEvent("PreparingRoundsReady", this.preparingRounds);
+    } else if (status == 'processing') {
+      this.processingRounds = roundsRef;
+      this.api.log("get processing rounds", this.processingRounds);
+      this.api.fireCustomEvent("ProcessingRoundsReady", this.processingRounds);
+    }
+  }
+
   createNewRound(round: any, product: Product) {
-    let r = new Round(round.$key, product, round.draw_price);
+    let r = new Round(round.$key, product, round.draw_price, round.status);
     if (round.draw_counts != undefined) {
       r.drawCounts.current = round.draw_counts.current || 0;
       r.drawCounts.target = round.draw_counts.target || 0;
+    }
+
+    if (round.result_time != undefined) {
+      r.setResultTime(round.result_time);
     }
     return r;
   }

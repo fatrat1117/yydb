@@ -27,6 +27,9 @@ export class ApiTestsPage {
 
   user: User;
   preparingRounds: Round[];
+  processingRounds: Round[];
+
+  timer: number;
 
   constructor(public ps: ProductsService, public rs: RoundsService, public us: UserService,
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private modalCtrl: ModalController,
@@ -34,6 +37,7 @@ export class ApiTestsPage {
 
       // MUST DO: bound function, assign to internal prop and then use it
       this.onPreparingRoundsReady = this.onPreparingRoundsReady.bind(this);
+      this.onProcessingRoundsReady = this.onProcessingRoundsReady.bind(this);
   }
 
   ionViewDidLoad() {
@@ -41,6 +45,7 @@ export class ApiTestsPage {
     this.user = this.us.getCurrentUser();
     this.addEventListeners();
     this.rs.getPreparingRounds();
+    this.rs.getProcessingRounds();
   }
 
   ionViewWillUnload() {
@@ -50,10 +55,12 @@ export class ApiTestsPage {
   addEventListeners() {
     //console.log('MePage Loaded');
     document.addEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
+    document.addEventListener('ProcessingRoundsReady', this.onProcessingRoundsReady);
   }
 
   removeEventListeners() {
     document.removeEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
+    document.addEventListener('ProcessingRoundsReady', this.onProcessingRoundsReady);
   }
 
   onPreparingRoundsReady(data: Event) {
@@ -65,6 +72,10 @@ export class ApiTestsPage {
         this.us.updateDrawsOfRound(r.id);
       });
     }
+  }
+
+  onProcessingRoundsReady(data: Event) {
+    this.processingRounds = data['detail'];
   }
 
   stopListening() {
