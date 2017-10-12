@@ -12,7 +12,7 @@ ion-row.titlerow.row .label-md {    margin: 0 0 0 0;    font-size: 16px;}
 .progress-bar span{    color: transparent;	opacity:0;}
 .progress.progessderail {    background: transparent;    font-size: 13px;}
 .progress.progessderail .right {    float: right;}
-button.submitbtn {    position: absolute;    top: 76px;    right: 4px;}
+button.submitbtn {    position: absolute;    bottom: 10px;    right: 4px;}
 .image-product img {    height: 30px;    margin-right: 1px 7px 1px 7px;     width: 50px;    float: left;}
 .image-product{border:1px solid #eae9e9;        padding: 11px 6px 11px 6px;   float: left;margin-right: 9px;}
 img.stamp {    position: absolute;    width: 80px;    right: -11px;    top: -4px;}
@@ -26,5 +26,8 @@ img.stamp {    position: absolute;    width: 80px;    right: -11px;    top: -4px
 .first-card ion-label {    margin-bottom: 12px;}
 .scroll-content ion-card:first-child ion-label {
     margin-bottom: 12px;
+}
+.item-padding {
+    padding: 10px;
 }
 }
