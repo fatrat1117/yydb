@@ -8,6 +8,7 @@ export class Round {
   drawPrice: number;  // price in cents
   status: string; // preparing/processing/end
   resultTime: number;
+  result: number;
   secondsLeft: Observable<number>;
 
   constructor(id: string, product: Product, drawPrice: number, status: string) {
@@ -18,14 +19,21 @@ export class Round {
     this.status = status;
   }
 
-  setResultTime(timestamp: number) {
+  setResultTime(timestamp: number, result: number) {
     this.resultTime = timestamp;
+    this.result = result;
     let counter = this.getSecondsDiff();
     if (counter > 0) {
-      this.secondsLeft = Observable.timer(0, 1000)
-        .map(() => counter > 0 ? --counter : 0);
+      this.secondsLeft = Observable.interval(1000).map(() => {
+        if (--counter == 0)
+          this.status = 'end';
+
+        console.log(counter);
+        
+        return counter;
+      })
     } else {
-      this.secondsLeft = Observable.of(0);
+      this.status = 'end';
     }
   }
 
