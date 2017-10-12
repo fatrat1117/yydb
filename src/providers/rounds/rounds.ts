@@ -110,4 +110,10 @@ export class RoundsService {
       })
     })
   }
+
+
+  /** Test only APIs */
+  restartCountDown(roundId: string, secondToStart: number) {
+    this.api.getObject(`/rounds/${roundId}/result_time`).set(Date.now() + secondToStart * 1000); //  restart countdown 
+  }
 }

@@ -23,7 +23,7 @@ export class Round {
     let counter = this.getSecondsDiff();
     if (counter > 0) {
       this.secondsLeft = Observable.timer(0, 1000)
-        .map(() => counter > 0 ? --counter : 0);
+        .map(() => counter > 0 ? counter-- : 0);
     } else {
       this.secondsLeft = Observable.of(0);
     }

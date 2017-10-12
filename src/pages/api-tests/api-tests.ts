@@ -82,6 +82,10 @@ export class ApiTestsPage {
     document.removeEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
   }
 
+  restartCountDown(roundId: string) {
+    this.rs.restartCountDown(roundId, 15);
+  }
+
   buyDraws(round: Round) {
     let randomAmount = Math.floor(Math.random() * 5) + 1;
 
