@@ -2,26 +2,23 @@ page-setting {
 ion-row.titlerow .col,ion-header.header.header-md {    text-align: center;    text-transform: uppercase;}
 ion-row.titlerow .active.col img {    display: table;    margin: 10px auto 0;    height: 6px;}
 ion-grid.grdiborder.grid { box-shadow: 6px 0px 7px #978f8f;   padding: 20px 0 5px;}
-
-span.button-inner.custom-button-inner {float: right;width: 65px;color:color($colors,danger);    font-size: 12px;text-transform: uppercase;
-    ion-icon{
-        margin-left: 5px;
-    }
-}
+.card-inner-custom {    float: left;padding: 0 0 20px;}
+span.button-inner.custom-button-inner {float: left;width: 65px;color:color($colors,danger);    font-size: 12px;position: absolute;top:47px;height: 18px;right: -4px;text-transform: uppercase;}
+span.button-inner.custom-button-inner .item-icon {position: relative;left: 3px;}
 .border-active {    width: 15px;    height: 5px;    background: color($colors,danger);    display: table;    margin: 0px auto;}
 ion-row.titlerow.row .label-md {    margin: 0 0 0 0;    font-size: 16px;}
-.progress {    clear: both;    background: #e8e5e5;    width: 100%;    border-radius: 5px;}
+.progress {    clear: both;    background: #e8e5e5;    width: 74%;    border-radius: 5px;}
 .progress-bar {    background: #f35034;border-radius: 9px;    height: 6px;}
 .progress-bar span{    color: transparent;	opacity:0;}
 .progress.progessderail {    background: transparent;    font-size: 13px;}
 .progress.progessderail .right {    float: right;}
+button.submitbtn {    position: absolute;    bottom: 10px;    right: 4px;}
 .image-product img {    height: 30px;    margin-right: 1px 7px 1px 7px;     width: 50px;    float: left;}
 .image-product{border:1px solid #eae9e9;        padding: 11px 6px 11px 6px;   float: left;margin-right: 9px;}
-img.stamp {    float:right;  min-width: 60%;  max-width: 100%; max-height: 40px;}
+img.stamp {    position: absolute;    width: 80px;    right: -11px;    top: -4px;}
 .label-md{margin-bottom:18px;}
 .first-progress {    position: relative;    bottom: 3px;}
 .scroll-content {background: rgba(241, 236, 236, 0.57);}
-.card-inner-custom {    float: left;}
 .card-inner-custom h2 {    font-size: 13px;}
 .card-inner-custom p ion-icon {    font-size: 12px;}
 .card-inner-custom p {    font-size: 12px;}
@@ -30,11 +27,7 @@ img.stamp {    float:right;  min-width: 60%;  max-width: 100%; max-height: 40px;
 .scroll-content ion-card:first-child ion-label {
     margin-bottom: 12px;
 }
-button.submitbtn {font-size: 12px; float: right}
 .item-padding {
-    padding: 8px;
-}
-ion-col.col {
-    padding: 0;
+    padding: 10px;
 }
 }

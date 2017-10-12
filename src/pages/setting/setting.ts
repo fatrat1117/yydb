@@ -19,7 +19,7 @@ myData = [];
   constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
 	this.myData = [{
 		image: 'assets/img/jd.jpg',
-		title: 'Museum of Football',
+		title: 'Museum of Footbald',
 		id: '220000322212222',
 		price: '60',
 		firstValue: '600',
