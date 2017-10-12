@@ -89,8 +89,9 @@ export class RoundsService {
     }
 
     if (round.result_time != undefined) {
-      r.setResultTime(round.result_time);
+      r.setResultTime(round.result_time, round.result);
     }
+
     return r;
   }
 
@@ -113,7 +114,14 @@ export class RoundsService {
 
 
   /** Test only APIs */
-  restartCountDown(roundId: string, secondToStart: number) {
-    this.api.getObject(`/rounds/${roundId}/result_time`).set(Date.now() + secondToStart * 1000); //  restart countdown 
+  restartCountDown(round: Round) {
+    let draws = this.api.getObject(`/rounds/${round.id}/draw_counts`);
+    draws.update({
+      current: 0
+    })
+
+    draws.update({
+      current: round.drawCounts.target
+    })
   }
 }

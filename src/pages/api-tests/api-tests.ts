@@ -82,8 +82,8 @@ export class ApiTestsPage {
     document.removeEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
   }
 
-  restartCountDown(roundId: string) {
-    this.rs.restartCountDown(roundId, 15);
+  restartCountDown(round: Round) {
+    this.rs.restartCountDown(round);
   }
 
   buyDraws(round: Round) {
