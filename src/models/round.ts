@@ -24,18 +24,16 @@ export class Round {
     this.result = result;
     let counter = this.getSecondsDiff();
     if (counter > 0) {
-      this.secondsLeft = Observable.timer(0, 1000)
-        .map(() => counter > 0 ? counter-- : 0);
-
-      let subs = this.secondsLeft.subscribe(s => {
-        if (counter == 0) {
-          subs.unsubscribe();
+      this.secondsLeft = Observable.interval(1000).map(() => {
+        if (--counter == 0)
           this.status = 'end';
-        }
+
+        console.log(counter);
+        
+        return counter;
       })
     } else {
       this.status = 'end';
-      //this.secondsLeft = Observable.of(0);
     }
   }
 
