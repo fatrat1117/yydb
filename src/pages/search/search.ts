@@ -2,9 +2,11 @@ import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, Platform, NavParams } from 'ionic-angular';
 
 import { TranslateService } from '@ngx-translate/core';
+import { ProductsService } from '../../providers/products/products';
 
 import {ListPage} from '../list/list';
 import {TableViewPage} from '../table-view/table-view';
+import * as moment from 'moment/moment';
 
 export interface Slide {
   title: string;
@@ -25,13 +27,18 @@ export class SearchPage {
   dir: string = 'ltr';
   cardsdata = {};
   mobiledata;
-
+  product = {};
+  data:any;
   tabBarElement: any;
+  countdown={
+    hours: 0, minutes: 0, seconds: 0
+  };
+  constructor(public navCtrl: NavController,   public productService:ProductsService, public menu: MenuController, translate: TranslateService, public platform: Platform, public navParams: NavParams) {
 
-  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform, public navParams: NavParams) {
-
+    
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
-
+    this.data = navParams.get('data');
+    console.log(this.data);
     this.dir = platform.dir();
     translate.get(["TUTORIAL_SLIDE1_TITLE",
       "TUTORIAL_SLIDE1_DESCRIPTION",
@@ -142,6 +149,8 @@ export class SearchPage {
     // the root left menu should be disabled on the tutorial page
     this.menu.enable(false);
     this.tabBarElement.style.display = 'none';
+    this.getCountDown(240);
+    
   }
 
   ionViewWillLeave() {
@@ -160,4 +169,39 @@ export class SearchPage {
     this.navCtrl.push(TableViewPage);
   }
 
+  getProduct(id){
+   this.productService.getProductById(id, data =>{
+      this.product = data;
+      console.log(data);
+   });
+  }
+
+  getCountDown(secs){
+    var self =this;
+   var t = new Date(); 
+    t.setSeconds(secs);
+
+     var now = moment().unix();
+     var then= moment(t, 'DD-MM-YYYY HH:mm:ss').unix();
+   
+
+    var diffTime = then - now;
+    var duration = moment.duration(diffTime*1000, 'milliseconds');
+    var interval = 1000;
+    
+    
+    if(diffTime > 0) {
+      
+    var int = setInterval(function(){
+      duration = moment.duration(+duration.asMilliseconds() - interval, 'milliseconds');
+  
+    self.countdown.hours = moment.duration(duration).hours();
+    self.countdown.minutes =  moment.duration(duration).minutes();
+    self.countdown.seconds = moment.duration(duration).seconds();
+    
+    if (self.countdown.hours === 0 && self.countdown.minutes === 0 && self.countdown.seconds === 0) clearInterval(int);
+    }, interval);
+    
+    
+  }}
 }
