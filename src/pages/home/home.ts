@@ -46,6 +46,8 @@ export class HomePage {
 
   onPreparingRoundsReady(data: Event) {
     this.preparingRounds = data['detail'];
+    console.log(this.preparingRounds);
+    
   }
 
   tablepage() {
@@ -53,8 +55,8 @@ export class HomePage {
     this.navCtrl.push(TableViewPage);
   }
 
-  viewRoundDetails(id){
-    this.navCtrl.push(SearchPage , {data : id})
+  viewRoundDetails(round){
+    this.navCtrl.push(SearchPage , {data : round})
   }
 
 }

@@ -9,7 +9,7 @@ export class Round {
   status: string; // preparing/processing/end
   resultTime: number;
   result: number;
-  secondsLeft: Observable<number>;
+  countDown: Observable<number>;
 
   constructor(id: string, product: Product, drawPrice: number, status: string) {
     this.id = id;
@@ -24,7 +24,7 @@ export class Round {
     this.result = result;
     let counter = this.getSecondsDiff();
     if (counter > 0) {
-      this.secondsLeft = Observable.interval(1000).map(() => {
+      this.countDown = Observable.interval(1000).map(() => {
         if (--counter == 0)
           this.status = 'end';
 

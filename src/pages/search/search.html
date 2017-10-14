@@ -8,7 +8,7 @@
 
 <ion-content no-bounce>
     <ion-slides pager="true" dir="{{dir}}" (ionSlideWillChange)="onSlideChangeStart($event)">
-        <ion-slide *ngFor="let slide of data.product.images">
+        <ion-slide *ngFor="let slide of round?.product.images">
             <img [src]="slide" class="slide-image" />
         </ion-slide>
     </ion-slides>
@@ -16,7 +16,7 @@
     <ion-grid>
         <ion-row>
             <ion-col col-12>
-                <p class="big">{{data.product.name}}</p>
+                <p class="big">{{round?.product.name}}</p>
             </ion-col>
         </ion-row>
         <ion-row>
@@ -24,7 +24,7 @@
                 <p class="small grey">{{'MOBILE_MODEL_NO' | translate}}</p>
             </ion-col>
             <ion-col col-4>
-                <p class="small grey">{{data.drawPrice}}</p>
+                <p class="small grey">{{round?.drawPrice}}</p>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -41,13 +41,13 @@
                     <p class="small grey">{{'CARD_HEADER' | translate}}</p>
                     <ion-row class="color-red mar-top time-row">
                         <ion-col col-4>
-                            <div class="time-label">{{countdown.hours}}</div> <span class="colon">:</span>
+                            <div class="time-label">0</div> <span class="colon">:</span>
                         </ion-col>
                         <ion-col col-4>
-                            <div class="time-label">{{countdown.minutes}}</div> <span class="colon">:</span>
+                            <div class="time-label">{{getMinutes(round?.countDown | async)}}</div> <span class="colon">:</span>
                         </ion-col>
                         <ion-col col-4>
-                            <div class="time-label">{{countdown.seconds}}</div>
+                            <div class="time-label">{{getSeconds(round?.countDown | async)}}</div>
                         </ion-col>
                     </ion-row>
                 </ion-col>
