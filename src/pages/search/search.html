@@ -44,10 +44,10 @@
                             <div class="time-label">0</div> <span class="colon">:</span>
                         </ion-col>
                         <ion-col col-4>
-                            <div class="time-label">{{round?.countDown | async}}</div> <span class="colon">:</span>
+                            <div class="time-label">{{getMinutes(round?.countDown | async)}}</div> <span class="colon">:</span>
                         </ion-col>
                         <ion-col col-4>
-                            <div class="time-label">{{round?.countDown | async}}</div>
+                            <div class="time-label">{{getSeconds(round?.countDown | async)}}</div>
                         </ion-col>
                     </ion-row>
                 </ion-col>
