@@ -1,4 +1,4 @@
-import { Observable } from "rxjs/Rx"
+import { Subject, Observable } from "rxjs/Rx"
 import { Product } from './product'
 
 export class Round {
@@ -20,18 +20,33 @@ export class Round {
   }
 
   setResultTime(timestamp: number, result: number) {
+    if (this.countDown != undefined)
+      return;
     this.resultTime = timestamp;
     this.result = result;
     let counter = this.getSecondsDiff();
+
     if (counter > 0) {
-      this.countDown = Observable.interval(1000).map(() => {
+      /*
+      let subject = new Subject();
+      this.countDown = Observable.create(e => subject = e);
+
+      let interval = setInterval(() => {
+        if (counter-- == 0) {
+          clearInterval(interval);
+          this.status = 'end';
+        }
+        subject.next(counter--);
+      }, 1000);
+      */
+      
+      this.countDown = Observable.interval(1000).startWith(0).map(() => {
         if (--counter == 0)
           this.status = 'end';
 
         console.log(counter);
-        
         return counter;
-      })
+      }).take(counter).share();
     } else {
       this.status = 'end';
     }

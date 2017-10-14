@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subscription } from "rxjs/Rx"
 import { FirebaseListObservable } from 'angularfire2/database';
 
 import { Api } from '../api/api';
@@ -13,7 +14,30 @@ export class RoundsService {
   preparingRounds: Round[];
   processingRounds: Round[];
 
+  selectedRound: Round;
+  selectedRoundSubs: Subscription;
   constructor(public api: Api, public ps: ProductsService, public us: UserService) {
+  }
+
+  getRoundById(id: string, success_Callback) {
+    if (this.selectedRound && this.selectedRound.id == id) {
+      success_Callback(this.selectedRound);
+      return
+    }
+
+    if (this.selectedRoundSubs) {
+      this.selectedRoundSubs.unsubscribe();
+    }
+
+    this.selectedRoundSubs = this.api.getObject(`/rounds/${id}`).subscribe(r => {
+      let callback = (p => {
+        this.api.log("Get Round By Id: " + id, p);
+        this.selectedRound = this.createNewRound(r, p);
+        success_Callback(this.selectedRound);
+      })
+
+      this.ps.getProductById(r.product_id, callback);
+    })
   }
 
   // rounds will be updated in real time
@@ -21,11 +45,10 @@ export class RoundsService {
     if (this.preparingRounds != undefined) {
       this.api.fireCustomEvent("PreparingRoundsReady", this.preparingRounds);
     }
-    else
-    {
+    else {
       // 1st time call
       this.preparingRounds = [];
-      this.getRounds('preparing');
+      this.getRounds_Internal('preparing');
     }
   }
 
@@ -33,15 +56,14 @@ export class RoundsService {
     if (this.processingRounds != undefined) {
       this.api.fireCustomEvent("ProcessingRoundsReady", this.processingRounds);
     }
-    else
-    {
+    else {
       // 1st time call
       this.processingRounds = [];
-      this.getRounds('processing');
+      this.getRounds_Internal('processing');
     }
   }
 
-  getRounds(status: string) {
+  getRounds_Internal(status: string) {
     const query = {
       query: {
         orderByChild: 'status',
@@ -91,7 +113,6 @@ export class RoundsService {
     if (round.result_time != undefined) {
       r.setResultTime(round.result_time, round.result);
     }
-
     return r;
   }
 

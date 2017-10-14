@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, Platform, NavParams } from 'ionic-angular';
 
 import { TranslateService } from '@ngx-translate/core';
-import { ProductsService } from '../../providers/products/products';
+import { RoundsService } from '../../providers/rounds/rounds';
 import { Round } from '../../models/round'
 
 import { ListPage } from '../list/list';
@@ -37,7 +37,7 @@ export class SearchPage {
 
   round: Round;
 
-  constructor(public navCtrl: NavController, public productService: ProductsService, public menu: MenuController, translate: TranslateService, public platform: Platform, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform, public navParams: NavParams, public rs: RoundsService) {
 
 
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
@@ -152,8 +152,13 @@ export class SearchPage {
   */
 
   ionViewDidLoad() {
-    this.round = this.navParams.get('data');
-    console.log(this.round);
+    this.rs.getRoundById(this.navParams.get('id'), r => {
+      this.round = r;
+    });
+  }
+
+  ionViewWillUnload() {
+    this.rs.selectedRound = null
   }
 
   ionViewDidEnter() {

@@ -7,7 +7,7 @@ import { Round } from '../../models/round';
 import { RoundsService } from '../../providers/providers'
 import { TableViewPage } from '../table-view/table-view';
 import { ProductsService } from '../../providers/products/products';
-import {SearchPage} from '../search/search';
+import { SearchPage } from '../search/search';
 
 @IonicPage()
 @Component({
@@ -47,7 +47,7 @@ export class HomePage {
   onPreparingRoundsReady(data: Event) {
     this.preparingRounds = data['detail'];
     console.log(this.preparingRounds);
-    
+
   }
 
   tablepage() {
@@ -55,8 +55,8 @@ export class HomePage {
     this.navCtrl.push(TableViewPage);
   }
 
-  viewRoundDetails(round){
-    this.navCtrl.push(SearchPage , {data : round})
+  viewRoundDetails(id: string) {
+    this.navCtrl.push(SearchPage, {id: id});
   }
 
 }
