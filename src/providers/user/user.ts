@@ -30,14 +30,15 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class UserService {
   currentUser: User;
   user;
-  constructor(public http: Http, 
-  public api: Api,
-  public afAuth: AngularFireAuth) {
+  constructor(public http: Http,
+    public api: Api,
+    public afAuth: AngularFireAuth) {
     afAuth.authState.subscribe(user => {
       if (user) {
         this.user = user;
         console.log('user changed', this.user);
         this.currentUser = new User(user.uid);
+        this.getUserInfo();
         //document.dispatchEvent(new Event("userlogin"));
       }
     })
@@ -58,6 +59,13 @@ export class UserService {
 
   getCurrentUser() {
     return this.currentUser;
+  }
+
+  getUserInfo() {
+    let subs = this.api.getObject(`/users/${this.currentUser.id}`).subscribe(snapshot => {
+      this.currentUser.updateBasicInfo(snapshot.name, snapshot.avatar, snapshot.balance);
+      subs.unsubscribe();
+    })
   }
 
   updateDrawsOfRound(roundId: string, newDeal: number = 0) {

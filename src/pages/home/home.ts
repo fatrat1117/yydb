@@ -46,8 +46,6 @@ export class HomePage {
 
   onPreparingRoundsReady(data: Event) {
     this.preparingRounds = data['detail'];
-    console.log(this.preparingRounds);
-
   }
 
   tablepage() {

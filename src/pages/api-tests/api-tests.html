@@ -1,66 +1,80 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>API Tests Page</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>API Tests Page</ion-title>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
-    <ion-item-group>
-        <ion-item-divider color="light">Login</ion-item-divider>
-        <ion-item text-center>
-            <button ion-button clear (click)="redirectToLogin()">Redirect to Login</button>
-        </ion-item>
+  <ion-item-group>
+    <ion-item-divider color="light">User</ion-item-divider>
+    <ion-item>
+      <ion-thumbnail item-start>
+        <img *ngIf="user?.avatar" [src]="user.avatar">
+      </ion-thumbnail>
+      <h2>Name: {{user?.name}}</h2>
+      <p>Balance: {{user?.balance}}</p>
+      <!--button ion-button clear item-end (click)="showHistory()">Show History</button-->
+    </ion-item>
 
-        <ion-item-divider color="light">Rounds</ion-item-divider>
+    <!-->
+    <ion-item text-center>
+      <button ion-button clear (click)="redirectToLogin()">Redirect to Login</button>
+    </ion-item>
+    <-->
 
-        <ion-item text-center>
-            <button ion-button clear (click)="stopListening()">Stop Listening Changes</button>
-        </ion-item>
+      <ion-item-divider color="light">Rounds</ion-item-divider>
 
-        <ion-item *ngFor="let r of preparingRounds">
-            <ion-thumbnail item-start>
-                <img *ngIf="r.product.images" [src]="r.product.images[0]">
-            </ion-thumbnail>
-            <h2> Round ID: {{r.id}} </h2>
-            <p> Product Name: {{r.product.name}} </p>
-            <p> Status: {{r.status}} </p>
-            <p>{{r.drawCounts?.current}}/{{r.drawCounts?.target}}</p>
-            <!--p style="white-space: pre-wrap;">
+      <ion-item text-center>
+        <button ion-button clear (click)="stopListening()">Stop Listening Changes</button>
+      </ion-item>
+
+      <ion-item *ngFor="let r of preparingRounds">
+        <ion-thumbnail item-start>
+          <img *ngIf="r.product.images" [src]="r.product.images[0]">
+        </ion-thumbnail>
+        <h2> Round ID: {{r.id}} </h2>
+        <p> Product Name: {{r.product.name}} </p>
+        <p> Status: {{r.status}} </p>
+        <p>{{r.drawCounts?.current}}/{{r.drawCounts?.target}}</p>
+        <!--p style="white-space: pre-wrap;">
         <span *ngFor="let d of user.draws[r.id]"> {{d}} </span>
       </p-->
-            <button ion-button clear item-end (click)="buyDraws(r)">Buy</button>
-            <button ion-button clear item-end color="secondary" (click)="showAllDraws(r.id)">Show</button>
-        </ion-item>
+        <button ion-button clear item-end (click)="buyDraws(r)">Buy</button>
+        <button ion-button clear item-end color="secondary" (click)="showAllDraws(r.id)">Show</button>
+      </ion-item>
 
-        <ion-item *ngFor="let r of processingRounds">
-            <ion-thumbnail item-start>
-                <img *ngIf="r.product.images" [src]="r.product.images[0]">
-            </ion-thumbnail>
-            <h2> Round ID: {{r.id}} </h2>
-            <p> Product Name: {{r.product.name}} </p>
-            <p> Status: <span style="color: red;">{{r.status}}</span> </p>
-            <p *ngIf="r.status == 'processing'"> Count Down: {{r.countDown | async}}</p>
-            <p *ngIf="r.status == 'end'"> Result: {{r.result}}</p>
-            <button ion-button clear item-end (click)="restartCountDown(r)">Restart Count Down</button>
-        </ion-item>
+      <ion-item *ngFor="let r of processingRounds">
+        <ion-thumbnail item-start>
+          <img *ngIf="r.product.images" [src]="r.product.images[0]">
+        </ion-thumbnail>
+        <h2> Round ID: {{r.id}} </h2>
+        <p> Product Name: {{r.product.name}} </p>
+        <p> Status:
+          <span style="color: red;">{{r.status}}</span>
+        </p>
+        <p *ngIf="r.status == 'processing'"> Count Down: {{r.countDown | async}}</p>
+        <p *ngIf="r.status == 'end'"> Result: {{r.result}}</p>
+        <button ion-button clear item-end (click)="restartCountDown(r)">Restart Count Down</button>
+      </ion-item>
 
-        <ion-item-divider color="light">Top-up</ion-item-divider>
-        <ion-item>
-            <ion-label fixed color="dark">Amount</ion-label>
-            <ion-input type="number" [(ngModel)]="amount"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label>Top-up for other</ion-label>
-            <ion-toggle [(ngModel)]="bIsForOther"></ion-toggle>
-        </ion-item>
-        <ion-item [hidden]="!bIsForOther">
-            <ion-label>Users</ion-label>
-            <ion-select [(ngModel)]="selectedId">
-                <ion-option value="007">Test User</ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item text-center>
-            <button ion-button clear (click)="makePayment(amount, bIsForOther, selectedId)">Make Payment</button>
-        </ion-item>
-    </ion-item-group>
+
+      <ion-item-divider color="light">Top-up</ion-item-divider>
+      <ion-item>
+        <ion-label fixed color="dark">Amount</ion-label>
+        <ion-input type="number" [(ngModel)]="amount"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Top-up for other</ion-label>
+        <ion-toggle [(ngModel)]="bIsForOther"></ion-toggle>
+      </ion-item>
+      <ion-item [hidden]="!bIsForOther">
+        <ion-label>Users</ion-label>
+        <ion-select [(ngModel)]="selectedId">
+          <ion-option value="007">Test User</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item text-center>
+        <button ion-button clear (click)="makePayment(amount, bIsForOther, selectedId)">Make Payment</button>
+      </ion-item>
+  </ion-item-group>
 </ion-content>

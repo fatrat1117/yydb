@@ -35,9 +35,9 @@ export class ApiTestsPage {
     private loadingCtrl: LoadingController, private alertCtrl: AlertController, private modalCtrl: ModalController,
     private iab: InAppBrowser, private toastCtrl: ToastController) {
 
-      // MUST DO: bound function, assign to internal prop and then use it
-      this.onPreparingRoundsReady = this.onPreparingRoundsReady.bind(this);
-      this.onProcessingRoundsReady = this.onProcessingRoundsReady.bind(this);
+    // MUST DO: bound function, assign to internal prop and then use it
+    this.onPreparingRoundsReady = this.onPreparingRoundsReady.bind(this);
+    this.onProcessingRoundsReady = this.onProcessingRoundsReady.bind(this);
   }
 
   ionViewDidLoad() {
@@ -171,4 +171,10 @@ export class ApiTestsPage {
     }
     const browser = this.iab.create(url, "_blank", options);
   }
+
+  showHistory() {
+
+  }
+
+
 }
