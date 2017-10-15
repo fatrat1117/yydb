@@ -29,11 +29,7 @@ export class SearchPage {
   //cardsdata = {};
   //mobiledata;
   tabBarElement: any;
-  /*
-  countdown = {
-    hours: 0, minutes: 0, seconds: 0
-  };
-  */
+ 
 
   round: Round;
 
@@ -185,38 +181,7 @@ export class SearchPage {
     this.navCtrl.push(TableViewPage);
   }
 
-  /*
-  getCountDown(secs) {
-    var self = this;
-    var t = new Date();
-    t.setSeconds(secs);
-
-    var now = moment().unix();
-    var then = moment(t, 'DD-MM-YYYY HH:mm:ss').unix();
-
-
-    var diffTime = then - now;
-    var duration = moment.duration(diffTime * 1000, 'milliseconds');
-    var interval = 1000;
-
-
-    if (diffTime > 0) {
-
-      var int = setInterval(function () {
-        duration = moment.duration(+duration.asMilliseconds() - interval, 'milliseconds');
-
-        self.countdown.hours = moment.duration(duration).hours();
-        self.countdown.minutes = moment.duration(duration).minutes();
-        self.countdown.seconds = moment.duration(duration).seconds();
-
-        if (self.countdown.hours === 0 && self.countdown.minutes === 0 && self.countdown.seconds === 0) clearInterval(int);
-      }, interval);
-
-
-    }
-  }
-  */
-
+ 
   getMinutes(seconds: number) {
     if (seconds == null)
       return 0;

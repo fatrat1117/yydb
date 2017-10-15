@@ -6,7 +6,7 @@ import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/databa
 import { Round } from '../../models/round';
 import { RoundsService } from '../../providers/providers'
 import { TableViewPage } from '../table-view/table-view';
-import { ProductsService } from '../../providers/products/products';
+
 import { SearchPage } from '../search/search';
 
 @IonicPage()
@@ -15,12 +15,12 @@ import { SearchPage } from '../search/search';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  products: FirebaseListObservable<any>;
+  
   preparingRounds: Round[];
-  constructor(public navCtrl: NavController, private rs: RoundsService, public productService: ProductsService, public modalCtrl: ModalController, af: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, private rs: RoundsService, public modalCtrl: ModalController, af: AngularFireDatabase) {
     this.onPreparingRoundsReady = this.onPreparingRoundsReady.bind(this);
-    this.products = this.productService.getAllProducts();
-    console.log(this.products);
+    
+    
   }
   /**
    * The view loaded, let's query our items for the list
