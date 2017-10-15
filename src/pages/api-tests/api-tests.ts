@@ -28,6 +28,7 @@ export class ApiTestsPage {
   user: User;
   preparingRounds: Round[];
   processingRounds: Round[];
+  historyRounds: Round[];
 
   timer: number;
 
@@ -172,8 +173,12 @@ export class ApiTestsPage {
     const browser = this.iab.create(url, "_blank", options);
   }
 
-  showHistory() {
-
+  refreshHistory() {
+    this.historyRounds = [];
+    let callback = (rounds => {
+      this.historyRounds = rounds;
+    })
+    this.rs.getHistoryRounds(callback);
   }
 
 

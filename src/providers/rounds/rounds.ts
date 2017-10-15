@@ -63,6 +63,58 @@ export class RoundsService {
     }
   }
 
+  getHistoryRounds(success_Callback) {
+    let history: Round[];
+    history = [];
+    let subs = this.api.getList(`/users-expenses/${this.us.currentUser.id}`).subscribe(snapshots => {
+      subs.unsubscribe();
+      snapshots.forEach(s => {
+        let roundId = s.$key;
+        this.us.updateDrawsOfRound(roundId);
+
+        let round = this.getLocalRound(roundId);
+        if (round) {
+          history.push(round);
+          if (history.length == snapshots.length) {
+            success_Callback(history);
+          }
+          return;
+        }
+
+        let subs1 = this.api.getObject(`/rounds/${roundId}`).subscribe(r => {
+          subs1.unsubscribe();
+          let callback = (p => {
+            history.push(this.createNewRound(r, p));
+            if (history.length == snapshots.length) {
+              success_Callback(history);
+            }
+          })
+            this.ps.getProductById(r.product_id, callback);
+        })
+      })
+    })
+  }
+
+
+
+  /************************************************************/
+  /** All functions below should not be used directly in UI */
+  /************************************************************/
+
+  getLocalRound(id: string) {
+    let round: Round;
+    if (this.preparingRounds) {
+      round = this.preparingRounds.find(r => r.id == id);
+    }
+
+    if (!round && this.processingRounds) {
+      round = this.processingRounds.find(r => r.id == id);
+    }
+
+    return round;
+  }
+
+
   getRounds_Internal(status: string) {
     const query = {
       query: {
@@ -132,6 +184,7 @@ export class RoundsService {
       })
     })
   }
+
 
 
   /** Test only APIs */

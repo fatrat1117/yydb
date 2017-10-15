@@ -13,7 +13,16 @@
       </ion-thumbnail>
       <h2>Name: {{user?.name}}</h2>
       <p>Balance: {{user?.balance}}</p>
-      <!--button ion-button clear item-end (click)="showHistory()">Show History</button-->
+      <button ion-button clear item-end (click)="refreshHistory()">Refresh History</button>
+    </ion-item>
+    <ion-item *ngFor="let r of historyRounds">
+      <ion-thumbnail item-start>
+        <img *ngIf="r.product.images" [src]="r.product.images[0]">
+      </ion-thumbnail>
+      <h2> Round ID: {{r.id}} </h2>
+      <p> Product Name: {{r.product.name}} </p>
+      <p> Draw Price: {{r.drawPrice}} </p>
+      <p> Draws: {{user.draws[r.id]}} </p>
     </ion-item>
 
     <!-->
