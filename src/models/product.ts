@@ -6,10 +6,8 @@ export class  Product {
   histories: string[];
   participants = 0;
 
-  constructor(id: string, name: string) {
+  constructor(id: string) {
     this.id = id;
-    this.name = name;
-
   }
  
 }

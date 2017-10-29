@@ -8,8 +8,6 @@ import { Product } from '../../models/product';
 export class ProductsService {
   localProducts: { [id: string]: Product; };
 
-  productsMap = {};
-
   constructor(public api: Api) {
     this.localProducts = {};
   }
@@ -20,7 +18,8 @@ export class ProductsService {
     }
     else {
       let subs = this.getProductById_Internal(id).subscribe(snapshot => {
-        let p = new Product(snapshot.$key, snapshot.name);
+        let p = new Product(snapshot.$key);
+        p.name = snapshot.name;
         if (snapshot.images) {
           p.images = snapshot.images;
         }
@@ -33,6 +32,10 @@ export class ProductsService {
 
   getProductById_Internal(id: string) {
     return this.api.getObject(`/products/${id}`);
+  }
+
+  getLaunchedProduct(id) {
+    return this.api.getObject(`/launched-products/${id}`);
   }
 
   addProduct(data) {
@@ -51,7 +54,7 @@ export class ProductsService {
   }
 
   getProduct(id) {
-    return this.productsMap[id];
+    return this.localProducts[id];
     //return this.api.getList('/products/', id);
   }
 
@@ -60,10 +63,55 @@ export class ProductsService {
       this.api.fireCustomEvent("productready", id);
     }
     else {
-        this.getProductById_Internal(id).subscribe(product => {
-          this.productsMap[id] = product;
+        this.getProductById_Internal(id).subscribe(p => {
+          let prod = this.findOrCreate(id);
+          prod.name = p.name;
+          prod.price = p.price;
+          prod.images = p.images;
           this.api.fireCustomEvent("productready", id);
         });
+
+        this.getLaunchedProduct(id).subscribe(p => {
+          let prod = this.findOrCreate(id);
+          prod.participants = p.participants;
+        });
     }
+  }
+
+  findOrCreate(id): Product {
+    let prod;
+    if (this.getProduct(id))
+      prod = this.getProduct(id);
+    else {
+      prod = new Product(id);
+      this.localProducts[id] = prod;
+    }
+    return prod;
+  }
+
+  findOrCreateAndPull(id): Product {
+    let prod;
+    if (this.getProduct(id))
+      prod = this.getProduct(id);
+    else {
+      prod = new Product(id);
+      this.localProducts[id] = prod;
+      this.getProductAsync(id);
+    }
+    return prod;
+  }
+
+  getLaunchedProducts(successCb) {
+    let sub = this.api.getList('/launched-products/').subscribe(launchedProducts => {
+      sub.unsubscribe();
+      let products = [];
+      launchedProducts.forEach(p => {
+        let id = p.$key;
+        let prod = this.findOrCreateAndPull(id);
+        products.push(prod);
+        successCb(products);
+        //prod.participants = p.participants;
+      });
+    });
   }
 }
