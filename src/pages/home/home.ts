@@ -4,7 +4,7 @@ import { IonicPage, ModalController, NavController } from 'ionic-angular';
 import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
 
 import { Round } from '../../models/round';
-import { RoundsService } from '../../providers/providers'
+import { ProductsService } from '../../providers/providers'
 import { TableViewPage } from '../table-view/table-view';
 
 import { SearchPage } from '../search/search';
@@ -15,41 +15,46 @@ import { SearchPage } from '../search/search';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  
-  preparingRounds: Round[];
-  constructor(public navCtrl: NavController, private rs: RoundsService, public modalCtrl: ModalController, af: AngularFireDatabase) {
-    this.onPreparingRoundsReady = this.onPreparingRoundsReady.bind(this);
-    
-    
+  launchedProducts = [];
+  //preparingRounds: Round[];
+  constructor(public navCtrl: NavController, 
+  public modalCtrl: ModalController, 
+  private ps: ProductsService) {
+    //this.onPreparingRoundsReady = this.onPreparingRoundsReady.bind(this);
   }
   /**
    * The view loaded, let's query our items for the list
    */
   ionViewDidLoad() {
     // always call this 1st!
-    this.addEventListeners();
-    this.rs.getPreparingRounds();
+    //this.addEventListeners();
+    //this.rs.getPreparingRounds();
+    // let cb = products => {
+    //   this.launchedProducts = products;
+    //   console.log(this.launchedProducts);
+    // }
+    this.launchedProducts = this.ps.getLaunchedProducts();
   }
 
   ionViewWillUnload() {
-    this.removeEventListeners();
+    //this.removeEventListeners();
   }
 
   addEventListeners() {
     //console.log('MePage Loaded');
-    document.addEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
+    //document.addEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
   }
 
   removeEventListeners() {
-    document.removeEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
+    //document.removeEventListener('PreparingRoundsReady', this.onPreparingRoundsReady);
   }
 
   onPreparingRoundsReady(data: Event) {
-    this.preparingRounds = data['detail'];
+    //this.preparingRounds = data['detail'];
   }
 
   tablepage() {
-    console.log('click');
+    //console.log('click');
     this.navCtrl.push(TableViewPage);
   }
 

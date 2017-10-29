@@ -32,6 +32,7 @@ export class Api {
   }
 
   fireCustomEvent(name: string, data: any) {
+    console.log(name, data);
     var event = new CustomEvent(name, { detail: data });
     document.dispatchEvent(event);
   }

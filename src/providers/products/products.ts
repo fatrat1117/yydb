@@ -7,27 +7,28 @@ import { Product } from '../../models/product';
 @Injectable()
 export class ProductsService {
   localProducts: { [id: string]: Product; };
+  launchedProducts = [];
 
   constructor(public api: Api) {
     this.localProducts = {};
   }
 
   getProductById(id: string, success_Callback) {
-    if (this.localProducts[id]) {
-      success_Callback(this.localProducts[id]);
-    }
-    else {
-      let subs = this.getProductById_Internal(id).subscribe(snapshot => {
-        let p = new Product(snapshot.$key);
-        p.name = snapshot.name;
-        if (snapshot.images) {
-          p.images = snapshot.images;
-        }
-        this.localProducts[id] = p;
-        subs.unsubscribe();
-        success_Callback(this.localProducts[id]);
-      })
-    }
+    // if (this.localProducts[id]) {
+    //   success_Callback(this.localProducts[id]);
+    // }
+    // else {
+    //   let subs = this.getProductById_Internal(id).subscribe(snapshot => {
+    //     let p = new Product(snapshot.$key);
+    //     p.name = snapshot.name;
+    //     if (snapshot.images) {
+    //       p.images = snapshot.images;
+    //     }
+    //     this.localProducts[id] = p;
+    //     subs.unsubscribe();
+    //     success_Callback(this.localProducts[id]);
+    //   })
+    // }
   }
 
   getProductById_Internal(id: string) {
@@ -54,16 +55,19 @@ export class ProductsService {
   }
 
   getProduct(id) {
+    //console.log(this.localProducts[id]);
     return this.localProducts[id];
     //return this.api.getList('/products/', id);
   }
 
   getProductAsync(id) {
     if (this.getProduct(id)) {
+      //console.log('productready');
       this.api.fireCustomEvent("productready", id);
     }
     else {
         this.getProductById_Internal(id).subscribe(p => {
+          console.log(p);
           let prod = this.findOrCreate(id);
           prod.name = p.name;
           prod.price = p.price;
@@ -72,6 +76,7 @@ export class ProductsService {
         });
 
         this.getLaunchedProduct(id).subscribe(p => {
+          //console.log(p);
           let prod = this.findOrCreate(id);
           prod.participants = p.participants;
         });
@@ -95,23 +100,24 @@ export class ProductsService {
       prod = this.getProduct(id);
     else {
       prod = new Product(id);
-      this.localProducts[id] = prod;
       this.getProductAsync(id);
+      this.localProducts[id] = prod;
     }
     return prod;
   }
 
-  getLaunchedProducts(successCb) {
+  getLaunchedProducts() {
     let sub = this.api.getList('/launched-products/').subscribe(launchedProducts => {
       sub.unsubscribe();
-      let products = [];
+      this.launchedProducts.splice(0);
       launchedProducts.forEach(p => {
         let id = p.$key;
         let prod = this.findOrCreateAndPull(id);
-        products.push(prod);
-        successCb(products);
+        this.launchedProducts.push(prod);
         //prod.participants = p.participants;
       });
     });
+
+    return this.launchedProducts;
   }
 }
