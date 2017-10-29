@@ -8,6 +8,8 @@ import { Product } from '../../models/product';
 export class ProductsService {
   localProducts: { [id: string]: Product; };
 
+  productsMap = {};
+
   constructor(public api: Api) {
     this.localProducts = {};
   }
@@ -34,7 +36,7 @@ export class ProductsService {
   }
 
   addProduct(data) {
-    return this.api.insert('/product/', data);
+    return this.api.insert('/products/', data);
   }
 
   editProduct(id, data) {
@@ -45,23 +47,23 @@ export class ProductsService {
   }
 
   getAllProducts() {
-    return this.api.getList('/product/');
+    return this.api.getList('/products/');
   }
 
   getProduct(id) {
-    return this.api.getList('/product/', id);
+    return this.productsMap[id];
+    //return this.api.getList('/products/', id);
   }
 
-  /*
-      this.products.subscribe(snapshots => {
-        console.log(this.products);
-        
-        snapshots.forEach(p => {
-          this.api.log(p.$key);
-        })
-      })
-  
-      return this.products;
+  getProductAsync(id) {
+    if (this.getProduct(id)) {
+      this.api.fireCustomEvent("productready", id);
     }
-    */
+    else {
+        this.getProductById_Internal(id).subscribe(product => {
+          this.productsMap[id] = product;
+          this.api.fireCustomEvent("productready", id);
+        });
+    }
+  }
 }
