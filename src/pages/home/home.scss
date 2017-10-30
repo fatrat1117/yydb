@@ -4,18 +4,42 @@ page-home {
 .bannerdetail {    text-align: center;padding: 7px 0;}
 .products-heading {    background: #f3f3f3;    text-align: center;    font-size: 24px;    color: color($colors,danger);   padding:10px 0 7px 0px;}
 .products-heading ion-icon {    font-size: 16px;}
-.button-md.button-outline {    height: 26px;    padding: 0 4px;	margin: 0 0;    float: right;    position: relative;    bottom: 23px;}
+.button-md.button-outline {    height: 26px;    padding: 0 4px;	margin: 0; background: white; }
 span.button-inner{font-size:10px;}
-.progress {    height: 11px;    width: 60%;    margin: 0;    position: relative;    bottom: 9px;    background: #ececec;    border-radius: 16px;}
 .row{	margin:0 0 0 0;}
-.progress-bar{    background-color: #ff8d30;height: 10px;}
 ion-grid.main-custom-grid.grid .row .col {    background: #f3f3f3;}
-.innercolumn {    padding: 6px;    background: #fff;}
+.innercolumn {    padding: 5px;    background: #fff;}
 ion-grid.main-custom-grid.grid {    padding: 0;}
 .scrolltop {    background: rgba(243, 243, 243, 0.86);width: 100%;    float: left;}
 .scrolltop img {    margin: 0px 16px 5px 0px;float: right;    height: 50px;}
 button.popoverclick {    position: absolute;    right: 30px;    background: transparent; top: 16px;    font-size: 24px;}
-.progress-bar span.sr-only {    color: transparent;    opacity: 0;}
 .products-heading ion-label.label.label-md.label-md-danger {    display: unset;}
 ion-header.header.header-md {    text-align: center;}
+
+p {
+  margin: 1px 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bottom-col .row .col{padding: 0; background: white !important;}
+
+.progress-outer {
+  width: 96%;
+  margin: 5px 1%;
+  text-align: center;
+  background-color: transparent;
+  border: 1px solid #dcdcdc;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.progress-inner {
+  min-width: 15%;
+  height: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  border-radius: 10px;
+  background-color: #ff8d30;
+}
 }
