@@ -193,4 +193,8 @@ export class SearchPage {
       return 0;
     return seconds % 60;
   }
+
+  draw() {
+    
+  }
 }
