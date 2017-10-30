@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, MenuController, NavController, Platform, NavParams } from 'ionic-angular';
+import { IonicPage, MenuController, NavController, Platform, NavParams, ModalController } from 'ionic-angular';
 
 import { TranslateService } from '@ngx-translate/core';
 import { RoundsService } from '../../providers/rounds/rounds';
 import { Round } from '../../models/round'
+import { QuantityComponent } from '../../components/quantity/quantity';
 
 import { ListPage } from '../list/list';
 import { TableViewPage } from '../table-view/table-view';
@@ -33,7 +34,7 @@ export class SearchPage {
 
   round: Round;
 
-  constructor(public navCtrl: NavController, public menu: MenuController, translate: TranslateService, public platform: Platform, public navParams: NavParams, public rs: RoundsService) {
+  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public menu: MenuController, translate: TranslateService, public platform: Platform, public navParams: NavParams, public rs: RoundsService) {
 
 
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
@@ -195,6 +196,7 @@ export class SearchPage {
   }
 
   draw() {
-    
+    let drawModal = this.modalCtrl.create(QuantityComponent, { page: 'add' });
+    drawModal.present();
   }
 }

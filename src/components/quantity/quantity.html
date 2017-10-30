@@ -7,28 +7,32 @@
                 <p class="title">Add quantity</p>
             </div>
             <div margin class="popup-content">
-                <div class="q-buttons">
-                    <button ion-button icon-only (click)="increment()">
-               <ion-icon name="add" ></ion-icon>
-                </button>
-                    <input type="number" [(ngModel)]="quantity">
-                    <button ion-button icon-only (click)="decrement()">
-              <ion-icon name="remove" ></ion-icon>
-                </button>
+                <ion-row class="q-buttons">
 
-                </div>
+                    <ion-col no-margin no-padding col-3>
 
-                <div class="numbers">
-                    <button *ngFor="let n of numbers" (click)="changeNum(n.number)" class="" ion-button>
-                     {{n.number}}
-                </button>
+                        <button float-right ion-button icon-only (click)="increment()">
+                        <ion-icon name="add" ></ion-icon>
+                    </button>
+                    </ion-col>
+                    <input no-margin col-6 type="number" [(ngModel)]="quantity">
 
+                    <ion-col no-margin no-padding col-3>
+                        <button float-left ion-button icon-only (click)="decrement()">
+                                <ion-icon name="remove" ></ion-icon>
+                        </button>
+                    </ion-col>
 
-
-
-
-                </div>
+                </ion-row>
+                <ion-row class="numbers">
+                    <ion-col *ngFor="let n of numbers" col-3>
+                        <button (click)="changeNum(n.number)" class="" ion-button>
+                            {{n.number}}
+                        </button>
+                    </ion-col>
+                </ion-row>
             </div>
+
             <div padding-horizontal class="info">
                 <p>Lorem: <span>60k</span></p>
                 <p>Ipsum: <span>0k</span></p>
@@ -52,31 +56,31 @@
 
         <div *ngIf="page == 'other'">
 
-            <div class="popup-header">
-                <p class="title">Add quantity</p>
-            </div>
             <div margin class="popup-content">
-                <div class="q-buttons">
-                    <button ion-button icon-only (click)="increment()">
-               <ion-icon name="add" ></ion-icon>
-                </button>
-                    <input type="number" [(ngModel)]="quantity">
-                    <button ion-button icon-only (click)="decrement()">
-              <ion-icon name="remove" ></ion-icon>
-                </button>
+                <ion-row class="q-buttons">
 
-                </div>
+                    <ion-col no-margin no-padding col-3>
 
-                <div class="numbers">
-                    <button *ngFor="let n of numbers" (click)="changeNum(n.number)" class="" ion-button>
-                     {{n.number}}
-                </button>
+                        <button float-right ion-button icon-only (click)="increment()">
+                                <ion-icon name="add" ></ion-icon>
+                            </button>
+                    </ion-col>
+                    <input no-margin col-6 type="number" [(ngModel)]="quantity">
 
+                    <ion-col no-margin no-padding col-3>
+                        <button float-left ion-button icon-only (click)="decrement()">
+                                        <ion-icon name="remove" ></ion-icon>
+                                </button>
+                    </ion-col>
 
-
-
-
-                </div>
+                </ion-row>
+                <ion-row class="numbers">
+                    <ion-col *ngFor="let n of numbers" col-3>
+                        <button (click)="changeNum(n.number)" class="" ion-button>
+                                    {{n.number}}
+                                </button>
+                    </ion-col>
+                </ion-row>
             </div>
 
             <div text-center margin padding-vertical>
