@@ -38,6 +38,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { SelectCountryComponent } from '../components/select-country/select-country';
 import { QuantityComponent } from '../components/quantity/quantity';
+import { TopupComponent } from '../components/topup/topup';
 import { ProductCrudComponent } from '../components/product-crud/product-crud';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
@@ -90,6 +91,7 @@ export function provideSettings(storage: Storage) {
     ForgotPasswordPage,
     SelectCountryComponent,
     QuantityComponent,
+    TopupComponent,
     ProductCrudComponent,
     AddressListPage,
     EditAddressPage,
@@ -137,6 +139,7 @@ export function provideSettings(storage: Storage) {
     AddressListPage,
     AddAdressPage,
     EditAddressPage,
+    TopupComponent,
     
     ProductsPage
     

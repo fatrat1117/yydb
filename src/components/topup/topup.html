@@ -1,0 +1,42 @@
+<div class="back-drop">
+    <div class="popup">
+
+
+        <div class="popup-header">
+            <p class="title">Topup</p>
+        </div>
+        <div margin class="popup-content">
+            <ion-list>
+                <ion-item>
+                    <ion-input placeholder="Enter amount" name="n" [(ngModel)]="amount" type="text"></ion-input>
+
+                </ion-item>
+                <ion-item no-padding no-margin>
+                    <ion-grid margin-top>
+                        <ion-row no-margin no-padding>
+                            <ion-col no-padding text-center col-4>
+                                <button color="light" ion-button (click)="setAmount(2000)"><ion-icon name="pricetags"></ion-icon> &nbsp; 2000</button>
+                            </ion-col>
+                            <ion-col no-padding text-center col-4>
+                                <button color="light" ion-button (click)="setAmount(4000)"><ion-icon name="pricetags"></ion-icon> &nbsp; 4000</button>
+                            </ion-col>
+                            <ion-col no-padding text-right col-4>
+                                <button color="light" float-right ion-button (click)="setAmount(6000)"><ion-icon name="pricetags"></ion-icon> &nbsp; 6000</button>
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </ion-item>
+            </ion-list>
+            <ion-row margin-vertical no-padding>
+                <ion-col col-12>
+                    <button ion-button color="danger" (click)="topup()" block>Buy</button>
+                </ion-col>
+            </ion-row>
+
+        </div>
+
+        <button class="close" ion-button icon-only (click)="close()">
+            <ion-icon ios="ios-close-circle" md="md-close-circle"></ion-icon>
+         </button>
+    </div>
+</div>

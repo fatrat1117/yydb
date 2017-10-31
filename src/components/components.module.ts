@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { SelectCountryComponent } from './select-country/select-country';
 import { QuantityComponent } from './quantity/quantity';
+import { TopupComponent } from './topup/topup';
 @NgModule({
 	declarations: [SelectCountryComponent,
-    QuantityComponent],
+    QuantityComponent,
+    TopupComponent],
 	imports: [],
 	exports: [SelectCountryComponent,
-    QuantityComponent]
+    QuantityComponent,
+    TopupComponent]
 })
 export class ComponentsModule {}

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DEFAULT_AVATAR, CUSTOMER_SERVICE } from "../../providers/Constants";
 import { FeedPage } from '../feed/feed';
 import { QuantityComponent } from '../../components/quantity/quantity';
+import { TopupComponent } from '../../components/topup/topup';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../login/login';
 import { BindPhonePage } from '../bind-phone/bind-phone';
@@ -81,6 +82,10 @@ export class MinePage {
   }
    addressPage() {
     this.navCtrl.push(AddressListPage);
+  }
+  topup() {
+    let topupModal = this.modalCtrl.create(TopupComponent);
+    topupModal.present();
   }
   addQuantityModal() {
     let quantityModal = this.modalCtrl.create(QuantityComponent, { page: 'add' });
