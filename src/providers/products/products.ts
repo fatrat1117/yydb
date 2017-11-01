@@ -72,14 +72,15 @@ export class ProductsService {
           prod.name = p.name;
           prod.price = p.price;
           prod.images = p.images;
+          prod.participants = p.participants;
           this.api.fireCustomEvent("productready", id);
         });
 
-        this.getLaunchedProduct(id).subscribe(p => {
-          //console.log(p);
-          let prod = this.findOrCreate(id);
-          prod.participants = p.participants;
-        });
+        // this.getLaunchedProduct(id).subscribe(p => {
+        //   //console.log(p);
+        //   let prod = this.findOrCreate(id);
+        //   prod.participants = p.participants;
+        // });
     }
   }
 
