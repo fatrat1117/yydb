@@ -19,75 +19,75 @@ declare var snap: any;
 export class TopupComponent {
 
   text: string;
-  amount:any;
-  tokem:any;
-  loader:any;
-  constructor(public viewCtrl: ViewController , public loadCtrl:LoadingController , public http:Http, public params: NavParams, public translateService: TranslateService,) {    
+  amount: any;
+  tokem: any;
+  loader: any;
+  constructor(public viewCtrl: ViewController, public loadCtrl: LoadingController, public http: Http, public params: NavParams, public translateService: TranslateService, ) {
     console.log('Hello TopupComponent Component');
     this.text = 'Hello World';
   }
-  topup(){
-     this.loader = this.loadCtrl.create({
+  topup() {
+    this.loader = this.loadCtrl.create({
       content: "Please wait..."
-    });  
-this.loader.present();
-    let headers = new Headers(
-    {
-      'Content-Type' : 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Basic U0ItTWlkLXNlcnZlci1fMGFaREVBcWdQX2xiVEZUUWYzYzlMSEo6'
     });
+    this.loader.present();
+    let headers = new Headers(
+      {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Basic U0ItTWlkLXNlcnZlci1fMGFaREVBcWdQX2xiVEZUUWYzYzlMSEo6'
+      });
     let options = new RequestOptions({ headers: headers });
-  
+
     let data = JSON.stringify({
       "transaction_details": {
-        
+
         'order_id': Math.floor(100000 + Math.random() * 900000),
         'gross_amount': this.amount
-      }, 
-       "credit_card": {
-         "secure": true
-       }
+      },
+      "credit_card": {
+        "secure": true
+      }
     });
-  
-    return this.http.post('/v1', data, options)
-    .subscribe(response =>{
-    // console.log(response);
 
-     this.pay(response.json().token);
-     this.loader.dismiss();
-     
-     }, err => {
-      
-         // console.log('err');
-        });
-     
-   
+    return this.http.post('/v1', data, options)
+      .subscribe(response => {
+        // console.log(response);
+
+        this.pay(response.json().token);
+        this.loader.dismiss();
+
+      }, err => {
+
+        // console.log('err');
+      });
+
+
   }
-  setAmount(amnt){
-    this.amount= amnt;
+  setAmount(amnt) {
+    this.amount = amnt;
   }
   close() {
     this.viewCtrl.dismiss();
   }
-  pay(token){
+  pay(token) {
     snap.pay(token, {
-      onSuccess: function(result){
-         this.viewCtrl.dismiss();
-    
-        console.log('success');console.log(result);
-        
+      onSuccess: function (result) {
+        this.viewCtrl.dismiss();
+
+        console.log('success'); console.log(result);
+
       },
-      onPending: function(result){
-        console.log('pending');console.log(result);
+      onPending: function (result) {
+        console.log('pending'); console.log(result);
       },
-      onError: function(result){
-        console.log('error');console.log(result);
+      onError: function (result) {
+        console.log('error'); console.log(result);
       },
-      onClose: function(){
+      onClose: function () {
         console.log('customer closed the popup without finishing the payment');
       }
-      })
-    
+    })
+
   }
 }
