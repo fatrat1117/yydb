@@ -73,6 +73,7 @@ export class ProductsService {
           prod.price = p.price;
           prod.images = p.images;
           prod.participants = p.participants;
+          prod.progress = p.participants * 100 / p.price
           this.api.fireCustomEvent("productready", id);
         });
 
