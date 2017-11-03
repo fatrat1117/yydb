@@ -49,8 +49,14 @@ export class TopupComponent {
         "secure": true
       }
     });
-
-    return this.http.post('/v1', data, options)
+    let url  = ''
+    if ((<any>window).cordova) {
+      url = 'https://app.sandbox.midtrans.com/snap/v1/transactions';
+     
+   }else{
+      url = '/v1';
+   }
+    return this.http.post(url, data, options)
       .subscribe(response => {
         // console.log(response);
 
