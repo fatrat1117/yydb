@@ -59,7 +59,6 @@ export class HomePage {
   }
 
   viewRoundDetails(id: string) {
-    this.navCtrl.push(SearchPage, {id: id});
+    this.navCtrl.push(SearchPage, {productId: id});
   }
-
 }

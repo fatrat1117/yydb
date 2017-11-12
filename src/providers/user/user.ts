@@ -89,4 +89,9 @@ export class UserService {
   getDrawsOfRound_Internal(roundId: string) {
     return this.api.getList(`/users-expenses/${this.currentUser.id}/${roundId}/`);
   }
+
+  uid() {
+    if (this.currentUser)
+      return this.currentUser.id;
+  }
 }

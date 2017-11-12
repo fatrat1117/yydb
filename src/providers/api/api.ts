@@ -14,6 +14,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 @Injectable()
 export class Api {
   url: string = 'https://yydb-9a6c4.firebaseapp.com';
+  apiUrl = 'https://us-central1-yydb-9a6c4.cloudfunctions.net';
 
   options: InAppBrowserOptions = {
     location: 'no',
@@ -163,18 +164,18 @@ export class Api {
   */
 
   post(endpoint: string, body: any, options?: RequestOptions) {
-    return this.http.post(this.url + '/' + endpoint, body, options);
+    return this.http.post(this.apiUrl + '/' + endpoint, body, options);
   }
 
   put(endpoint: string, body: any, options?: RequestOptions) {
-    return this.http.put(this.url + '/' + endpoint, body, options);
+    return this.http.put(this.apiUrl + '/' + endpoint, body, options);
   }
 
   delete(endpoint: string, options?: RequestOptions) {
-    return this.http.delete(this.url + '/' + endpoint, options);
+    return this.http.delete(this.apiUrl + '/' + endpoint, options);
   }
 
   patch(endpoint: string, body: any, options?: RequestOptions) {
-    return this.http.put(this.url + '/' + endpoint, body, options);
+    return this.http.put(this.apiUrl + '/' + endpoint, body, options);
   }
 }

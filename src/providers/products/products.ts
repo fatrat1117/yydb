@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2/database';
-
+import { UserService } from '../../providers/providers';
 import { Api } from '../api/api';
 import { Product } from '../../models/product';
 
@@ -9,7 +9,9 @@ export class ProductsService {
   localProducts: { [id: string]: Product; };
   launchedProducts = [];
 
-  constructor(public api: Api) {
+  constructor(public api: Api,
+  //private userService: UserService
+  ) {
     this.localProducts = {};
   }
 
@@ -121,5 +123,15 @@ export class ProductsService {
     });
 
     return this.launchedProducts;
+  }
+
+  draw(productId, quantity) {
+    let body = {
+      productId: productId,
+      quantity: quantity,
+      //userId: this.userService.uid()
+    };
+
+    return this.api.put('draw', body);
   }
 }
