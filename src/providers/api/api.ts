@@ -1,10 +1,8 @@
 import 'rxjs/add/operator/map';
 
 import { Injectable } from '@angular/core';
-import { Http, RequestOptions, URLSearchParams } from '@angular/http';
+import { Http, RequestOptions, URLSearchParams, Headers } from '@angular/http';
 import { LoadingController, ToastController } from 'ionic-angular';
-
-
 import { InAppBrowser, InAppBrowserOptions } from '@ionic-native/in-app-browser';
 import { AngularFireDatabase } from 'angularfire2/database';
 
@@ -42,7 +40,7 @@ export class Api {
     return this.db.object(endpoint);
   }
   insert(endpoint: string, data) {
-   return this.db.list(endpoint).push(data);
+    return this.db.list(endpoint).push(data);
   }
 
 
@@ -167,7 +165,12 @@ export class Api {
     return this.http.post(this.apiUrl + '/' + endpoint, body, options);
   }
 
-  put(endpoint: string, body: any, options?: RequestOptions) {
+  put(endpoint: string, body: any) {
+    let options = new RequestOptions('PUT');
+    options.headers = new Headers({
+      'Content-Type': 'application/json',
+      //'Access-Control-Allow-Origin': '*/json'
+    });
     return this.http.put(this.apiUrl + '/' + endpoint, body, options);
   }
 
