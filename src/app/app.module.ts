@@ -145,9 +145,8 @@ export function provideSettings(storage: Storage) {
     
   ],
   providers: [
-    Api,
-    //AngularFire,
     ProductsService,
+    Api,
     RoundsService,
     UserService,
     Camera,

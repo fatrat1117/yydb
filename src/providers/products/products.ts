@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FirebaseListObservable } from 'angularfire2/database';
-import { UserService } from '../../providers/providers';
+import { UserService } from '../user/user';
 import { Api } from '../api/api';
 import { Product } from '../../models/product';
 
@@ -9,9 +9,7 @@ export class ProductsService {
   localProducts: { [id: string]: Product; };
   launchedProducts = [];
 
-  constructor(public api: Api,
-  //private userService: UserService
-  ) {
+  constructor(private userService: UserService, public api: Api) {
     this.localProducts = {};
   }
 
@@ -68,22 +66,22 @@ export class ProductsService {
       this.api.fireCustomEvent("productready", id);
     }
     else {
-        this.getProductById_Internal(id).subscribe(p => {
-          console.log(p);
-          let prod = this.findOrCreate(id);
-          prod.name = p.name;
-          prod.price = p.price;
-          prod.images = p.images;
-          prod.participants = p.participants;
-          prod.progress = p.participants * 100 / p.price
-          this.api.fireCustomEvent("productready", id);
-        });
+      this.getProductById_Internal(id).subscribe(p => {
+        console.log(p);
+        let prod = this.findOrCreate(id);
+        prod.name = p.name;
+        prod.price = p.price;
+        prod.images = p.images;
+        prod.participants = p.participants;
+        prod.progress = p.participants * 100 / p.price
+        this.api.fireCustomEvent("productready", id);
+      });
 
-        // this.getLaunchedProduct(id).subscribe(p => {
-        //   //console.log(p);
-        //   let prod = this.findOrCreate(id);
-        //   prod.participants = p.participants;
-        // });
+      // this.getLaunchedProduct(id).subscribe(p => {
+      //   //console.log(p);
+      //   let prod = this.findOrCreate(id);
+      //   prod.participants = p.participants;
+      // });
     }
   }
 
@@ -129,9 +127,9 @@ export class ProductsService {
     let body = {
       productId: productId,
       quantity: quantity,
-      //userId: this.userService.uid()
+      userId: this.userService.uid()
     };
-
+    console.log('draw', body);
     return this.api.put('draw', body);
   }
 }

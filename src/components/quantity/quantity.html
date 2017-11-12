@@ -43,7 +43,7 @@
                     
                   Sample Button</button>
                 <button color="danger" ion-button block>
-                    <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
+                    <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle" (click)='draw()'></ion-icon>&nbsp; 
                   SUBMIT
                 </button>
             </div>
@@ -88,7 +88,7 @@
                 <button class="grey" outline color="light" ion-button>
                     
                   Sample Button</button>
-                <button outline color="danger" ion-button block>
+                <button outline color="danger" ion-button block (click)='draw()'>
                     <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
                   SUBMIT
                 </button>
@@ -116,8 +116,8 @@
                 <p>Date: 2017-06-05 12:50</p>
                 <p>Lorem: 10001736</p>
 
-                <button text-center padding outline color="danger" ion-button block>
-                    <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle" (click) ='draw()'></ion-icon>&nbsp; 
+                <button text-center padding outline color="danger" ion-button block (click)='draw()'>
+                    <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
                   SUBMIT
                 </button>
 
