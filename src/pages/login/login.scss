@@ -67,6 +67,39 @@ page-login {
         /* border-top: 0.55px solid #c8c7cc; */
         border: none;
     }
+
+
+    .cc img {
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        vertical-align: middle;
+    }
+    .cc span {
+        font-size: 16px;
+        margin-top: 5px;
+        display: inline-block;
+    }
+    .cc a {
+        font-size: 15px;
+        margin-top: 5px;
+    }
+    .phone .item-inner {
+        border: none !important;
+        border-top: solid 1px #888;
+    }
+    .phone .label {
+        color: #888;
+        border-right: solid 1px #888;
+    }
+
+    .fs01 {
+        width: 80%;
+        margin: 0 auto;
+    }
+    .fs01 input {
+        text-align: center;
+    }
 }
 
 .scroll-content,

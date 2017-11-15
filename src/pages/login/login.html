@@ -30,7 +30,7 @@
         </ion-segment-button>
     </ion-segment>
     <div [ngSwitch]="cat">
-        <form *ngSwitchCase="'login'" (submit)="doLogin()" padding-horizontal>
+        <form *ngSwitchCase="'login-backup'" (submit)="doLogin()" padding-horizontal>
             <ion-list margin-horizontal>
 
                 <ion-item margin-top>
@@ -108,5 +108,63 @@
 
             </ion-list>
         </form>
+
+        <div *ngSwitchCase="'login'" >
+            <div id="recaptcha-container"></div>
+            <form *ngIf="!confirming" margin >
+                <ion-list margin-vertical>
+                    <ion-item padding-horizontal class="cc">
+                        <img src="assets/countries/{{phone.cc.code}}.png" width="30" alt="">
+                        <span>{{phone.cc.name}}</span>
+                        <a float-right (click)="selectCountry($event)">Change</a>
+                    </ion-item>
+                    <ion-item margin-vertical class="phone">
+        
+                        <ion-label margin-vertical padding-horizontal>
+        
+                            <span>{{phone.cc.dail_code}}</span>
+                        </ion-label>
+                        <ion-input type="number" placeholder="{{'BIND_PHONE_PH' | translate}}" [(ngModel)]="phone.num" name="phone"></ion-input>
+                        <button color="danger" ion-button block (click) = "getCode()">send SMS CODE</button>
+                    </ion-item>
+        
+                    <div margin padding-vertical>
+        
+                        <button color="danger" ion-button block (click) = "getCode()">
+                            <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
+                            {{ 'BIND_PHONE_BUTTON' | translate }}</button>
+                    </div>
+                    <fieldset padding-top class="social">
+                            <legend>{{'SOCIAL' | translate}}</legend>
+                            <div padding>
+                                <a (click) = "signinWithFacebook($event)"><img src="assets/img/facebook.png" alt=""></a>
+        
+                                <a (click) = "signinWithGoogle()"><img src="assets/img/g+.png" width=a lt=""></a>
+                            </div>
+        
+                    </fieldset>
+        
+                </ion-list>
+            </form>
+
+            <form *ngIf="confirming" margin (submit)="verifyCode()">
+                    
+                <ion-list margin padding-horizontal>
+                    <ion-item margin-top padding-top class="fs01">
+                        <ion-input type="number" placeholder="{{'VERIFY_PH' | translate}}" [(ngModel)]="phone.authCode" name="authCode"></ion-input>
+                    </ion-item>
+        
+                    <div margin padding-vertical>
+        
+                        <button color="danger" ion-button block>
+                            <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
+                            {{ 'VERIFY_BUTTON' | translate }}</button>
+                    </div>
+        
+        
+                </ion-list>
+            </form>
+
+        </div>
     </div>
 </ion-content>

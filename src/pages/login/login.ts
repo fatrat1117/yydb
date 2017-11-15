@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { IonicPage, NavController, NavParams, ToastController, Platform } from 'ionic-angular';
-import { ViewController } from 'ionic-angular';
+import { ViewController, PopoverController } from 'ionic-angular';
+import { SelectCountryComponent } from '../../components/select-country/select-country';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { UserService } from '../../providers/providers';
 import { MainPage } from '../pages';
@@ -16,6 +17,17 @@ import * as firebase from 'firebase/app';
   templateUrl: 'login.html'
 })
 export class LoginPage {
+
+  phone: { num: any, cc: any, authCode: string} = {
+    num: '', cc: {
+      "name": "China",
+      "dail_code": "+86",
+      "code": "CN",
+    },
+    authCode: ''
+  };
+
+
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
@@ -34,8 +46,12 @@ export class LoginPage {
   busy = false;
   private loginErrorString: string;
   bIsMobile;
+  public confirming: any;
+  public recaptchaVerifier: any;
+  public confirmationResult: any;
 
   constructor(public navCtrl: NavController,
+    public popoverCtrl: PopoverController,
     public userService: UserService,
     public toastCtrl: ToastController,
     public translateService: TranslateService,
@@ -55,6 +71,18 @@ export class LoginPage {
       this.cat = 'login';
   }
 
+  selectCountry(myEvent) {
+    let popover = this.popoverCtrl.create(SelectCountryComponent);
+    popover.present({
+      ev: myEvent
+    });
+    popover.onDidDismiss((popoverData) => {
+      if (popoverData != null) this.phone.cc = popoverData;
+
+      console.log(popoverData);
+    })
+  }
+
   // Attempt to login in through our User service
   // ionViewWillEnter() {
   //   this.tabBarElement.style.display = 'none';
@@ -65,6 +93,17 @@ export class LoginPage {
   // }
   ionViewDidLoad() {
     this.viewCtrl.setBackButtonText('');
+    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+      'size': 'invisible',
+      'callback': function(response) {
+        // reCAPTCHA solved, allow signInWithPhoneNumber.
+        // ...
+      },
+      'expired-callback': function() {
+        // Response expired. Ask user to solve reCAPTCHA again.
+        // ...
+      }
+    });
   }
 
   forgotPassword() {
@@ -110,5 +149,47 @@ export class LoginPage {
 
     dismiss() {
         this.viewCtrl.dismiss();
+    }
+
+    confirmNumber() {
+      // this.confirming = true;
+    }
+  
+    getCode() {
+      if(this.phone.num) {
+        this.confirmationResult = '';
+        const appVerifier = this.recaptchaVerifier;
+        console.log('dail_code=', this.phone.cc.dail_code);
+        const phoneNumberString = this.phone.cc.dail_code + this.phone.num;
+        console.log('get code, hp=', phoneNumberString);
+        firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
+          .then(confirmationResult => {
+            // SMS sent. Prompt user to type the code from the message, then sign the
+            // user in with confirmationResult.confirm(code).
+            this.confirming = true;
+            this.confirmationResult = confirmationResult;
+          })
+          .catch(function (error) {
+            console.error("SMS not sent", error);
+          });
+      }
+      
+    }
+
+    verifyCode() {
+      let code: string = this.phone.authCode;
+      if(code) {
+        this.confirmationResult.confirm(code).then(result => {
+          // User signed in successfully.
+          //var user = result.user;
+          // ...
+          this.dismiss();
+        }).catch(function (error) {
+          // User couldn't sign in (bad verification code?)
+          // ...
+          console.log(error);
+        });
+      }
+      
     }
 }
