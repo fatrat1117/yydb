@@ -30,7 +30,7 @@ import { SettingPage } from '../pages/setting/setting';
 import { AddressListPage } from '../pages/address-list/address-list';
 import { AddAdressPage } from '../pages/add-adress/add-adress';
 import { EditAddressPage } from '../pages/edit-address/edit-address';
-
+import { DrawDonePage } from '../pages/draw-done/draw-done';
 import { ProductsPage } from '../pages/products/products';
 
 import { AngularFireModule } from 'angularfire2';
@@ -97,7 +97,7 @@ export function provideSettings(storage: Storage) {
     EditAddressPage,
     AddAdressPage,
     Settingtab1Page,
-    
+    DrawDonePage,
     ProductsPage
   ],
   imports: [
@@ -115,7 +115,7 @@ export function provideSettings(storage: Storage) {
       }
     }),
     IonicStorageModule.forRoot(),
-    
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -128,7 +128,7 @@ export function provideSettings(storage: Storage) {
     SettingPage,
     SelectCountryComponent,
     QuantityComponent,
-    ProductCrudComponent,    
+    ProductCrudComponent,
     Settingtab1Page,
     ListPage,
     TableViewPage,
@@ -140,9 +140,9 @@ export function provideSettings(storage: Storage) {
     AddAdressPage,
     EditAddressPage,
     TopupComponent,
-    
+    DrawDonePage,
     ProductsPage
-    
+
   ],
   providers: [
     ProductsService,

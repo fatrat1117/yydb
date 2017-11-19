@@ -39,9 +39,10 @@ export class QuantityComponent {
 
   draw() {
     this.productsService.draw(this.productId, this.quantity).subscribe(res => {
-      console.log(res);
-      if (200 === res.status)
-        this.close();
+      this.viewCtrl.dismiss(res);
+      //console.log(res);
+      //if (200 === res.status)
+      //  this.close();
     });
   }
 }

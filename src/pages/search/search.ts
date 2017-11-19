@@ -6,6 +6,7 @@ import { Round } from '../../models/round'
 import { QuantityComponent } from '../../components/quantity/quantity';
 import { ListPage } from '../list/list';
 import { TableViewPage } from '../table-view/table-view';
+import { DrawDonePage } from '../../pages/draw-done/draw-done';
 import * as moment from 'moment/moment';
 
 export interface Slide {
@@ -87,6 +88,10 @@ export class SearchPage {
 
   draw() {
     let drawModal = this.modalCtrl.create(QuantityComponent, { page: 'add', productId: this.productId });
+    drawModal.onDidDismiss = e => {
+      let drawDone = this.modalCtrl.create(DrawDonePage, { drawResponse: e });
+      drawDone.present();
+    }
     drawModal.present();
   }
 }
