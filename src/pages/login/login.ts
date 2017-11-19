@@ -7,7 +7,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { UserService } from '../../providers/providers';
 import { MainPage } from '../pages';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
-import { Facebook } from 'ng2-cordova-oauth/core';
+import { Facebook, Google } from 'ng2-cordova-oauth/core';
 import { OauthCordova } from 'ng2-cordova-oauth/platform/cordova'
 import * as firebase from 'firebase/app';
 
@@ -42,6 +42,13 @@ export class LoginPage {
         clientId: "1729159120442368",
         appScope: ["email"]
     });
+
+  private googleProvider = new Google({
+    //apiUrl: 'https://www.googleapis.com/oauth2/v3/',
+    clientId: "496534747409-u5mivriodaqbrgt7v92ivbqcfunhakkf.apps.googleusercontent.com",
+    appScope: ["email"]
+  });  
+
   private cordovaOauth: OauthCordova = new OauthCordova();
   busy = false;
   private loginErrorString: string;
@@ -112,6 +119,9 @@ export class LoginPage {
 
   signinWithGoogle() {
     if (this.bIsMobile) {
+      // this.cordovaOauth.logInVia(this.googleProvider).then(g => {
+      //   console.log("google success: ", g);
+      // });
     } else
       this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(()=> {this.dismiss()});
   }
