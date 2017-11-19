@@ -88,10 +88,11 @@ export class SearchPage {
 
   draw() {
     let drawModal = this.modalCtrl.create(QuantityComponent, { page: 'add', productId: this.productId });
-    drawModal.onDidDismiss = e => {
-      let drawDone = this.modalCtrl.create(DrawDonePage, { drawResponse: e });
+    drawModal.onDidDismiss(data => {
+     // console.log('onDidDismiss', data);
+      let drawDone = this.modalCtrl.create(DrawDonePage, { drawResponse: data });
       drawDone.present();
-    }
+    });
     drawModal.present();
   }
 }

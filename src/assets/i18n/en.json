@@ -154,5 +154,13 @@
   "TICKET_NO":"ticket NO.",
   "SEX":"Sex",
   "BIRTHDAY":"Birthdy",
-  "drawnow": "Draw Now"
+  "drawnow": "Draw Now",
+  "drawsuccess": "Participate successful",
+  "participateagain": "Participate again",
+  "backtohome": "Back to Home",
+  "participatesuccess": "Successfully participate",
+  "times": "times",
+  "Poolnumber": "Pool number:",
+  "productname": "Product Name:",
+  "yourluckynumbers": "Your lucky numbers:"
 }
