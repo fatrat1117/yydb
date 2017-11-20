@@ -29,6 +29,7 @@ countriesInitial:any;
       // component
       .subscribe(data =>{ 
         this.countries = data.data;
+        this.countriesInitial = data.data;
       
       });
   }

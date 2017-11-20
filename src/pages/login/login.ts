@@ -9,6 +9,8 @@ import { MainPage } from '../pages';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import { Facebook, Google } from 'ng2-cordova-oauth/core';
 import { OauthCordova } from 'ng2-cordova-oauth/platform/cordova'
+import {Settings} from '../../providers/settings/settings'
+import { Storage } from '@ionic/storage';
 import * as firebase from 'firebase/app';
 
 @IonicPage()
@@ -66,6 +68,8 @@ export class LoginPage {
     public navParams: NavParams,
     public afAuth: AngularFireAuth,
     private platform: Platform,
+    private settings: Settings,
+    private storage: Storage
   ) {
     this.bIsMobile = !this.platform.is('mobileweb') && !this.platform.is('core');
 
@@ -111,6 +115,29 @@ export class LoginPage {
         // ...
       }
     });
+    
+  }
+
+
+  autoLogin() {
+    this.storage.get('phone_credential').then((val) => {
+      if(val) {
+        const credential:firebase.auth.AuthCredential = val;
+        console.log(credential);
+        this.afAuth.auth.signInWithCredential(credential)
+        .then(result => {
+          this.dismiss();
+          return true;
+        })
+        .catch(function (error) {
+          // console.log(error.credential);
+          this.storage.set('phone_credential', null);
+          
+        });
+      }
+    });
+
+    return false;
   }
 
   forgotPassword() {
@@ -172,12 +199,13 @@ export class LoginPage {
         console.log('dail_code=', this.phone.cc.dail_code);
         const phoneNumberString = this.phone.cc.dail_code + this.phone.num;
         console.log('get code, hp=', phoneNumberString);
-        firebase.auth().signInWithPhoneNumber(phoneNumberString, appVerifier)
+        this.afAuth.auth.signInWithPhoneNumber(phoneNumberString, appVerifier)
           .then(confirmationResult => {
             // SMS sent. Prompt user to type the code from the message, then sign the
             // user in with confirmationResult.confirm(code).
             this.confirming = true;
             this.confirmationResult = confirmationResult;
+            
           })
           .catch(function (error) {
             console.error("SMS not sent", error);
@@ -189,16 +217,48 @@ export class LoginPage {
     verifyCode() {
       let code: string = this.phone.authCode;
       if(code) {
-        this.confirmationResult.confirm(code).then(result => {
-          // User signed in successfully.
-          //var user = result.user;
-          // ...
-          this.dismiss();
-        }).catch(function (error) {
-          // User couldn't sign in (bad verification code?)
-          // ...
-          console.log(error);
+        const phoneCredential:firebase.auth.AuthCredential = firebase.auth.PhoneAuthProvider.credential(this.confirmationResult.verificationId, code);
+        this.storage.set('phone_credential', phoneCredential);
+        this.storage.get('phone_credential').then((val) => {
+          if(val) {
+            const credential:firebase.auth.AuthCredential = val;
+            this.afAuth.auth.signInWithCredential(credential)
+            .then(result => {
+              this.dismiss();
+              return true;
+            })
+            .catch(function (error) {
+              // console.log(error.credential);
+              this.storage.set('phone_credential', null);
+              
+            });
+          }
         });
+
+        // this.afAuth.auth.signInWithCredential(phoneCredential).then(result => {
+        //   // User signed in successfully.
+        //   //var user = result.user;
+        //   // ...
+        //   console.log('login successful')
+        //   //this.storage.set('credential', phoneCredential);
+        //   this.dismiss();
+        // }).catch(function (error) {
+        //   // User couldn't sign in (bad verification code?)
+        //   // ...
+        //   console.log(error);
+        // });
+        
+        // this.confirmationResult.confirm(code).then(result => {
+        //   // User signed in successfully.
+        //   //var user = result.user;
+        //   // ...
+          
+        //   this.dismiss();
+        // }).catch(function (error) {
+        //   // User couldn't sign in (bad verification code?)
+        //   // ...
+        //   console.log(error);
+        // });
       }
       
     }
