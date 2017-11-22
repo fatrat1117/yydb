@@ -30,14 +30,14 @@
         </ion-segment-button>
     </ion-segment>
     <div [ngSwitch]="cat">
-        <form *ngSwitchCase="'login-backup'" (submit)="doLogin()" padding-horizontal>
+        <form *ngSwitchCase="'login'" (submit)="doLogin()" padding-horizontal>
             <ion-list margin-horizontal>
 
                 <ion-item margin-top>
                     <ion-label>
-                        <ion-icon ios="ios-mail-outline" md="md-mail"></ion-icon>
+                        <ion-icon name="phone-portrait"></ion-icon>
                     </ion-label>
-                    <ion-input type="email" [(ngModel)]="account.email" name="email"></ion-input>
+                    <ion-input type="number" [(ngModel)]="signinAccount.phone.num" name="phone"></ion-input>
                 </ion-item>
 
                 <ion-item margin-top>
@@ -46,7 +46,7 @@
 
                         <ion-icon ios="ios-unlock-outline" md="md-unlock"></ion-icon>
                     </ion-label>
-                    <ion-input type="password" [(ngModel)]="account.password" name="password"></ion-input>
+                    <ion-input type="password" [(ngModel)]="signinAccount.password" name="password"></ion-input>
                 </ion-item>
                 <div padding>
                     <a (click)=" forgotPassword()" class="forgot-text" float-right>{{'FORGOT_PASSWORD' | translate}}</a>
@@ -68,7 +68,7 @@
             </ion-list>
         </form>
 
-        <form *ngSwitchCase="'register'" (submit)="doSignup()" padding>
+        <form *ngSwitchCase="'register-backup'" (submit)="doSignup()" padding>
             <ion-list margin-horizontal>
 
 
@@ -109,23 +109,23 @@
             </ion-list>
         </form>
 
-        <div *ngSwitchCase="'login'" >
+        <div *ngSwitchCase="'register'" >
             <div id="recaptcha-container"></div>
+            <div id="recaptcha-container2"></div>
             <form *ngIf="!confirming" margin >
                 <ion-list margin-vertical>
                     <ion-item padding-horizontal class="cc">
                         <img src="assets/countries/{{phone.cc.code}}.png" width="30" alt="">
-                        <span>{{phone.cc.name}}</span>
+                        <span>{{signupAccount.phone.cc.name}}</span>
                         <a float-right (click)="selectCountry($event)">Change</a>
                     </ion-item>
                     <ion-item margin-vertical class="phone">
         
                         <ion-label margin-vertical padding-horizontal>
         
-                            <span>{{phone.cc.dail_code}}</span>
+                            <span>{{signupAccount.phone.cc.dail_code}}</span>
                         </ion-label>
-                        <ion-input type="number" placeholder="{{'BIND_PHONE_PH' | translate}}" [(ngModel)]="phone.num" name="phone"></ion-input>
-                        <button color="danger" ion-button block (click) = "getCode()">send SMS CODE</button>
+                        <ion-input type="number" placeholder="{{'BIND_PHONE_PH' | translate}}" [(ngModel)]="signupAccount.phone.num" name="phone"></ion-input>
                     </ion-item>
         
                     <div margin padding-vertical>
@@ -134,25 +134,19 @@
                             <ion-icon ios="ios-checkmark-circle" md="md-checkmark-circle"></ion-icon>&nbsp; 
                             {{ 'BIND_PHONE_BUTTON' | translate }}</button>
                     </div>
-                    <fieldset padding-top class="social">
-                            <legend>{{'SOCIAL' | translate}}</legend>
-                            <div padding>
-                                <a (click) = "signinWithFacebook($event)"><img src="assets/img/facebook.png" alt=""></a>
-        
-                                <a (click) = "signinWithGoogle()"><img src="assets/img/g+.png" width=a lt=""></a>
-                            </div>
-        
-                    </fieldset>
-        
                 </ion-list>
             </form>
 
             <form *ngIf="confirming" margin (submit)="verifyCode()">
                     
                 <ion-list margin padding-horizontal>
-                    <ion-item margin-top padding-top class="fs01">
-                        <ion-input type="number" placeholder="{{'VERIFY_PH' | translate}}" [(ngModel)]="phone.authCode" name="authCode"></ion-input>
+                    <ion-item >
+                        <ion-input type="number" placeholder="验证码" [(ngModel)]="signupAccount.phone.authCode" name="authCode"></ion-input>
                     </ion-item>
+                    <ion-item >
+                        <ion-input type="password" placeholder="输入账户密码" [(ngModel)]="signupAccount.password" name="password"></ion-input>
+                    </ion-item>
+                    
         
                     <div margin padding-vertical>
         

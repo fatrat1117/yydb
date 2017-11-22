@@ -40,6 +40,30 @@ export class LoginPage {
     password: 'test'
   };
 
+  signupAccount: { phone: any, password: string } = {
+    phone: {
+      num: '', cc: {
+        "name": "China",
+        "dail_code": "+86",
+        "code": "CN",
+      },
+      authCode: ''
+    },
+    password: ''
+  };
+
+  signinAccount: { phone: any, password: string } = {
+    phone: {
+      num: '', cc: {
+        "name": "China",
+        "dail_code": "+86",
+        "code": "CN",
+      },
+      authCode: ''
+    },
+    password: ''
+  };
+
   private facebookProvider = new Facebook({
         clientId: "1729159120442368",
         appScope: ["email"]
@@ -104,17 +128,6 @@ export class LoginPage {
   // }
   ionViewDidLoad() {
     this.viewCtrl.setBackButtonText('');
-    this.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
-      'size': 'invisible',
-      'callback': function(response) {
-        // reCAPTCHA solved, allow signInWithPhoneNumber.
-        // ...
-      },
-      'expired-callback': function() {
-        // Response expired. Ask user to solve reCAPTCHA again.
-        // ...
-      }
-    });
     
   }
 
@@ -188,18 +201,40 @@ export class LoginPage {
         this.viewCtrl.dismiss();
     }
 
+    doLogin() {
+      const phoneNum: string = this.signinAccount.phone.num;
+      const password: string = this.signinAccount.password;
+      if(phoneNum && password) {
+        let email = phoneNum + '@1k.com';
+        firebase.auth().signInWithEmailAndPassword(email, password).then(res => {
+          console.log('login successful');
+          this.dismiss();
+        }).catch(err => {
+          let toast = this.toastCtrl.create({
+            message: err.message,
+            duration: 2000,
+            position: 'middle'
+          });
+          toast.present();
+          console.log(err);
+        })
+      }
+    }
+
     confirmNumber() {
       // this.confirming = true;
     }
   
     getCode() {
-      if(this.phone.num) {
+      if(this.signupAccount.phone.num) {
         this.confirmationResult = '';
         const appVerifier = this.recaptchaVerifier;
-        console.log('dail_code=', this.phone.cc.dail_code);
-        const phoneNumberString = this.phone.cc.dail_code + this.phone.num;
+        console.log('dail_code=', this.signupAccount.phone.cc.dail_code);
+        const phoneNumberString = this.signupAccount.phone.cc.dail_code + this.signupAccount.phone.num;
         console.log('get code, hp=', phoneNumberString);
-        this.afAuth.auth.signInWithPhoneNumber(phoneNumberString, appVerifier)
+        firebase.auth().signInWithPhoneNumber(phoneNumberString, new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+          'size': 'invisible'
+        }))
           .then(confirmationResult => {
             // SMS sent. Prompt user to type the code from the message, then sign the
             // user in with confirmationResult.confirm(code).
@@ -210,38 +245,53 @@ export class LoginPage {
           .catch(function (error) {
             console.error("SMS not sent", error);
           });
+
+        // this.confirming = true;
+
       }
       
     }
 
     verifyCode() {
-      let code: string = this.phone.authCode;
-      if(code) {
+      let code: string = this.signupAccount.phone.authCode;
+      const password: string = this.signupAccount.password;
+      // const phoneNum: string = this.signupAccount.phone.num;
+      const phoneNum = this.signupAccount.phone.cc.dail_code + this.signupAccount.phone.num;
+      if(code && password) {
         const phoneCredential:firebase.auth.AuthCredential = firebase.auth.PhoneAuthProvider.credential(this.confirmationResult.verificationId, code);
-        this.storage.set('phone_credential', phoneCredential);
-        this.storage.get('phone_credential').then((val) => {
-          if(val) {
-            const credential:firebase.auth.AuthCredential = val;
-            this.afAuth.auth.signInWithCredential(credential)
-            .then(result => {
+        const email = phoneNum.substring(1) + '@1k.com';
+        firebase.auth().createUserWithEmailAndPassword(email, password).then(res => {
+          const currentUser = firebase.auth().currentUser;
+          
+          if(currentUser) {
+            console.log('creat user account successful!');
+            currentUser.linkWithCredential(phoneCredential).then(res => {
               this.dismiss();
-              return true;
+              console.log('link successful: ' + JSON.stringify(res));
+            }).catch(err => {
+              console.log(err)
+              console.log('bind phone error then delete the email account');
+              currentUser.delete().then(res=> {
+                console.log('delete the email account');
+              }).catch(err => {
+                console.log('delete the email account error');
+                console.log(err);
+              })
             })
-            .catch(function (error) {
-              // console.log(error.credential);
-              this.storage.set('phone_credential', null);
-              
-            });
           }
+        }).catch(err => {
+          console.log(err)
         });
-
-        // this.afAuth.auth.signInWithCredential(phoneCredential).then(result => {
+        
+        // firebase.auth().signInWithCredential(phoneCredential).then(result => {
         //   // User signed in successfully.
         //   //var user = result.user;
         //   // ...
+          
         //   console.log('login successful')
-        //   //this.storage.set('credential', phoneCredential);
-        //   this.dismiss();
+
+          
+          
         // }).catch(function (error) {
         //   // User couldn't sign in (bad verification code?)
         //   // ...
@@ -259,7 +309,11 @@ export class LoginPage {
         //   // ...
         //   console.log(error);
         // });
+
+        console.log('phone:' + phoneNum + ' password: ' + password + ' authcode: ' + code);
       }
+
+
       
     }
 }
