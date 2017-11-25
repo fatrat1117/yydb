@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{'drawsuccess' | translate}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <div class="wrapper">
+
+        <img src="assets/img/check.png" width="250" alt="">
+    </div>
+    <ion-row>
+        <ion-col text-center>
+            <button color="danger" ion-button small (click)='onParticipateAgain()'>{{'participateagain' | translate}}</button>
+        </ion-col>
+        <ion-col text-center>
+            <button color="danger" ion-button small (click)='onBackHome()'>{{'backtohome' | translate}}</button>
+        </ion-col>
+    </ion-row>
+    <ion-list-header class="big red-left">
+        {{'participatesuccess' | translate}}<span class="red"> 10</span> {{'times' | translate}}
+    </ion-list-header>
+
+    <ion-item>{{numbersStr}}</ion-item>
+</ion-content>

@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController } from 'ionic-angular';	
 
+/**
+ * Generated class for the DrawDoneComponent component.
+ *
+ * See https://angular.io/api/core/Component for more info on Angular
+ * Components.
+ */
 @Component({
-  selector: 'page-drawdone',
+  selector: 'draw-done',
   templateUrl: 'draw-done.html'
 })
-export class DrawDonePage {
+export class DrawDoneComponent {
+
   drawResponse;
   drawData;
   numbersStr;
@@ -26,4 +33,5 @@ export class DrawDonePage {
   onBackHome() {
 
   }
+
 }
