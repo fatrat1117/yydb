@@ -9,6 +9,7 @@
     <div class="wrapper">
 
         <img src="assets/img/check.png" width="250" alt="">
+        <p text-center>Some text here </p>
     </div>
     <ion-row>
         <ion-col text-center>
@@ -22,5 +23,31 @@
         {{'participatesuccess' | translate}}<span class="red"> 10</span> {{'times' | translate}}
     </ion-list-header>
 
-    <ion-item>{{numbersStr}}</ion-item>
+    <ion-item text-wrap>
+        <ion-grid>
+            <ion-row>
+                <ion-col col-4>
+                    Order:
+                </ion-col>
+                <ion-col col-8>21334433434543422</ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-4>
+                    Product Name:
+                </ion-col>
+                <ion-col col-8>
+                    Iphone 7 plus
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-4>
+                    Numbers:
+                </ion-col>
+                <ion-col col-8>
+                    {{numbersStr}}
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </ion-item>
 </ion-content>
