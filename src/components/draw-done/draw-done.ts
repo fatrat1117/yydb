@@ -16,6 +16,7 @@ export class DrawDoneComponent {
   drawResponse;
   drawData;
   numbersStr;
+  count;
   constructor(public navCtrl: NavController, 
   params: NavParams,
   private viewCtrl: ViewController) {
@@ -24,6 +25,7 @@ export class DrawDoneComponent {
     this.drawData = JSON.parse(this.drawResponse._body);
     console.log('DrawDonePage data', this.drawData.numbers);
     this.numbersStr = this.drawData.numbers.toString();
+    this.count = this.drawData.numbers.length;
   }
 
   onParticipateAgain() {
