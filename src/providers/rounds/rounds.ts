@@ -89,7 +89,7 @@ export class RoundsService {
               success_Callback(history);
             }
           })
-            this.ps.getProductById(r.product_id, callback);
+          this.ps.getProductById(r.product_id, callback);
         })
       })
     })
@@ -197,5 +197,14 @@ export class RoundsService {
     draws.update({
       current: round.drawCounts.target
     })
+  }
+
+  afCurrentRound(productId, count) {
+    //return this.api.getList(`/draw-queque/${productId}/`);
+    return this.api.getList(`/draw-queque/${productId}/`, {
+      query: {
+        limitToFirst: count
+      }
+    });
   }
 }

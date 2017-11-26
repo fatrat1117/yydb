@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { IonicPage, MenuController, NavController, Platform, NavParams, ModalController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { RoundsService } from '../../providers/rounds/rounds';
+//import { AngularFireDatabase } from 'angularfire2/database';
 import { Round } from '../../models/round'
 import { QuantityComponent } from '../../components/quantity/quantity';
 import { ListPage } from '../list/list';
 import { TableViewPage } from '../table-view/table-view';
 import { DrawDoneComponent } from '../../components/draw-done/draw-done';
+import { Subject } from 'rxjs/Subject';
 import * as moment from 'moment/moment';
 
 export interface Slide {
@@ -26,17 +28,28 @@ export class SearchPage {
   lists;
   showSkip = true;
   dir: string = 'ltr';
-  //cardsdata = {};
-  //mobiledata;
+  recordsCount$ = new Subject();
+  recordsCount = 10;
+  queryRecords;
   tabBarElement: any;
   productId;
-
   round: Round;
-
-  constructor(public navCtrl: NavController, public modalCtrl: ModalController, public menu: MenuController, translate: TranslateService, public platform: Platform, navParams: NavParams, public rs: RoundsService) {
+  records;
+  constructor(public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public menu: MenuController,
+    translate: TranslateService,
+    public platform: Platform, navParams: NavParams,
+    public rs: RoundsService) {
     this.productId = navParams.get('productId');
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     this.dir = platform.dir();
+    this.queryRecords = this.rs.afCurrentRound(this.productId, this.recordsCount$);
+    this.queryRecords.subscribe(records => {
+      //console.log(queriedItems);
+      this.records = records;
+    });
+    this.recordsCount$.next(this.recordsCount);
   }
 
   ionViewDidLoad() {
@@ -73,7 +86,7 @@ export class SearchPage {
     this.navCtrl.push(TableViewPage);
   }
 
- 
+
   getMinutes(seconds: number) {
     if (seconds == null)
       return 0;
@@ -89,10 +102,14 @@ export class SearchPage {
   draw() {
     let drawModal = this.modalCtrl.create(QuantityComponent, { page: 'add', productId: this.productId });
     drawModal.onDidDismiss(data => {
-     // console.log('onDidDismiss', data);
+      // console.log('onDidDismiss', data);
       let drawDone = this.modalCtrl.create(DrawDoneComponent, { drawResponse: data });
       drawDone.present();
     });
     drawModal.present();
+  }
+
+  doInfinite(ev) {
+
   }
 }
