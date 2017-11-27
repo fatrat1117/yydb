@@ -32,7 +32,7 @@ import { AddAdressPage } from '../pages/add-adress/add-adress';
 import { EditAddressPage } from '../pages/edit-address/edit-address';
 import { DrawDoneComponent } from '../components/draw-done/draw-done';
 import { ProductsPage } from '../pages/products/products';
-
+import { MomentModule } from 'angular2-moment';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -108,6 +108,7 @@ export function provideSettings(storage: Storage) {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     HttpModule,
+    MomentModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

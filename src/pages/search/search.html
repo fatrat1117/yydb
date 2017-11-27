@@ -3,6 +3,11 @@
         <ion-buttons text-center>
             <button ion-button color="dark">{{'REVEAL_SOON' | translate}}</button>
         </ion-buttons>
+        <ion-buttons end>
+            <button ion-button icon-only>
+            <ion-icon name="share"></ion-icon>
+          </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
@@ -89,22 +94,24 @@
         </ion-list-header>
         <ion-item *ngFor="let r of records">
             <ion-avatar item-start>
-                <img [src]="r.img">
+                <img [src]="r.img || 'assets/img/user-icon.jpg'">
             </ion-avatar>
             <ion-grid>
                 <ion-row>
-                    <ion-col col-5>
-                        <h2>{{r.userId}}</h2>
+
+                    <ion-col col-5 class="small"> <span class="grey">
+                        <p  class="grey">
+                                本期参与记录
+                            </p>
+                          <p  class="grey">Some text  <span class="red"> 20 </span>here</p>
+                        </span>
                     </ion-col>
-                    <ion-col col-7>
-                        <h3 float-right class="grey">{{r.ip}}</h3>
+                    <ion-col col-7 class="small">
+                        <p float-right class="grey">{{(r.time | amFromUnix) | amDateFormat: 'YYYY-MM-DD HH:mm'}}</p>
+                        <p float-right class="grey">IP: {{r.ip}}</p>
                     </ion-col>
-                </ion-row>
-                <ion-row>
-                    <ion-col col-5 class="small"><span class="red">{{r.time}}</span> <span class="grey"> {{r.time}}</span></ion-col>
-                    <ion-col col-7>
-                        <h5 float-right class="grey">{{r.ip}}</h5>
-                    </ion-col>
+
+
                 </ion-row>
             </ion-grid>
         </ion-item>
@@ -113,8 +120,11 @@
     <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
         <ion-infinite-scroll-content></ion-infinite-scroll-content>
     </ion-infinite-scroll>
+    <div class="scrollup">
+        <img src="assets/img/scrolltop.PNG">
+    </div>
 </ion-content>
 
 <ion-footer>
-    <button ion-button full (click)='draw()'>{{'drawnow' | translate}}</button>
+    <button no-margin ion-button color="danger" full (click)='draw()'>{{'drawnow' | translate}}</button>
 </ion-footer>

@@ -1,110 +1,88 @@
 page-search {
-
-  $ios-mobile: "(max-width: 358px)";
-
+    $ios-mobile: "(max-width: 358px)";
     .toolbar-background {
-      background: transparent;
-      border-color: transparent;
+        background: transparent;
+        border-color: transparent;
     }
-  
     .slide-zoom {
-      height: 100%;
+        height: 100%;
     }
-  
     .slide-title {
-      margin-top: 2.8rem;
+        margin-top: 2.8rem;
     }
-  
     .slide-image {
-      max-height: 75%;
-      max-width: 25%;
-      margin: 25px 0;
+        max-height: 75%;
+        max-width: 25%;
+        margin: 25px 0;
     }
-  
     b {
-      font-weight: 500;
+        font-weight: 500;
     }
-  
     p {
-      margin: 0 0 0 0;
-      font-size: 14px;
-      line-height: 1.5;
-      color: $lightgrey-p;
-  
-      b {
-        color: $text-color;
-      }
+        margin: 0 0 0 0;
+        font-size: 14px;
+        line-height: 1.5;
+        color: $lightgrey-p;
+        b {
+            color: $text-color;
+        }
     }
-  
-    .big{
-      font-size: 17px;
+    .big {
+        font-size: 17px;
     }
-  
-    .small{
-      font-size: 14px;
+    .small {
+        font-size: 14px;
     }
-  
-    .swiper-container{
+    .swiper-container {
         height: 35%;
     }
-  
-    .pull-right{
-      float: right;
+    .pull-right {
+        float: right;
     }
-  
-    .download-icon{
-      color: $color-red;
-      font-size: 3.2em;
+    .download-icon {
+        color: $color-red;
+        font-size: 3.2em;
     }
-  
-    .pull-center{
-      text-align: center;
+    .pull-center {
+        text-align: center;
     }
-  
-    .mar-top{
-      margin-top: 15px;
+    .mar-top {
+        margin-top: 15px;
     }
-  
     .red-left {
-      .label-ios, .label-md{
-        border-left: 5px solid $color-red;
-        padding-left: 5px;
-      }
+        .label-ios,
+        .label-md {
+            border-left: 5px solid $color-red;
+            padding-left: 5px;
+        }
     }
-  
-    .red{
-      color: $color-red
+    .red {
+        color: $color-red
     }
-  
     .grey {
-      color: $color-grey;
+        color: $color-grey;
+        font-size: 0.9em;
     }
-
     ion-avatar img {
         width: 50px !important;
         height: 50px !important;
     }
-  
-    .extra-space{
-      height: 10px;
-      background: $extraspace-background;
+    .extra-space {
+        height: 10px;
+        background: $extraspace-background;
     }
-  
-    .button-bottom{
-      box-shadow: 0 0 0 0 ;
-      height: 4.6rem;
+    .button-bottom {
+        box-shadow: 0 0 0 0;
+        height: 4.6rem;
     }
-  
-    .box-shad{
-      box-shadow: 0 0 0 0 ;
+    .box-shad {
+        box-shadow: 0 0 0 0;
     }
-
-    .box-shad1{
-      background: #f4f5f7;
-      text-align: center;
-      padding: 10px 0px 10px  0px
+    .box-shad1 {
+        background: #f4f5f7;
+        text-align: center;
+        padding: 10px 0px 10px 0px
     }
-
     @media #{$ios-mobile} {
         .time-label {
             margin-right: 0;
@@ -119,101 +97,135 @@ page-search {
             margin-left: 0px !important;
         }
     }
+}
 
-  }
-  
-  ion-slides{
+ion-slides {
     height: auto;
-  }
-  
-  .label-ios, .label-md {
+}
+
+.label-ios,
+.label-md {
     margin: 0 0 0 0 !important;
-  }
-  
-  .list-ios, .list-md{
+}
+
+.list-ios,
+.list-md {
     margin: 10px 0 0 0 !important;
-  }
-  
-  .list-md + ion-list ion-list-header {
+}
+
+.list-md+ion-list ion-list-header {
     margin: 0 0 0 0 !important;
-  }
-  
-  .item-block .item-inner {
+}
+
+.item-block .item-inner {
     border-bottom: 0 solid $borderbottom-grey !important;
-  }
-  
-  .item{
+}
+
+.item {
     border-bottom: 0.05px solid $borderbottom-grey;
-  }
-  
-  .button-ios, .grid, [col-6]{
+}
+
+.button-ios,
+.grid,
+[col-6] {
     margin: 0 0;
     padding: 0 0;
-  }
-  
-  .list-header-md{
+}
+
+.list-header-md {
     margin-bottom: 0;
     border-top: 0;
-  }
-  .border-red-card {
+}
+
+.border-red-card {
     border: 1px solid $color-red;
     background: $lightred-background;
     text-align: center;
-  }
-  
-  .color-red {
-    color:$color-red !important;
-  }
+}
 
-  
-  .time-label {
+.color-red {
+    color: $color-red !important;
+}
+
+.time-label {
     border: 1px solid $color-red;
-    border-radius:3px;
+    border-radius: 3px;
     background: $lightgrey-background;
-    float:left;
-    color:$color-red;
+    float: left;
+    color: $color-red;
     padding: 3px 7px;
     margin-right: 1px;
     font-size: 16px;
-  }
-  
-  .colon {
+}
+
+.colon {
     display: inline-block;
     margin-top: 6px;
     font-size: 15px;
     margin-left: 4px;
-  }
-  
-  .red-label {
+}
+
+.red-label {
     background: $color-red;
-    color:$color-white;
-    -ms-transform: rotate(-45deg); /* IE 9 */
-    -webkit-transform: rotate(-45deg); /* Safari */
-    transform: rotate(-45deg); /* Standard syntax */
+    color: $color-white;
+    -ms-transform: rotate(-45deg);
+    /* IE 9 */
+    -webkit-transform: rotate(-45deg);
+    /* Safari */
+    transform: rotate(-45deg);
+    /* Standard syntax */
     position: absolute;
     top: 12px;
     width: 96px;
     left: -43px;
-  }
-  
-  .card-content-label {
-    padding-top:0;
-  }
-  
-  .mar-top{
-    margin-top: 40px;
-  }
-  
-  .mar-left{
-    margin-left: 10px !important;
-  }
+}
 
-  .time-row [col-4] {
+.card-content-label {
+    padding-top: 0;
+}
+
+.mar-top {
+    margin-top: 40px;
+}
+
+.mar-left {
+    margin-left: 10px !important;
+}
+
+.time-row [col-4] {
     padding-right: 0;
-  }
-ion-grid.custom-timer-products.grid p {    margin: 0 0 0;}
-span.timer {font-size: 26px; color: color($colors,danger);}
-ion-grid.custom-timer-products.grid {    padding: 0;    background: #ececec;}
-ion-grid.custom-timer-products.grid ion-row.row {    margin: 10px 0 0;    background: #fff;}
-.scrolltop { background: rgba(243, 243, 243, 0.86);width: 100%;    float: left;}
-.scrolltop img {    margin: 0px 16px 5px 0px;float: right;    height: 50px;}
+}
+
+ion-grid.custom-timer-products.grid p {
+    margin: 0 0 0;
+}
+
+span.timer {
+    font-size: 26px;
+    color: color($colors, danger);
+}
+
+ion-grid.custom-timer-products.grid {
+    padding: 0;
+    background: #ececec;
+}
+
+ion-grid.custom-timer-products.grid ion-row.row {
+    margin: 10px 0 0;
+    background: #fff;
+}
+
+.scrollup {
+    background: transparent;
+    width: 100%;
+    float: left;
+    position: fixed;
+    bottom: 15%;
+    right: 0px;
+}
+
+.scrollup img {
+    margin: 0px 16px 5px 0px;
+    float: right;
+    height: 50px;
+}
