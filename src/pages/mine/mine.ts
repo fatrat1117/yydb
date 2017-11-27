@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { DEFAULT_AVATAR, CUSTOMER_SERVICE } from "../../providers/Constants";
 import { FeedPage } from '../feed/feed';
 import { QuantityComponent } from '../../components/quantity/quantity';
@@ -15,6 +15,7 @@ import { SearchPage } from '../search/search';
 import {AddressListPage  } from '../address-list/address-list';
 import { ModalController } from 'ionic-angular';
 import {ProductsPage} from '../products/products';
+import { GooglePlus } from '@ionic-native/google-plus';
 /**
  * Generated class for the MinePage page.
  *
@@ -31,10 +32,14 @@ export class MinePage {
   avatarPath: String = DEFAULT_AVATAR;
   customerService: String = CUSTOMER_SERVICE;
 
+  bIsMobile;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public modalCtrl: ModalController,
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+    private platform: Platform,
+    public googlePlus: GooglePlus) {
+      this.bIsMobile = !this.platform.is('mobileweb') && !this.platform.is('core');
   }
 
   ionViewDidLoad() {
@@ -101,6 +106,14 @@ export class MinePage {
   }
 
   logout() {
+    if(this.bIsMobile) {
+      this.googlePlus.logout().then(res => {
+        console.log(res);
+        console.log('logout success');
+      }).catch(error => {
+        console.log(error);
+      })
+    }
     this.afAuth.auth.signOut();
     //document.dispatchEvent(new Event("userlogout"));
   }
