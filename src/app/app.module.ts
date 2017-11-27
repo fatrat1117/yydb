@@ -42,6 +42,7 @@ import { TopupComponent } from '../components/topup/topup';
 import { ProductCrudComponent } from '../components/product-crud/product-crud';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 // Firebase config
 export const firebaseConfig = {
@@ -155,6 +156,7 @@ export function provideSettings(storage: Storage) {
     StatusBar,
     InAppBrowser,
     PhotoViewer,
+    GooglePlus,
     { provide: Settings, useFactory: provideSettings, deps: [Storage] },
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }

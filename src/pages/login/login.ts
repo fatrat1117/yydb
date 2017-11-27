@@ -12,6 +12,7 @@ import { OauthCordova } from 'ng2-cordova-oauth/platform/cordova'
 import {Settings} from '../../providers/settings/settings'
 import { Storage } from '@ionic/storage';
 import * as firebase from 'firebase/app';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 @IonicPage()
 @Component({
@@ -93,7 +94,8 @@ export class LoginPage {
     public afAuth: AngularFireAuth,
     private platform: Platform,
     private settings: Settings,
-    private storage: Storage
+    private storage: Storage,
+    public googlePlus: GooglePlus
   ) {
     this.bIsMobile = !this.platform.is('mobileweb') && !this.platform.is('core');
 
@@ -162,6 +164,33 @@ export class LoginPage {
       // this.cordovaOauth.logInVia(this.googleProvider).then(g => {
       //   console.log("google success: ", g);
       // });
+
+      this.googlePlus.login({
+        'webClientId': '496534747409-3cr9fikmo8b8g5j16thlhhid42r3o6u5.apps.googleusercontent.com',
+        'offline': true
+      }).then(res => {
+        firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
+        .then(res => {
+          console.log('login success');
+          let toast = this.toastCtrl.create({
+            message: 'login success',
+            duration: 2000,
+            position: 'bottom'
+          });
+          toast.present();
+          this.dismiss();
+
+        }).catch(err => {
+          let toast = this.toastCtrl.create({
+            message: err.message,
+            duration: 2000,
+            position: 'bottom'
+          });
+          toast.present();
+          console.log('login error');
+        });
+      });
+
     } else
       this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider()).then(()=> {this.dismiss()});
   }
