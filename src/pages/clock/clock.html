@@ -15,17 +15,17 @@
 
 <ion-content>
     <ion-grid class="custom-timer-products">
-        <ion-row (tap)='navToItemDetail()' *ngFor=" let r of processingRounds ">
+        <ion-row (tap)='navToItemDetail()' *ngFor=" let r of draws ">
             <ion-col col-4><img [src]="r.product.images[0]"></ion-col>
             <ion-col col-8 class="product-column">
                 <p>{{r.product.name}}</p>
                 <p>ID: {{r.id}}</p>
                 <p class="small red-text"><span>即将揭晓</span></p>
-                <span style="color: red;">{{r.status}}</span>
+                <!-- <span style="color: red;">{{r.status}}</span>
                 <p *ngIf="r.status == 'end'"> Result: {{r.result}}</p>
                 <p *ngIf="r.status == 'end'"> Result time: {{toDate(r.resultTime)}}</p>
                 <p *ngIf="r.status == 'processing'" class="timer">
-                    <ion-icon name="timer"></ion-icon> 00:{{getMinutes(r.countDown | async)}}:{{getSeconds(r.countDown | async)}}</p>
+                    <ion-icon name="timer"></ion-icon> 00:{{getMinutes(r.countDown | async)}}:{{getSeconds(r.countDown | async)}}</p> -->
             </ion-col>
         </ion-row>
     </ion-grid>

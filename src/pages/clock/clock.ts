@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SearchPage } from '../search/search'
 import { RoundsService } from '../../providers/providers'
 import { Round } from '../../models/round';
+import { Draw } from '../../models/draw';
 
 /**
  * Generated class for the ClockPage page.
@@ -18,6 +19,7 @@ import { Round } from '../../models/round';
 })
 export class ClockPage {
   processingRounds: Round[];
+  draws: Draw[];
   constructor(public navCtrl: NavController, private rs: RoundsService, public navParams: NavParams) {
     this.onProcessingRoundsReady = this.onProcessingRoundsReady.bind(this);
     
@@ -27,6 +29,11 @@ export class ClockPage {
 
   ionViewDidLoad() {
     this.addEventListeners();
+    this.rs.getDrawHistory((res) => {
+      this.draws = res;
+      console.log(this.draws);
+    });
+    
   }
   addEventListeners() {
     //console.log('MePage Loaded');

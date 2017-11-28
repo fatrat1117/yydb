@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subscription } from "rxjs/Rx"
+import { Subscription, Observable} from "rxjs/Rx"
 import { FirebaseListObservable } from 'angularfire2/database';
 
 import { Api } from '../api/api';
 import { Product } from '../../models/product';
 import { ProductsService } from '../products/products';
 import { Round } from '../../models/round';
+import { Draw } from '../../models/draw';
 import { UserService } from '../user/user';
 
 
@@ -95,6 +96,34 @@ export class RoundsService {
     })
   }
 
+  getDrawHistory(success_callback) {
+    console.log('enter getDrawHistory')
+    let draws: Draw[];
+    draws = [];
+    let subs = this.api.getList('/draw-history').subscribe(snapshots => {
+      subs.unsubscribe();
+      snapshots.forEach(s => {
+        let callback = (draw => {
+          if (draw) {
+            draws.push(draw);
+            if (draws.length == snapshots.length) {
+              success_callback(draws);
+            }
+            return;
+          }
+        });
+        let productObservable = this.ps.getProductById_Internal(s.productId);
+        let userObservable = this.us.getUserInfoObservable(s.winner);
+        let subs2 = Observable.zip(productObservable,userObservable).subscribe(res => {
+          subs2.unsubscribe();
+          let draw = new Draw(s.$key, res[0], res[1], s.winnerNumber);
+          callback(draw);
+
+        })
+
+      })
+    })
+  }
 
 
   /************************************************************/

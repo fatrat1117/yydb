@@ -94,4 +94,8 @@ export class UserService {
     if (this.currentUser)
       return this.currentUser.id;
   }
+
+  getUserInfoObservable(userId: string) {
+    return this.api.getObject(`/users/${userId}`);
+  }
 }
