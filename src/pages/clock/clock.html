@@ -19,8 +19,17 @@
             <ion-col col-4><img [src]="r.product.images[0]"></ion-col>
             <ion-col col-8 class="product-column">
                 <p>{{r.product.name}}</p>
-                <p>ID: {{r.id}}</p>
+                <p>期号: {{r.id}}</p>
                 <p class="small red-text"><span>即将揭晓</span></p>
+                <div *ngIf="r.status == 'end'">
+                    <p> 获奖者: {{r.user.name}}</p>
+                    <p> 参与次数: {{r.count}}</p>
+                    <p> 中奖号码: {{r.winnerNumber}}</p>
+                    <p> 揭晓时间: {{r.time}}</p>
+                </div>
+                <div *ngIf="r.status == 'processing'">
+                    <p> Result: {{r.result}}</p>
+                </div>
                 <!-- <span style="color: red;">{{r.status}}</span>
                 <p *ngIf="r.status == 'end'"> Result: {{r.result}}</p>
                 <p *ngIf="r.status == 'end'"> Result time: {{toDate(r.resultTime)}}</p>

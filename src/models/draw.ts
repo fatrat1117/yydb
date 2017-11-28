@@ -7,12 +7,16 @@ export class Draw {
   product: Product;
   user: User;
   winnerNumber: string; 
+  time:string;
+  count: number;
   countDown: Observable<number>;
+  status: string;
 
-  constructor(id: string, product: Product, user: User, winnerNumber: string) {
+  constructor(id: string, product: Product, user: User, winnerNumber: string, time: string) {
     this.id = id;
     this.product = product;
     this.user = user;
     this.winnerNumber = winnerNumber;
+    this.time = new Date(time).toISOString();
   }
 }

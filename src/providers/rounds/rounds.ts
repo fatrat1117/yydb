@@ -116,12 +116,16 @@ export class RoundsService {
         let userObservable = this.us.getUserInfoObservable(s.winner);
         let subs2 = Observable.zip(productObservable,userObservable).subscribe(res => {
           subs2.unsubscribe();
-          let draw = new Draw(s.$key, res[0], res[1], s.winnerNumber);
+          let draw = new Draw(s.$key, res[0], res[1], s.winnerNumber, s.time);
+          draw.status = 'end';
+          draw.count = s.records.length;
           callback(draw);
+          // draws.push(draw);
 
         })
 
       })
+      // success_callback(draws);
     })
   }
 
