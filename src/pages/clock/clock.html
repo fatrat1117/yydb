@@ -20,7 +20,6 @@
             <ion-col col-8 class="product-column">
                 <p>{{r.product.name}}</p>
                 <p>期号: {{r.id}}</p>
-                <p class="small red-text"><span>即将揭晓</span></p>
                 <div *ngIf="r.status == 'end'">
                     <p> 获奖者: {{r.user.name}}</p>
                     <p> 参与次数: {{r.count}}</p>
@@ -28,7 +27,8 @@
                     <p> 揭晓时间: {{r.time}}</p>
                 </div>
                 <div *ngIf="r.status == 'processing'">
-                    <p> Result: {{r.result}}</p>
+                    <p class="small red-text"><span>即将揭晓</span></p>
+                    <p class="timer"><ion-icon name="timer"></ion-icon> {{r.countDown}}</p>
                 </div>
                 <!-- <span style="color: red;">{{r.status}}</span>
                 <p *ngIf="r.status == 'end'"> Result: {{r.result}}</p>
