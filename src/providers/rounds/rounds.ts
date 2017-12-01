@@ -14,10 +14,12 @@ import { UserService } from '../user/user';
 export class RoundsService {
   preparingRounds: Round[];
   processingRounds: Round[];
+  localRoundMap: Map<string, Draw>;
 
   selectedRound: Round;
   selectedRoundSubs: Subscription;
   constructor(public api: Api, public ps: ProductsService, public us: UserService) {
+    this.localRoundMap = new Map<string, Draw>();  
   }
 
   getRoundById(id: string, success_Callback) {
@@ -103,37 +105,32 @@ export class RoundsService {
     let subs = this.api.getList('/draw-history').subscribe(snapshots => {
       subs.unsubscribe();
       snapshots.forEach(s => {
-        // let callback = (draw => {
-        //   if (draw) {
-        //     draws.push(draw);
-        //     if (draws.length == snapshots.length) {
-        //       success_callback(draws);
-        //     }
-        //     return;
-        //   }
-        // });
-        let productObservable = this.ps.getProductById_Internal(s.productId);
-        let userObservable = this.us.getUserInfoObservable(s.winner);
-        let subs2 = Observable.zip(productObservable,userObservable).subscribe(res => {
-          subs2.unsubscribe();
-          let now: number = new Date().getTime();
-          // s.time = now + 30000;
-          let draw = new Draw(s.$key, res[0], res[1], s.winnerNumber, s.time);
-          
-          console.log(now);
-         
-          if(now >= s.time) {
-            draw.status = 'end';
-          } else {
-            draw.status = 'processing';
-          }
-          
-          draw.count = s.records.length;
-          // callback(draw);
-          draws.push(draw);
-
-        })
-
+        let draw: Draw = this.localRoundMap.get(s.$key);
+        if(!draw) {
+          let productObservable = this.ps.getProductById_Internal(s.productId);
+          let userObservable = this.us.getUserInfoObservable(s.winner);
+          let subs2 = Observable.zip(productObservable,userObservable).subscribe(res => {
+            subs2.unsubscribe();
+            let now: number = new Date().getTime();
+            // s.time = now + 30000;
+            let draw = new Draw(s.$key, res[0], res[1], s.winnerNumber, s.time);
+            
+            console.log(now);
+           
+            if(now >= s.time) {
+              draw.status = 'end';
+            } else {
+              draw.status = 'processing';
+            }
+            
+            draw.count = s.records.length;
+            // callback(draw);
+            
+            this.localRoundMap.set(s.$key, draw);
+  
+          })
+        }
+        draws.push(draw);
       })
       success_callback(draws);
     })
