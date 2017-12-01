@@ -23,7 +23,7 @@ export class SettingsPage {
 
   tab1Root: any = Settingtab1Page;
   tab2Root: any = SettingPage;
-  tab3Root: any = SettingPage;
+  tab3Root: any = Settingtab1Page;
  
   settingsReady = false;
 

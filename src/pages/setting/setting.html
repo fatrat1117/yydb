@@ -1,14 +1,14 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{'PARTICIPATE_RECORD' | translate}}</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>{{'PARTICIPATE_RECORD' | translate}}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 <ion-content class="setting-main">
 
-<!-- <ion-card  *ngFor = "let data of myData">
+    <!-- <ion-card  *ngFor = "let data of myData">
   <ion-item class="item-padding">
   <img class="stamp" src="{{data.logo}}" *ngIf = "data.logo">
     <div class="image-product">
@@ -33,63 +33,70 @@
   </ion-item>
 </ion-card> -->
 
-<ion-card  *ngFor = "let data of myData">
-  <ion-item class="item-padding">
-		<ion-grid>
-			<ion-row>
-				<ion-col col-3>
-						<div class="image-product">
-								<img src="{{data.image}}" width="30">
-							</div>
-				</ion-col>
+    <ion-card *ngFor="let data of myData">
+        <ion-item class="item-padding">
 
-				<ion-col col-6>
-						<div class="card-inner-custom">
-								<h2>{{data.title}}</h2>
-								<p>ID: {{data.id}}</p>
-								<p>PRICE: <ion-icon color="danger">{{data.price}}</ion-icon>$   </p>
-							</div>
-				</ion-col>
+            <ion-grid>
+                <ion-row>
+                    <ion-col col-3>
+                        <div class="image-product">
+                            <img src="{{data.product.images[0]}}" width="30">
+                        </div>
+                    </ion-col>
 
-				<ion-col col-3 align-self-end>
-					<div>
-						<img class="stamp" src="{{data.logo}}" *ngIf = "data.logo">
-						<span class="button-inner custom-button-inner">查看详情<ion-icon name="ios-arrow-forward-outline"></ion-icon></span>
-					</div>
-				</ion-col>
-			</ion-row>
-			<ion-row>
-					<ion-col col-12>
-						<hr/>
-					</ion-col>
-			</ion-row>
-			<ion-row>
-					<ion-col col-9 align-self-center>
-							<div class="progress mainprogress first-progress" *ngIf = "data.barValue">
-									<div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width.%':data.barValue}">
-									</div>
-							</div>
-							<div class="progress progessderail">
-									<span class="left">Price <ion-icon color="danger">{{data.firstValue}}</ion-icon></span>
-									<span class="right">Price <ion-icon color="danger">{{data.endValue}}</ion-icon></span>
-							</div>
-					</ion-col>
-	
-					<ion-col col-3>
-							<button ion-button class="submitbtn" color="danger" small outline>再次购买</button>
-					</ion-col>
-				</ion-row>
-		</ion-grid>
-  
-  </ion-item>
-</ion-card>
+                    <ion-col col-9>
+
+                        <div class="card-inner-custom full">
+                            <span class="date" float-right>
+																{{data.time |amFromUnix | amDateFormat:'LL'}}
+														</span>
+                            <h2>{{data.product.name}}</h2>
+                            <p>Winner: {{data.winner.name}}</p>
+                            <p>ID: {{data.id}}</p>
+                            <p>Number: {{data.winnerNumber}}</p>
+                            <p class="full">PRICE:
+                                <ion-icon color="danger">{{data.product.price}}</ion-icon>$
+                                <span float-right class="button-inner custom-button-inner">查看详情<ion-icon name="ios-arrow-forward-outline"></ion-icon></span>
+                            </p>
+
+                        </div>
+
+                    </ion-col>
 
 
+                </ion-row>
+                <ion-row>
+                    <ion-col col-12>
+                        <hr/>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-9 align-self-center>
+                        <div class="progress mainprogress first-progress" *ngIf="data.barValue">
+                            <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" [ngStyle]="{'width.%':data.barValue}">
+                            </div>
+                        </div>
+                        <div class="progress progessderail">
+                            <span class="left">Price <ion-icon color="danger">{{data.product.price}}</ion-icon></span>
+                            <span class="right">Price <ion-icon color="danger">{{data.product.price}}</ion-icon></span>
+                        </div>
+                    </ion-col>
+
+                    <ion-col col-3>
+                        <button ion-button class="submitbtn" color="danger" small outline>再次购买</button>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+
+        </ion-item>
+    </ion-card>
 
 
 
 
-<!--ion-card>
+
+
+    <!--ion-card>
   <ion-item>
     <div class="image-product">
 		<img src="assets/img/jd.jpg" width="30">

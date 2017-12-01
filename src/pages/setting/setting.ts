@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PopoverController } from 'ionic-angular';
 import { PopoverPage } from '../popover/popover';
+import { Api } from '../../providers/api/api';
+
 /**
  * Generated class for the SettingPage page.
  *
@@ -16,53 +18,35 @@ import { PopoverPage } from '../popover/popover';
 })
 export class SettingPage {
 myData = [];
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
-	this.myData = [{
-		image: 'assets/img/jd.jpg',
-		title: 'Museum of Footbald',
-		id: '220000322212222',
-		price: '60',
-		firstValue: '600',
-		endValue: '100',
-		barValue: '70',
-		logo:''
-	},
-	{
-		image: 'assets/img/jd.jpg',
-		title: 'Museum of Cricket',
-		id: '320000322212222',
-		price: '60',
-		firstValue: '600',
-		endValue: '100',
-		barValue: '',
-		logo:''
-	},
-	{
-		image: 'assets/img/jd.jpg',
-		title: 'Museum of Football',
-		id: '420000322212222',
-		price: '60',
-		firstValue: '600',
-		endValue: '100',
-		barValue: '',
-		logo:'assets/img/stamp.png'
-	},
-	{
-		image: 'assets/img/jd.jpg',
-		title: 'Museum of Cricket',
-		id: '320000322212222',
-		price: '60',
-		firstValue: '600',
-		endValue: '100',
-		barValue: '',
-		logo:''
-	}]
+  constructor(public navCtrl: NavController, public api: Api, public navParams: NavParams, public popoverCtrl: PopoverController) {
+		this.fetchDraws();
+	
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingPage');
-  }
-  
+	} 
+	fetchDraws(){
+		
+	this.api.getList(`/draw-history`).subscribe(response =>{
+		
+		response.forEach(element => {
+
+			this.api.getObject(`/products/${element.productId}`).subscribe(res =>{
+				element.product = res;
+				element.barValue = 70;
+			});
+
+			this.api.getObject(`/users/${element.winner}`).subscribe(res =>{
+				element.winner = res;
+			});
+
+		});
+ 
+		 console.log(response);
+	 this.myData = response;
+ });
+	}	
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
     popover.present({
