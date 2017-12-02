@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subscription, Observable} from "rxjs/Rx"
+import { Subscription, Observable, Observer} from "rxjs/Rx"
 import { FirebaseListObservable } from 'angularfire2/database';
 
 import { Api } from '../api/api';
@@ -14,12 +14,12 @@ import { UserService } from '../user/user';
 export class RoundsService {
   preparingRounds: Round[];
   processingRounds: Round[];
-  localRoundMap: Map<string, Draw>;
+  historyDraws: Draw[];
 
   selectedRound: Round;
   selectedRoundSubs: Subscription;
   constructor(public api: Api, public ps: ProductsService, public us: UserService) {
-    this.localRoundMap = new Map<string, Draw>();  
+    this.historyDraws = [];
   }
 
   getRoundById(id: string, success_Callback) {
@@ -98,42 +98,104 @@ export class RoundsService {
     })
   }
 
-  getDrawHistory(success_callback) {
+  // getDrawListFromDB(count:number, successCallback:Function) {
+  //   console.log('enter getDrawHistory')
+  //   let time_before:number = Date.now();
+  //   let localDraws: Draw[] = [];
+  //   let observables: any = [];
+  //   let subs = this.api.getList('/draw-history/summary',{
+  //     query: {
+  //       limitToLast: count
+  //     }
+  //   }).subscribe(snapshots => {
+  //     let drawCount = 0;
+  //     subs.unsubscribe();
+  //     let time_after:number = Date.now();
+  //     let intv = time_after-time_before;
+  //     console.log((time_after-time_before)/1000);
+  //     snapshots.forEach(s => {
+  //       let productObservable = this.ps.getProductById_Internal(s.productId);
+  //       let userObservable = this.us.getUserInfoObservable(s.winner);
+  //       observables.push(Observable.zip(productObservable,userObservable));
+  //       let subs2 = Observable.zip(productObservable,userObservable).subscribe(res => {
+  //         subs2.unsubscribe();
+  //         let now: number = new Date().getTime();
+  //         let draw: Draw = new Draw(s.$key, res[0], res[1], s.winnerNumber, s.time, s.numOfRecords);
+          
+  //         if(now >= s.time) {
+  //           draw.status = 'end';
+  //         } else {
+  //           draw.status = 'processing';
+  //         }
+          
+  //         // console.log('add a new draw');
+  //         localDraws.push(draw);
+  //         if(localDraws.length == snapshots.length) {
+  //           this.historyDraws.push(...localDraws);
+  //           // console.log('all data finished');
+  //           successCallback();
+  //         }
+         
+  //       }, err=> {
+  //         console.log(err);
+  //       })
+        
+  //     })
+
+
+
+      
+  //   })
+  // }
+
+
+
+  getDrawListFromDB(count:number, successCallback:Function) {
     console.log('enter getDrawHistory')
-    let draws: Draw[];
-    draws = [];
-    let subs = this.api.getList('/draw-history').subscribe(snapshots => {
+    let time_before:number = Date.now();
+    let localDraws: Draw[] = [];
+    let observables: any = [];
+    let subs = this.api.getList('/draw-history/summary',{
+      query: {
+        limitToLast: count
+      }
+    }).subscribe(snapshots => {
       subs.unsubscribe();
+      let time_after:number = Date.now();
+      console.log((time_after-time_before)/1000);
       snapshots.forEach(s => {
-        let draw: Draw = this.localRoundMap.get(s.$key);
-        if(!draw) {
-          let productObservable = this.ps.getProductById_Internal(s.productId);
-          let userObservable = this.us.getUserInfoObservable(s.winner);
-          let subs2 = Observable.zip(productObservable,userObservable).subscribe(res => {
-            subs2.unsubscribe();
-            let now: number = new Date().getTime();
-            // s.time = now + 30000;
-            let draw = new Draw(s.$key, res[0], res[1], s.winnerNumber, s.time);
-            
-            console.log(now);
-           
-            if(now >= s.time) {
-              draw.status = 'end';
-            } else {
-              draw.status = 'processing';
-            }
-            
-            draw.count = s.records.length;
-            // callback(draw);
-            
-            this.localRoundMap.set(s.$key, draw);
-  
-          })
-        }
-        draws.push(draw);
+        let drawObservable = Observable.create((observer: Observer<any>)=> {
+          observer.next(s);
+          observer.complete();
+        });
+        let productObservable = this.ps.getProductById_Internal(s.productId);
+        let userObservable = this.us.getUserInfoObservable(s.winner);
+        
+        observables.push(Observable.zip(drawObservable, productObservable,userObservable));
+        
       })
-      success_callback(draws);
+      let time_before2:number = Date.now();
+      let subs2 = Observable.zip(...observables).subscribe((res:any) => {
+        let time_after2:number = Date.now();
+        console.log('222222222222: ' + (time_after2-time_before2)/1000);
+        subs2.unsubscribe();
+        res.forEach(s => {
+          let draw: Draw = new Draw(s[0].$key, s[1], s[2], s[0].winnerNumber, s[0].time, s[0].numOfRecords);
+          this.historyDraws.push(draw);
+        });
+        successCallback();
+        
+      });
+
+
+      
     })
+  }
+
+
+
+  getHistoryDraws() {
+    return this.historyDraws;
   }
 
 

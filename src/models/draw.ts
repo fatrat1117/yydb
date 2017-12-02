@@ -8,20 +8,21 @@ export class Draw {
   user: User;
   winnerNumber: string; 
   time:string;
-  count: number;
+  numOfRecords: number;
   // countDown: Observable<number>;
   countDown: string;
   status: string;
   endTime: Date;
   intervalHandle: any;
 
-  constructor(id: string, product: Product, user: User, winnerNumber: string, time: string) {
+  constructor(id: string, product: Product, user: User, winnerNumber: string, time: string, numOfRecords: number) {
     this.id = id;
     this.product = product;
     this.user = user;
     this.winnerNumber = winnerNumber;
     this.endTime = new Date(time);
     this.time = this.endTime.toLocaleString();
+    this.numOfRecords = numOfRecords;
     this.getTimeDiff = this.getTimeDiff.bind(this);
 
     this.intervalHandle = setInterval(this.getTimeDiff, 1000); 

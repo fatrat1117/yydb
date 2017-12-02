@@ -24,16 +24,21 @@ export class ClockPage {
     this.onProcessingRoundsReady = this.onProcessingRoundsReady.bind(this);
     
     this.rs.getProcessingRounds();
+    this.draws = this.rs.getHistoryDraws();
     
   }
 
   ionViewDidLoad() {
     this.addEventListeners();
-    this.rs.getDrawHistory((res) => {
-      this.draws = res;
-      console.log(this.draws);
-    });
+
+    this.rs.getDrawListFromDB(10, ()=>{});
     
+  }
+
+  getMoreDraws(infiniteScroll) {
+    this.rs.getDrawListFromDB(10, ()=>{
+      infiniteScroll.complete();
+    })
   }
   addEventListeners() {
     //console.log('MePage Loaded');
