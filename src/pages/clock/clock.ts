@@ -20,6 +20,7 @@ import { Draw } from '../../models/draw';
 export class ClockPage {
   processingRounds: Round[];
   draws: Draw[];
+  numOfTeams: number = 0;
   constructor(public navCtrl: NavController, private rs: RoundsService, public navParams: NavParams) {
     this.onProcessingRoundsReady = this.onProcessingRoundsReady.bind(this);
     
@@ -31,12 +32,15 @@ export class ClockPage {
   ionViewDidLoad() {
     this.addEventListeners();
 
-    this.rs.getDrawListFromDB(10, ()=>{});
+    this.rs.getDrawListFromDB(4, ()=>{
+      this.numOfTeams += 4;
+    });
     
   }
 
   getMoreDraws(infiniteScroll) {
-    this.rs.getDrawListFromDB(10, ()=>{
+    this.rs.getDrawListFromDB(this.numOfTeams + 4, ()=>{
+      this.numOfTeams += 4;
       infiniteScroll.complete();
     })
   }

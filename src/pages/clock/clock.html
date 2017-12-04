@@ -14,8 +14,10 @@
 
 
 <ion-content>
+    <ion-list>
+        <ion-item no-lines inset  *ngFor=" let r of draws ">
     <ion-grid class="custom-timer-products">
-        <ion-row (tap)='navToItemDetail()' *ngFor=" let r of draws ">
+        <ion-row (tap)='navToItemDetail()' >
             <ion-col col-4><img [src]="r.product.images[0]"></ion-col>
             <ion-col col-8 class="product-column">
                 <p>{{r.product.name}}</p>
@@ -25,6 +27,7 @@
                     <p> 参与次数: {{r.numOfRecords}}</p>
                     <p> 中奖号码: {{r.winnerNumber}}</p>
                     <p> 揭晓时间: {{r.time}}</p>
+                    <p> 测试序号：{{r.orderNum}}</p>
                 </div>
                 <div *ngIf="r.status == 'processing'">
                     <p class="small red-text"><span>即将揭晓</span></p>
@@ -38,10 +41,12 @@
             </ion-col>
         </ion-row>
     </ion-grid>
-    <!-- <ion-infinite-scroll (ionInfinite)="getMoreDraws($event)">
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="getMoreDraws($event)">
       <ion-infinite-scroll-content loadingSpinner="circles">
       </ion-infinite-scroll-content>
-    </ion-infinite-scroll> -->
+    </ion-infinite-scroll>
     <div class="scrolltop">
         <img src="assets/img/scrolltop.PNG">
     </div>

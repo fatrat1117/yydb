@@ -15,6 +15,7 @@ export class RoundsService {
   preparingRounds: Round[];
   processingRounds: Round[];
   historyDraws: Draw[];
+  currentMinOrderNum: number = -1812205815764;
 
   selectedRound: Round;
   selectedRoundSubs: Subscription;
@@ -157,9 +158,18 @@ export class RoundsService {
     let observables: any = [];
     let subs = this.api.getList('/draw-history/summary',{
       query: {
-        limitToLast: count
+        orderByChild: 'orderNum',
+        startAt: this.currentMinOrderNum,
+        limitToFirst: count
       }
     }).subscribe(snapshots => {
+      if(snapshots.length == 0) {
+        successCallback();
+        return;
+      }
+      
+      console.log('///////////////////////////////////');
+      console.log(snapshots)
       subs.unsubscribe();
       let time_after:number = Date.now();
       console.log((time_after-time_before)/1000);
@@ -172,17 +182,25 @@ export class RoundsService {
         let userObservable = this.us.getUserInfoObservable(s.winner);
         
         observables.push(Observable.zip(drawObservable, productObservable,userObservable));
+        if(this.currentMinOrderNum < s.orderNum) {
+          this.currentMinOrderNum = s.orderNum + 1;
+        }
         
       })
       let time_before2:number = Date.now();
-      let subs2 = Observable.zip(...observables).subscribe((res:any) => {
+      let subs2 = Observable.zip(...observables).subscribe((res:any[]) => {
+        console.log(res);
         let time_after2:number = Date.now();
         console.log('222222222222: ' + (time_after2-time_before2)/1000);
         subs2.unsubscribe();
         res.forEach(s => {
+          console.log(s[0].$key);
           let draw: Draw = new Draw(s[0].$key, s[1], s[2], s[0].winnerNumber, s[0].time, s[0].numOfRecords);
+          draw.orderNum = s[0].orderNum;
+          localDraws.push(draw);
           this.historyDraws.push(draw);
         });
+        // this.historyDraws = localDraws;
         successCallback();
         
       });
