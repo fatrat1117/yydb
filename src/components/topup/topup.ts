@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ViewController, NavParams, LoadingController } from 'ionic-angular';
 import { TranslateService } from '@ngx-translate/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { UserService } from '../../providers/user/user';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 declare var snap: any;
@@ -22,7 +23,12 @@ export class TopupComponent {
   amount: any;
   tokem: any;
   loader: any;
-  constructor(public viewCtrl: ViewController, public loadCtrl: LoadingController, public http: Http, public params: NavParams, public translateService: TranslateService, ) {
+  constructor(public viewCtrl: ViewController, 
+    public loadCtrl: LoadingController, 
+    public http: Http, 
+    public params: NavParams, 
+    public translateService: TranslateService, 
+  public userService: UserService) {
     console.log('Hello TopupComponent Component');
     this.text = 'Hello World';
   }
@@ -77,11 +83,14 @@ export class TopupComponent {
     this.viewCtrl.dismiss();
   }
   pay(token) {
+    let self = this;
     snap.pay(token, {
       onSuccess: function (result) {
         //this.viewCtrl.dismiss();
         if (200 == result.status_code && "accept" == result.fraud_status) {
-
+          self.userService.topup(result.gross_amount).then(() => {
+            self.viewCtrl.dismiss();
+          });
         }
         //console.log('success'); console.log(result);
       },
