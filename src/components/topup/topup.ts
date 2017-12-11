@@ -79,10 +79,11 @@ export class TopupComponent {
   pay(token) {
     snap.pay(token, {
       onSuccess: function (result) {
-        this.viewCtrl.dismiss();
+        //this.viewCtrl.dismiss();
+        if (200 == result.status_code && "accept" == result.fraud_status) {
 
-        console.log('success'); console.log(result);
-
+        }
+        //console.log('success'); console.log(result);
       },
       onPending: function (result) {
         console.log('pending'); console.log(result);
