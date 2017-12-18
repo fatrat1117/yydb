@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Refresher } from 'ionic-angular';
 import { SearchPage } from '../search/search'
 import { RoundsService } from '../../providers/providers'
 import { Round } from '../../models/round';
@@ -18,8 +18,10 @@ import { Draw } from '../../models/draw';
   templateUrl: 'clock.html',
 })
 export class ClockPage {
+  ITEM_COUNT: number = 10;
   processingRounds: Round[];
   draws: Draw[];
+  numOfTeams: number = 0;
   constructor(public navCtrl: NavController, private rs: RoundsService, public navParams: NavParams) {
     this.onProcessingRoundsReady = this.onProcessingRoundsReady.bind(this);
     
@@ -31,15 +33,40 @@ export class ClockPage {
   ionViewDidLoad() {
     this.addEventListeners();
 
-    this.rs.getDrawListFromDB(10, ()=>{});
+    this.rs.getDrawListFromDB(this.ITEM_COUNT, (success, result)=>{
+      if(success) {
+        this.numOfTeams += this.ITEM_COUNT;
+      }
+      
+    }, true);
     
   }
 
   getMoreDraws(infiniteScroll) {
-    this.rs.getDrawListFromDB(10, ()=>{
+    this.rs.getDrawListFromDB(this.numOfTeams + this.ITEM_COUNT, (success, result)=>{
+      if(success) {
+        this.numOfTeams += this.ITEM_COUNT;
+      }
       infiniteScroll.complete();
-    })
+    }, false)
   }
+
+
+  doRefresh(refresher: Refresher) {
+    console.log('DOREFRESH', refresher);
+    this.numOfTeams = 0;
+    this.rs.getDrawListFromDB(this.ITEM_COUNT, (success, result)=>{
+      if(success) {
+        this.numOfTeams += this.ITEM_COUNT;
+      }
+      refresher.complete();
+    }, true);
+  }
+
+  doPulling(refresher: Refresher) {
+    console.log('DOPULLING', refresher.progress);
+  }
+
   addEventListeners() {
     //console.log('MePage Loaded');
   

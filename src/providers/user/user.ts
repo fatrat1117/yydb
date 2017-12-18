@@ -7,6 +7,7 @@ import { Http } from '@angular/http';
 import { Api } from '../api/api';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 /**
  * Most apps have the concept of a User. This is a simple provider
  * with stubs for login/signup/etc.
@@ -97,5 +98,16 @@ export class UserService {
 
   getUserInfoObservable(userId: string) {
     return this.api.getObject(`/users/${userId}`);
+  }
+
+  topup(amount) {
+    console.log('topup', this.uid(), amount);
+    return firebase.database().ref(`/users/${this.uid()}/balance/`).transaction((balance) => {
+      if (null === balance)
+        return balance;
+
+      let a = parseInt(amount, 10);
+      return balance + a;
+    });
   }
 }

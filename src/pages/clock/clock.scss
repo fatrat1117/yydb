@@ -1,17 +1,35 @@
 page-clock {
+    ion-content.content {
+        background: rgba(240, 240, 240, 0.9);
+    }
+    ion-list.list-ios, .list-md {
+        margin: 8px !important;
+    }
+    ion-item.item-md {
+        margin-bottom: 8px;
+        padding: 0 0;
+    }
+    .item-md.item-block .item-inner {
+        padding-right: 0px;
+    }
     ion-grid.custom-timer-products.grid p {
-        margin: 0 0 0;
+        margin: 0 0;
     }
     p.timer {
         color: red;
         font-size: 25px;
+    }
+    p.username {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     ion-grid.custom-timer-products.grid {
         padding: 0;
         background: #ececec;
     }
     ion-grid.custom-timer-products.grid ion-row.row {
-        margin: 10px 0 0;
+        margin: 0 0;
         background: #fff;
     }
     .scrolltop {

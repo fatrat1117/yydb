@@ -15,6 +15,7 @@ export class RoundsService {
   preparingRounds: Round[];
   processingRounds: Round[];
   historyDraws: Draw[];
+  currentMinOrderNum: number = -Number.MAX_SAFE_INTEGER;
 
   selectedRound: Round;
   selectedRoundSubs: Subscription;
@@ -98,68 +99,28 @@ export class RoundsService {
     })
   }
 
-  // getDrawListFromDB(count:number, successCallback:Function) {
-  //   console.log('enter getDrawHistory')
-  //   let time_before:number = Date.now();
-  //   let localDraws: Draw[] = [];
-  //   let observables: any = [];
-  //   let subs = this.api.getList('/draw-history/summary',{
-  //     query: {
-  //       limitToLast: count
-  //     }
-  //   }).subscribe(snapshots => {
-  //     let drawCount = 0;
-  //     subs.unsubscribe();
-  //     let time_after:number = Date.now();
-  //     let intv = time_after-time_before;
-  //     console.log((time_after-time_before)/1000);
-  //     snapshots.forEach(s => {
-  //       let productObservable = this.ps.getProductById_Internal(s.productId);
-  //       let userObservable = this.us.getUserInfoObservable(s.winner);
-  //       observables.push(Observable.zip(productObservable,userObservable));
-  //       let subs2 = Observable.zip(productObservable,userObservable).subscribe(res => {
-  //         subs2.unsubscribe();
-  //         let now: number = new Date().getTime();
-  //         let draw: Draw = new Draw(s.$key, res[0], res[1], s.winnerNumber, s.time, s.numOfRecords);
-          
-  //         if(now >= s.time) {
-  //           draw.status = 'end';
-  //         } else {
-  //           draw.status = 'processing';
-  //         }
-          
-  //         // console.log('add a new draw');
-  //         localDraws.push(draw);
-  //         if(localDraws.length == snapshots.length) {
-  //           this.historyDraws.push(...localDraws);
-  //           // console.log('all data finished');
-  //           successCallback();
-  //         }
-         
-  //       }, err=> {
-  //         console.log(err);
-  //       })
-        
-  //     })
-
-
-
-      
-  //   })
-  // }
-
-
-
-  getDrawListFromDB(count:number, successCallback:Function) {
-    console.log('enter getDrawHistory')
+  getDrawListFromDB(count:number, successCallback:Function, isFirstQurery:boolean) {
+    console.log('enter getDrawHistory');
+    if(isFirstQurery) {
+      this.currentMinOrderNum = -Number.MAX_SAFE_INTEGER;
+    }
     let time_before:number = Date.now();
     let localDraws: Draw[] = [];
     let observables: any = [];
     let subs = this.api.getList('/draw-history/summary',{
       query: {
-        limitToLast: count
+        orderByChild: 'orderNum',
+        startAt: this.currentMinOrderNum,
+        limitToFirst: count
       }
     }).subscribe(snapshots => {
+      if(snapshots.length == 0) {
+        successCallback({success: true, result: localDraws });
+        return;
+      }
+      
+      console.log('///////////////////////////////////');
+      console.log(snapshots)
       subs.unsubscribe();
       let time_after:number = Date.now();
       console.log((time_after-time_before)/1000);
@@ -172,23 +133,39 @@ export class RoundsService {
         let userObservable = this.us.getUserInfoObservable(s.winner);
         
         observables.push(Observable.zip(drawObservable, productObservable,userObservable));
+        if(this.currentMinOrderNum < s.orderNum) {
+          this.currentMinOrderNum = s.orderNum + 1;
+        }
         
       })
+      console.log('observables.length= ' + observables.length)
       let time_before2:number = Date.now();
-      let subs2 = Observable.zip(...observables).subscribe((res:any) => {
+      let subs2 = Observable.zip(...observables).subscribe((res:any[]) => {
+        console.log(res);
         let time_after2:number = Date.now();
         console.log('222222222222: ' + (time_after2-time_before2)/1000);
         subs2.unsubscribe();
+        
         res.forEach(s => {
           let draw: Draw = new Draw(s[0].$key, s[1], s[2], s[0].winnerNumber, s[0].time, s[0].numOfRecords);
-          this.historyDraws.push(draw);
+          draw.orderNum = s[0].orderNum;
+          localDraws.push(draw);
+          
         });
-        successCallback();
+        if(isFirstQurery) {
+          this.historyDraws.length = 0;
+        }
+        this.historyDraws.push(...localDraws);
+        successCallback({success: true, result: localDraws });
         
-      });
-
-
+      }, 
+    (error) => {
+      successCallback({success: false, result: error });
+    });
       
+    },
+    (error) => {
+      successCallback({success: false, result: error });
     })
   }
 

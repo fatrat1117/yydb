@@ -14,34 +14,45 @@
 
 
 <ion-content>
-    <ion-grid class="custom-timer-products">
-        <ion-row (tap)='navToItemDetail()' *ngFor=" let r of draws ">
-            <ion-col col-4><img [src]="r.product.images[0]"></ion-col>
-            <ion-col col-8 class="product-column">
-                <p>{{r.product.name}}</p>
-                <p>期号: {{r.id}}</p>
-                <div *ngIf="r.status == 'end'">
-                    <p> 获奖者: {{r.user.name}}</p>
-                    <p> 参与次数: {{r.numOfRecords}}</p>
-                    <p> 中奖号码: {{r.winnerNumber}}</p>
-                    <p> 揭晓时间: {{r.time}}</p>
-                </div>
-                <div *ngIf="r.status == 'processing'">
-                    <p class="small red-text"><span>即将揭晓</span></p>
-                    <p class="timer"><ion-icon name="timer"></ion-icon> {{r.countDown}}</p>
-                </div>
-                <!-- <span style="color: red;">{{r.status}}</span>
-                <p *ngIf="r.status == 'end'"> Result: {{r.result}}</p>
-                <p *ngIf="r.status == 'end'"> Result time: {{toDate(r.resultTime)}}</p>
-                <p *ngIf="r.status == 'processing'" class="timer">
-                    <ion-icon name="timer"></ion-icon> 00:{{getMinutes(r.countDown | async)}}:{{getSeconds(r.countDown | async)}}</p> -->
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    <!-- <ion-infinite-scroll (ionInfinite)="getMoreDraws($event)">
+    <ion-refresher (ionRefresh)="doRefresh($event)" (ionPull)="doPulling($event)">
+        <ion-refresher-content
+            pullingText="Pull to refresh..."
+            refreshingText="Refreshing...">
+        </ion-refresher-content>
+    </ion-refresher>
+    <ion-list>
+        <ion-item inset no-lines  class="custom-timer-products" *ngFor=" let r of draws ">
+            <!-- <ion-grid class="custom-timer-products">
+                
+            </ion-grid> -->
+            <ion-row (tap)='navToItemDetail()' >
+                    <ion-col col-4 align-self-center><img [src]="r.product.images[0]"></ion-col>
+                    <ion-col col-8 class="product-column">
+                        <p>{{r.product.name}}</p>
+                        <p>期号: {{r.id}}</p>
+                        <div *ngIf="r.status == 'end'">
+                            <p class="username"> 获奖者: {{r.user.name}}</p>
+                            <p> 参与次数: {{r.numOfRecords}}</p>
+                            <p> 中奖号码: <span class="text-red"> {{r.winnerNumber}}</span></p>
+                            <p> 揭晓时间: {{r.time}}</p>
+                        </div>
+                        <div *ngIf="r.status == 'processing'">
+                            <p class="small text-red"><span>即将揭晓</span></p>
+                            <p class="timer"><ion-icon name="timer"></ion-icon> {{r.countDown}}</p>
+                        </div>
+                        <!-- <span style="color: red;">{{r.status}}</span>
+                        <p *ngIf="r.status == 'end'"> Result: {{r.result}}</p>
+                        <p *ngIf="r.status == 'end'"> Result time: {{toDate(r.resultTime)}}</p>
+                        <p *ngIf="r.status == 'processing'" class="timer">
+                            <ion-icon name="timer"></ion-icon> 00:{{getMinutes(r.countDown | async)}}:{{getSeconds(r.countDown | async)}}</p> -->
+                    </ion-col>
+                </ion-row>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="getMoreDraws($event)">
       <ion-infinite-scroll-content loadingSpinner="circles">
       </ion-infinite-scroll-content>
-    </ion-infinite-scroll> -->
+    </ion-infinite-scroll>
     <div class="scrolltop">
         <img src="assets/img/scrolltop.PNG">
     </div>
