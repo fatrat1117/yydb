@@ -28,7 +28,7 @@ myData = [];
 	} 
 	fetchDraws(){
 		
-	this.api.getList(`/draw-history`).subscribe(response =>{
+	this.api.getList(`/draw-history/summary`).subscribe(response =>{
 		
 		response.forEach(element => {
 

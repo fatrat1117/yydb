@@ -48,11 +48,11 @@
 
                         <div class="card-inner-custom full">
                             <span class="date" float-right>
-																{{data.time |amFromUnix | amDateFormat:'LL'}}
+																{{data.time |amFromUnix | amDateFormat:'MMM Do YY'}}
 														</span>
                             <h2>{{data.product.name}}</h2>
                             <p>Winner: {{data.winner.name}}</p>
-                            <p>ID: {{data.id}}</p>
+                            <p>ID: {{data.orderNum}}</p>
                             <p>Number: {{data.winnerNumber}}</p>
                             <p class="full">PRICE:
                                 <ion-icon color="danger">{{data.product.price}}</ion-icon>$
@@ -77,8 +77,8 @@
                             </div>
                         </div>
                         <div class="progress progessderail">
-                            <span class="left">Price <ion-icon color="danger">{{data.product.price}}</ion-icon></span>
-                            <span class="right">Price <ion-icon color="danger">{{data.product.price}}</ion-icon></span>
+
+                            <span class="right">Records: <ion-icon color="danger">{{data.numOfRecords}}</ion-icon></span>
                         </div>
                     </ion-col>
 
