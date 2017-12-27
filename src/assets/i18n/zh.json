@@ -133,5 +133,8 @@
     "NEXT": "计算详情",
     "PRODUCT_PROPERTIES_BELOW":"您错过了本期夺宝，请参加下一期",
     "LIST_OF_PROPERTIES_BELOW":"本期参与记录",
-  "drawnow": "立即参与"
+    "drawnow": "立即参与",
+    "ISSUE": "期号:",
+    "MOBILE_PRICE": "市场价:"
+
 }

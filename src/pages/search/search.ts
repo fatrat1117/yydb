@@ -3,13 +3,15 @@ import { IonicPage, MenuController, NavController, Platform, NavParams, ModalCon
 import { TranslateService } from '@ngx-translate/core';
 import { RoundsService } from '../../providers/rounds/rounds';
 //import { AngularFireDatabase } from 'angularfire2/database';
-import { Round } from '../../models/round'
+import { Draw } from '../../models/draw'
 import { QuantityComponent } from '../../components/quantity/quantity';
 import { ListPage } from '../list/list';
 import { TableViewPage } from '../table-view/table-view';
 import { DrawDoneComponent } from '../../components/draw-done/draw-done';
 import { Subject } from 'rxjs/Subject';
 import * as moment from 'moment/moment';
+
+import * as Firebase from 'firebase/app';
 
 export interface Slide {
   title: string;
@@ -24,7 +26,7 @@ export interface Slide {
 })
 export class SearchPage {
   slides: Slide[];
-  items;
+  items = ['图文详情', '往期揭晓', '晒单分享'];
   lists;
   showSkip = true;
   dir: string = 'ltr';
@@ -33,7 +35,7 @@ export class SearchPage {
   queryRecords;
   tabBarElement: any;
   productId;
-  round: Round;
+  draw: Draw;
   records;
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
@@ -41,6 +43,8 @@ export class SearchPage {
     translate: TranslateService,
     public platform: Platform, navParams: NavParams,
     public rs: RoundsService) {
+
+    this.draw = navParams.get('draw');
     this.productId = navParams.get('productId');
     this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
     this.dir = platform.dir();
@@ -50,13 +54,14 @@ export class SearchPage {
       this.records = records;
     });
     this.recordsCount$.next(this.recordsCount);
+    // this.rs.test(this.draw, ()=>{});
   }
 
   ionViewDidLoad() {
-    // this.rs.getRoundById(this.navParams.get('id'), r => {
-    //   this.round = r;
-    // });
+    console.log(this.draw);
+    this.rs.getDrawRecordsFromDB(this.draw, ()=>{});
   }
+
 
   ionViewWillUnload() {
     //this.rs.selectedRound = null
@@ -76,9 +81,11 @@ export class SearchPage {
   // }
 
   listpage(i) {
-    if (i == 1) {
-      this.navCtrl.push(ListPage);
-    }
+    // if (i == 1) {
+    //   this.navCtrl.push(ListPage);
+    // }
+
+    // this.rs.test2();
 
   }
 
@@ -99,17 +106,17 @@ export class SearchPage {
     return seconds % 60;
   }
 
-  draw() {
-    let drawModal = this.modalCtrl.create(QuantityComponent, { page: 'add', productId: this.productId });
-    drawModal.onDidDismiss(data => {
-      // console.log('onDidDismiss', data);
-      let drawDone = this.modalCtrl.create(DrawDoneComponent, { drawResponse: data });
-      drawDone.present();
-    });
-    drawModal.present();
-  }
+  // draw() {
+  //   let drawModal = this.modalCtrl.create(QuantityComponent, { page: 'add', productId: this.productId });
+  //   drawModal.onDidDismiss(data => {
+  //     // console.log('onDidDismiss', data);
+  //     let drawDone = this.modalCtrl.create(DrawDoneComponent, { drawResponse: data });
+  //     drawDone.present();
+  //   });
+  //   drawModal.present();
+  // }
 
-  doInfinite(ev) {
+  // doInfinite(ev) {
 
-  }
+  // }
 }

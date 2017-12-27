@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subscription, Observable, Observer} from "rxjs/Rx"
+import { Subject } from 'rxjs/Subject';
 import { FirebaseListObservable } from 'angularfire2/database';
 
 import { Api } from '../api/api';
@@ -19,6 +20,9 @@ export class RoundsService {
 
   selectedRound: Round;
   selectedRoundSubs: Subscription;
+
+  private query$: Subject<Object> = new Subject<Object>();
+
   constructor(public api: Api, public ps: ProductsService, public us: UserService) {
     this.historyDraws = [];
   }
@@ -169,7 +173,58 @@ export class RoundsService {
     })
   }
 
+  getDrawRecordsFromDB(draw: Draw, successCallback:Function) {
+    let combineRecords = new Map<string, any>();
+    let time_before:number = Date.now();
+    let subs = this.api.getList(`/draw-history/details/${draw.id}/records`,{
+      query: {
+        orderByChild: 'orderNum'
+      }
+    }).subscribe(snapshots => {
+      let time_after:number = Date.now();
+      console.log('test time: ' + (time_after-time_before)/1000);
+      console.log(snapshots)
+      if(snapshots.length == 0) {
+        successCallback({success: true, result: [] });
+        return;
+      }
+      combineRecords.clear();
+      // clear draw.records
+      draw.records.length=0;
+      
+      snapshots.forEach(s => {
+        // console.log(s);
+        
+        let key: string;
+        key = s.userId + s.time + s.ip;
+        let record = combineRecords.get(key);
+        if(record) {
+          record.count++;
+        } else {
+          combineRecords.set(key, Object.assign(s, {count: 1}, {userName: ''}))
+        }
+        
+      });
+      combineRecords.forEach(r => {
+        draw.records.push(r);
+        successCallback({success: true, result: draw.records });
+        console.log(draw.records);
+      })
 
+      draw.records.forEach(r => {
+        let userObservable = this.us.getUserInfoObservable(r.userId);
+        userObservable.subscribe(user => {
+          r.userName = user.name;
+        });
+      })
+      
+      
+      
+    },
+    (error) => {
+      successCallback({success: false, result: error });
+    })
+  }
 
   getHistoryDraws() {
     return this.historyDraws;

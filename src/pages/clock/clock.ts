@@ -81,8 +81,8 @@ export class ClockPage {
     this.processingRounds = data['detail'];
   }
   
-  navToItemDetail() {
-    this.navCtrl.push(SearchPage);
+  navToItemDetail(draw) {
+    this.navCtrl.push(SearchPage, {draw: draw});
   }
   getMinutes(seconds: number) {
     if (seconds == null)

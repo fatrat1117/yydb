@@ -15,8 +15,10 @@ export class Draw {
   endTime: Date;
   intervalHandle: any;
   orderNum: number;
+  records;
 
   constructor(id: string, product: Product, user: User, winnerNumber: string, time: string, numOfRecords: number) {
+    this.records = [];
     this.id = id;
     this.product = product;
     this.user = user;
